@@ -1,0 +1,588 @@
+"SP_ID","terrai_nom","terrai_pro","status_ter","fase_descr","tipo_terra","terrai_fai","terrai_obs","terrai_are","situa_desc","tipo_area_","terrai_per","terrai_pop","id","SRTM_500m"
+"0","Takuari",NA,"Estudos Complementares","Em Estudo","Reserva Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,1,151.465058310336
+"1","Acapuri de Cima",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"19885.0378 Ha","Ativo","Principal","57.64093 Ha",NA,2,57.611156465508
+"2","Acimã",".","Concluído","Regularizada","Terra Indígena","N",NA,"40686.0340 Ha","Ativo","Principal","110.11701 Ha",NA,3,116.7140779432
+"3","Água Preta/Inari",".","Concluído","Regularizada","Terra Indígena","N",NA,"139763.6705 Ha","Ativo","Principal","288.22043 Ha",NA,4,143.219457888614
+"4","Águas Belas",".","Concluído","Regularizada","Terra Indígena","N",NA,"1189.0649 Ha","Ativo","Principal","17.93918 Ha",NA,5,42.8284013605442
+"5","Aconã",".","Processo de Homologação","Regularizada","Reserva Indígena","N",NA,"267.7862 Ha","Ativo","Principal","12.35282 Ha",NA,6,71.9606608969316
+"6","Aldeia Kondá",".","Processo de Aquisição","Reserva Indígena","Reserva Indígena","S",NA,"2300.0000 Ha","Ativo","Principal","23.00000 Ha",NA,7,506.440630645426
+"7","Aldeia Limão Verde",".","Reserva SPI","Regularizada","Reserva Indígena","S","Área registrada com 660 hectares e na planta de demarcação 668,0796ha.","668.0796 Ha","Ativo","Principal","12.98415 Ha",NA,8,489.278575531304
+"8","Aldeia Velha",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"2001.0000 Ha","Ativo","Principal","24.00000 Ha",NA,9,15.6901920083031
+"9","Alto Rio Guamá",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"279897.7000 Ha","Ativo","Principal","366.29290 Ha",NA,10,79.2316673059044
+"10","Alto Rio Negro",".","Concluído","Regularizada","Terra Indígena","N",NA,"7999381.1683 Ha","Ativo","Principal","1905.96063 Ha",NA,11,128.408663256398
+"11","Alto Rio Purus",".","Concluído","Regularizada","Terra Indígena","S",NA,"263129.8062 Ha","Ativo","Principal","393.54748 Ha",NA,12,231.056300793028
+"12","Alto Sepatini",".","Concluído","Regularizada","Terra Indígena","N",NA,"26095.6979 Ha","Ativo","Principal","96.83977 Ha",NA,13,125.190106810705
+"13","Alto Tarauacá",".","Concluído","Regularizada","Terra Indígena","N",NA,"142619.1069 Ha","Ativo","Principal","239.24560 Ha",NA,14,362.090935603689
+"14","Alto Turiaçu",".","Concluído","Regularizada","Terra Indígena","N",NA,"530524.7417 Ha","Ativo","Principal","393.47700 Ha",NA,15,90.6300378497596
+"15","Amambai",".","Processo de Homologação","Regularizada","Terra Indígena","S",NA,"2429.5454 Ha","Ativo","Principal","22.41311 Ha",NA,16,465.948474521259
+"16","Anambé",".","Concluído","Regularizada","Terra Indígena","N",NA,"7882.8329 Ha","Ativo","Principal","42.30152 Ha",NA,17,48.6632559294673
+"17","Ananás",".","Concluído","Regularizada","Terra Indígena","S",NA,"1769.4220 Ha","Ativo","Principal","28.00000 Ha",NA,18,109.254679199019
+"18","Andirá-Marau",".","Concluído","Regularizada","Terra Indígena","N",NA,"788528.3830 Ha","Ativo","Principal","477.72700 Ha",NA,19,76.7352510925541
+"19","Aningal",".","Concluído","Regularizada","Terra Indígena","S",NA,"7627.0391 Ha","Ativo","Principal","40.25400 Ha",NA,20,115.923597006205
+"20","Anta",".","Concluído","Regularizada","Terra Indígena","S",NA,"3173.8226 Ha","Ativo","Principal","33.66215 Ha",NA,21,110.330455259027
+"21","Apiaka/Kayabi",".","Concluído","Regularizada","Terra Indígena","N",NA,"109245.3822 Ha","Ativo","Principal","162.50790 Ha",NA,22,314.808600400241
+"22","Apinayé",".","Concluído","Regularizada","Terra Indígena","N",NA,"141904.2092 Ha","Ativo","Principal","178.01832 Ha",NA,23,226.236920576713
+"23","Apipica",".","Concluído","Regularizada","Terra Indígena","N",NA,"652.7562 Ha","Ativo","Principal","21.82696 Ha",NA,24,26.2657480314961
+"24","Apucarana",".","Reserva SPI","Regularizada","Reserva Indígena","N",NA,"5574.9450 Ha","Ativo","Principal","48.58212 Ha",NA,25,667.558796845558
+"25","Apurinã do Igarapé São João",".","Homologada","Regularizada","Terra Indígena","N",NA,"18232.4221 Ha","Ativo","Principal","88.04480 Ha",NA,26,52.0144116412481
+"26","Apurinã Igarapé Tauamirim",".","Concluído","Regularizada","Terra Indígena","N",NA,"96456.5072 Ha","Ativo","Principal","170.62262 Ha",NA,27,67.5242239364585
+"27","Apurinã Km 124 BR-317",".","Concluído","Regularizada","Terra Indígena","N",NA,"42197.6055 Ha","Ativo","Principal","109.86670 Ha",NA,28,172.119120427415
+"28","Apyterewa",".","Homologada","Regularizada","Terra Indígena","N",NA,"773470.0313 Ha","Ativo","Principal","527.90544 Ha",NA,29,246.332638481749
+"29","Araçá",".","Concluído","Regularizada","Terra Indígena","S",NA,"50018.3000 Ha","Ativo","Principal","13.00000 Ha",NA,30,106.713624144775
+"30","Arara",".","Concluído","Regularizada","Terra Indígena","N",NA,"274010.0240 Ha","Ativo","Principal","298.77196 Ha",NA,31,203.864297966793
+"31","Arara do Rio Branco",".","Concluído","Regularizada","Terra Indígena","N",NA,"114842.4748 Ha","Ativo","Principal","196.53254 Ha",NA,32,157.846069889055
+"32","Arara do Igarapé Humaitá",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"87571.6965 Ha","Ativo","Principal","140.04790 Ha",NA,33,248.201407507513
+"33","Araribá",".","Estudos Antropológicos","Regularizada","Terra Indígena","N",NA,"1930.3369 Ha","Ativo","Principal","25.54380 Ha",NA,34,509.18956860334
+"34","Arariboia",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"413288.0472 Ha","Ativo","Principal","277.82175 Ha",NA,35,295.063519387494
+"35","Arary",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"40750.0000 Ha","Ativo","Principal","114.00000 Ha",NA,36,36.0447520775696
+"36","Araweté Igarapé Ipixuna",".","Concluído","Regularizada","Terra Indígena","N",NA,"940900.8000 Ha","Ativo","Principal","576.38000 Ha",NA,37,213.20357452798
+"37","Areões",".","Concluído","Regularizada","Terra Indígena","N",NA,"218515.0000 Ha","Ativo","Principal","265.60400 Ha",NA,38,273.283606975579
+"38","Aripuanã",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"750649.2650 Ha","Ativo","Principal","565.03797 Ha",NA,39,263.691490814848
+"39","Ariramba",".","Concluído","Regularizada","Terra Indígena","N",NA,"142.2979 Ha","Ativo","Principal","69.00000 Ha",NA,40,63.7018209408194
+"40","Arroio-Korá",".","Homologada","Homologada","Terra Indígena","S",NA,"7175.7747 Ha","Ativo","Principal","48.64039 Ha",NA,41,374.512093798683
+"41","Atikum",".","Concluído","Regularizada","Terra Indígena","N",NA,"16290.1893 Ha","Ativo","Principal","54.56587 Ha",NA,42,634.038365758755
+"42","Avá-Canoeiro",".","Homologada","Declarada","Terra Indígena","N",NA,"38000.0000 Ha","Ativo","Principal","90.00000 Ha",NA,43,569.792527335744
+"43","Avá-Guarani do Ocoí",".","Registrada como Dominial","Reserva Indígena","Reserva Indígena","S",NA,"231.8870 Ha","Ativo","Principal","24.34700 Ha",NA,44,230.838310269483
+"44","Awa",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"116582.9182 Ha","Ativo","Principal","204.88128 Ha",NA,45,125.789656159779
+"45","Bacurizinho",".","Concluído","Regularizada","Terra Indígena","N",NA,"82432.4931 Ha","Ativo","Principal","132.80800 Ha",NA,46,257.311077389985
+"46","Bacurizinho",".","Demarcação Física","Declarada","Terra Indígena","N",NA,"134040.0000 Ha","Ativo","Reestudo","202.00000 Ha",NA,47,260.970243275332
+"47","Badjonkore",".","Concluído","Regularizada","Terra Indígena","N",NA,"221981.6373 Ha","Ativo","Principal","293.02607 Ha",NA,48,334.913859170415
+"48","Baia do Guató",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"19164.0000 Ha","Ativo","Principal","102.00000 Ha",NA,49,118.360639115399
+"49","Bakairi",".","Concluído","Regularizada","Terra Indígena","N",NA,"61405.4605 Ha","Ativo","Principal","135.57308 Ha",NA,50,446.818740221551
+"50","Balaio",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"257281.4601 Ha","Ativo","Principal","270.47599 Ha",NA,51,117.571983216234
+"51","Banawá",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"192659.6666 Ha","Ativo","Principal","270.59908 Ha",NA,52,76.9628617398779
+"52","Barão de Antonina",".","Concluído","Regularizada","Terra Indígena","N",NA,"3750.7220 Ha","Ativo","Principal","32.98040 Ha",NA,53,638.156351111575
+"53","Barata Livramento",".","Concluído","Regularizada","Terra Indígena","N",NA,"12883.2701 Ha","Ativo","Principal","60.48300 Ha",NA,54,117.52226861517
+"54","Barra",".","Concluído","Regularizada","Reserva Indígena","N",NA,"62.0000 Ha","Ativo","Principal","4.00000 Ha",NA,55,419.373737373737
+"55","Barra Velha",".","Concluído","Regularizada","Terra Indígena","N",NA,"8627.4590 Ha","Ativo","Principal","71.74100 Ha",NA,56,67.7174264153587
+"56","Barra Velha",".","Exame do Min. da Justiça","Delimitada","Terra Indígena","N",NA,"52748.0000 Ha","Ativo","Reestudo","137.00000 Ha",NA,57,29.20267995268
+"57","Barreira da Missão",".","Processo de Homologação","Homologada","Terra Indígena","N",NA,"1772.4237 Ha","Ativo","Principal","16.51940 Ha",NA,58,69.0530494406351
+"58","Batovi",".","Concluído","Regularizada","Terra Indígena","N",NA,"5158.9817 Ha","Ativo","Principal","50.84590 Ha",NA,59,333.62314527795
+"59","Baú",".","Processo de Homologação","Regularizada","Terra Indígena","N","Subgrupo Menkrangnotí.","1540930.1555 Ha","Ativo","Principal","700.95420 Ha",NA,60,281.239281433
+"60","Betania",".","Concluído","Regularizada","Terra Indígena","N",NA,"122769.0265 Ha","Ativo","Principal","242.12207 Ha",NA,61,80.8630355911785
+"61","Boa Vista Sertão do Promirim",".","Análise da Delimitação","Delimitada","Terra Indígena","N",NA,"5420.0000 Ha","Ativo","Reestudo","36.00000 Ha",NA,62,370.692770865828
+"62","Boca do Acre",".","Concluído","Regularizada","Terra Indígena","N",NA,"26240.4231 Ha","Ativo","Principal","135.72194 Ha",NA,63,159.648261791161
+"63","Bom Intento",".","Concluído","Regularizada","Terra Indígena","N",NA,"1613.0430 Ha","Ativo","Principal","16.97127 Ha",NA,64,72.0903571932797
+"64","Bom Jesus",".","Concluído","Regularizada","Terra Indígena","N",NA,"859.1271 Ha","Ativo","Principal","13.83871 Ha",NA,65,85.4054514480409
+"65","Boqueirão",".","Concluído","Regularizada","Terra Indígena","N",NA,"16354.0776 Ha","Ativo","Principal","54.91386 Ha",NA,66,117.64366786141
+"66","Brejo do Burgo",".","Homologada","Regularizada","Terra Indígena","N",NA,"17924.8496 Ha","Ativo","Principal","67.20651 Ha",NA,67,415.236854175732
+"67","Buriti",".","Concluído","Regularizada","Terra Indígena","N",NA,"2090.1691 Ha","Ativo","Principal","24.23071 Ha",NA,68,281.7065581618
+"68","Buriti",".","Homologada","Declarada","Terra Indígena","N",NA,"17200.0000 Ha","Ativo","Reestudo","78.00000 Ha",NA,69,314.063787182025
+"69","Buritizinho",".","Concluído","Regularizada","Terra Indígena","N",NA,"9.7428 Ha","Ativo","Principal","1.25889 Ha",NA,70,479.44
+"70","Caarapó",".","Certidão SPU","Regularizada","Terra Indígena","N",NA,"3594.4154 Ha","Ativo","Principal","25.74160 Ha",NA,71,480.020835605978
+"71","Cabeceira do Rio Acre",".","Concluído","Regularizada","Terra Indígena","N",NA,"78512.5834 Ha","Ativo","Principal","171.06459 Ha",NA,72,311.156292976653
+"72","Cacau do Tarauaca",".","Concluído","Regularizada","Terra Indígena","N",NA,"28367.2948 Ha","Ativo","Principal","85.70390 Ha",NA,73,173.559784297191
+"73","Cachoeira dos Inácios",".","Adquirido","Reserva Indígena","Reserva Indígena","N",NA,"80.0000 Ha","Ativo","Principal","5.00000 Ha",NA,74,59.0596330275229
+"74","Cachoeira Seca",".","Homologada","Declarada","Terra Indígena","N",NA,"733688.2507 Ha","Ativo","Principal","558.41661 Ha",NA,75,249.21600523989
+"75","Cachoeirinha",".","Reserva SPI","Regularizada","Reserva Indígena","N",NA,"2658.1634 Ha","Ativo","Principal","22.42555 Ha",NA,76,177.974878801234
+"76","Cachoeirinha",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"36288.0000 Ha","Ativo","Reestudo","100.00000 Ha",NA,77,144.996943640058
+"77","Cacique Doble",".","Concluído","Regularizada","Terra Indígena","N",NA,"4426.2833 Ha","Ativo","Principal","39.94175 Ha",NA,78,752.072231686542
+"78","Caiçara/Ilha de São Pedro",".","Concluído","Regularizada","Terra Indígena","N",NA,"4316.7768 Ha","Ativo","Principal","35.52993 Ha",NA,79,84.9225071854964
+"79","Caieiras Velha",".","Concluído","Regularizada","Terra Indígena","N",NA,"2997.2533 Ha","Ativo","Principal","33.80054 Ha",NA,80,33.4368102288022
+"80","Tupiniquim",".","Registro Cartorial","Homologada","Terra Indígena","N",NA,"14282.7968 Ha","Ativo","Reestudo","54.19297 Ha",NA,81,40.5706209910481
+"81","Caititu",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"308062.6156 Ha","Ativo","Principal","398.80967 Ha",NA,82,92.294064157961
+"82","Cajueiro",".","Estudos Complementares","Regularizada","Terra Indígena","S",NA,"4303.8482 Ha","Ativo","Principal","32076.00000 Ha",NA,83,103.975280362682
+"83","Cajuhiri Atravessado",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"12500.0000 Ha","Ativo","Principal","69.00000 Ha",NA,84,60.2592346712968
+"84","Camadeni",".","Concluído","Regularizada","Terra Indígena","N",NA,"150930.5549 Ha","Ativo","Principal","267.32758 Ha",NA,85,138.543608891537
+"85","Camicua",".","Concluído","Regularizada","Terra Indígena","N",NA,"58519.5999 Ha","Ativo","Principal","137.11707 Ha",NA,86,153.688152118446
+"86","Campinas/Katukina",".","Concluído","Regularizada","Terra Indígena","N",NA,"32623.6443 Ha","Ativo","Principal","102.35025 Ha",NA,87,226.529583932581
+"87","Cana Brava/Guajajara",".","Demarcação Física","Regularizada","Terra Indígena","N",NA,"137329.5429 Ha","Ativo","Principal","188.49853 Ha",NA,88,206.995115023695
+"88","Canauanim",".","Concluído","Regularizada","Terra Indígena","S",NA,"11182.4372 Ha","Ativo","Principal","50.47964 Ha",NA,89,92.0348850210577
+"89","Cantagalo",".","Processo de Homologação","Homologada","Terra Indígena","N",NA,"283.6761 Ha","Ativo","Principal","8.85605 Ha",NA,90,138.721932114883
+"90","Capivari",".","Concluído","Regularizada","Terra Indígena","N",NA,"43.3215 Ha","Ativo","Principal","3.46595 Ha",NA,91,7.1255230125523
+"91","Capoto/Jarina",".","Concluído","Regularizada","Terra Indígena","N","Subgrupo Metyktire.","634915.2256 Ha","Ativo","Principal","415.45500 Ha",NA,92,317.525506226462
+"92","Caramuru/Paraguassu",".","Homologada","Declarada","Reserva Indígena","N",NA,"54105.0000 Ha","Ativo","Principal","129.00000 Ha",NA,93,342.944692147987
+"93","Carretão I",".","Concluído","Regularizada","Terra Indígena","N",NA,"1666.4512 Ha","Ativo","Principal","19.14814 Ha",NA,94,715.578608716766
+"94","Carretão II",".","Concluído","Regularizada","Terra Indígena","N",NA,"77.5043 Ha","Ativo","Principal","4.94604 Ha",NA,95,745.997429305913
+"95","Carreteiro",".","Concluído","Regularizada","Terra Indígena","N",NA,"602.9751 Ha","Ativo","Principal","11.05951 Ha",NA,96,750.719823510873
+"96","Caru",".","Concluído","Regularizada","Terra Indígena","N",NA,"172667.3777 Ha","Ativo","Principal","296.67100 Ha",NA,97,112.559545237804
+"97","Catipari/Mamoria",".","Concluído","Regularizada","Terra Indígena","N",NA,"115044.3509 Ha","Ativo","Principal","253.13639 Ha",NA,98,125.268090337873
+"98","Cerrito",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"1950.9806 Ha","Ativo","Principal","18.30239 Ha",NA,99,316.15967226219
+"99","Coata-Laranjal",".","Demarcação Física","Regularizada","Terra Indígena","N",NA,"1153210.1124 Ha","Ativo","Principal","549.35587 Ha",NA,100,52.9694853857505
+"100","Comboios",".","Contraditório","Homologada","Terra Indígena","N",NA,"2983.6511 Ha","Ativo","Principal","49.86428 Ha",NA,101,8.32968565604549
+"101","Coroa Vermelha",".","Concluído","Regularizada","Terra Indígena","N",NA,"2299.0600 Ha","Ativo","Principal","25.54200 Ha",NA,102,44.3631363700465
+"102","Córrego João Pereira",".","Concluído","Regularizada","Terra Indígena","N",NA,"3162.3901 Ha","Ativo","Principal","27.43923 Ha",NA,103,46.2518213707501
+"103","Cuia",".","Concluído","Regularizada","Terra Indígena","N",NA,"1322.3875 Ha","Ativo","Principal","16.71222 Ha",NA,104,32.0624404194471
+"104","Cuiu-Cuiu",".","Concluído","Regularizada","Terra Indígena","N",NA,"36450.9765 Ha","Ativo","Principal","112480.38000 Ha",NA,105,59.2469629221582
+"105","Cunhã-Sapucaia",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"471450.5393 Ha","Ativo","Principal","449.72827 Ha",NA,106,38.6308201934424
+"106","Deni",".","Concluído","Regularizada","Terra Indígena","N",NA,"1531303.4990 Ha","Ativo","Principal","919.00055 Ha",NA,107,134.187976836706
+"107","Diahui",".","Concluído","Regularizada","Terra Indígena","N",NA,"47354.6030 Ha","Ativo","Principal","152.42350 Ha",NA,108,91.1491362832491
+"108","Dourados",".","Planejamento da Demarcação","Regularizada","Reserva Indígena","N",NA,"3474.5957 Ha","Ativo","Principal","30.65908 Ha",NA,109,429.288510246373
+"109","Enawenê-Nawê",".","Concluído","Regularizada","Terra Indígena","N",NA,"742088.6783 Ha","Ativo","Principal","658.52244 Ha",NA,110,361.76026890276
+"110","Entre Serras",".","Homologada","Regularizada","Terra Indígena","N",NA,"7550.0875 Ha","Ativo","Principal","54.00394 Ha",NA,111,518.637841915565
+"111","Erikpatsá",".","Registro Cartorial","Regularizada","Terra Indígena","N",NA,"79934.8010 Ha","Ativo","Principal","197.85604 Ha",NA,112,282.258282855089
+"112","Escondido",".","Processo de Homologação","Homologada","Terra Indígena","N",NA,"168938.4680 Ha","Ativo","Principal","205.46308 Ha",NA,113,248.033256817716
+"113","Espírito Santo",".","Concluído","Regularizada","Terra Indígena","N",NA,"33849.0871 Ha","Ativo","Principal","114940.45000 Ha",NA,114,55.536712503392
+"114","Estação Parecis",".","Contraditório","Delimitada","Terra Indígena","N",NA,"2170.0000 Ha","Ativo","Principal","22.00000 Ha",NA,115,494.600324706332
+"115","Estivadinho",".","Concluído","Regularizada","Terra Indígena","N",NA,"2031.9414 Ha","Ativo","Principal","19.16554 Ha",NA,116,656.640586797066
+"116","Estrela da Paz",".","Concluído","Regularizada","Terra Indígena","N",NA,"12876.4893 Ha","Ativo","Principal","53.55929 Ha",NA,117,72.0193586698337
+"117","Évare I",".","Concluído","Regularizada","Terra Indígena","N",NA,"548177.5963 Ha","Ativo","Principal","448.83501 Ha",NA,118,100.959605730226
+"118","Évare II",".","Concluído","Regularizada","Terra Indígena","N",NA,"176205.7183 Ha","Ativo","Principal","242.72518 Ha",NA,119,83.4254450356164
+"119","Faxinal",".","Registro Cartorial","Homologada","Terra Indígena","N",NA,"2043.8948 Ha","Ativo","Principal","17.91762 Ha",NA,120,688.986873385013
+"120","Fazenda Bahiana",".","Concluído","Regularizada","Reserva Indígena","N",NA,"304.5600 Ha","Ativo","Principal","7.60104 Ha",NA,121,189.023712737127
+"121","Fazenda Canto",".","Adquirido","Reserva Indígena","Reserva Indígena","N",NA,"276.5494 Ha","Ativo","Principal","9.76300 Ha",NA,122,354.25366568915
+"122","Tuxá de Inajá",".","Adquirido","Reserva Indígena","Reserva Indígena","N",NA,"140.0000 Ha","Ativo","Principal","7.00000 Ha",NA,123,374.370090634441
+"123","Fazenda Guarani",".","Concluído","Regularizada","Terra Indígena","N",NA,"3269.7126 Ha","Ativo","Principal","24.49598 Ha",NA,124,855.409171597633
+"124","Figueiras",".","Concluído","Regularizada","Terra Indígena","N",NA,"9858.9291 Ha","Ativo","Principal","42.85817 Ha",NA,125,564.647127956515
+"125","Fortaleza do Castanho",".","Concluído","Regularizada","Terra Indígena","N",NA,"2756.1622 Ha","Ativo","Principal","31.57863 Ha",NA,126,32.4057342115459
+"126","Fortaleza do Patauá",".","Concluído","Regularizada","Terra Indígena","N",NA,"743.5829 Ha","Ativo","Principal","11.48860 Ha",NA,127,56.2986247544204
+"127","Fulni-ô",".","Análise da Delimitação","Em Estudo","Reserva Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,128,487.241777159182
+"128","Funil",".","Concluído","Regularizada","Terra Indígena","N",NA,"15703.7974 Ha","Ativo","Principal","54.04273 Ha",NA,129,300.690265133365
+"129","Galibi",".","Concluído","Regularizada","Terra Indígena","S",NA,"6689.1928 Ha","Ativo","Principal","37.37400 Ha",NA,130,28.6847347381259
+"130","Gavião",".","Concluído","Regularizada","Terra Indígena","N",NA,"8611.8548 Ha","Ativo","Principal","41.29165 Ha",NA,131,37.2912106051756
+"131","Geralda Toco Preto",".","Concluído","Regularizada","Terra Indígena","N",NA,"18506.2081 Ha","Ativo","Principal","54.71584 Ha",NA,132,177.330006783403
+"132","Governador",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"41643.7567 Ha","Ativo","Principal","92.33800 Ha",NA,133,286.227232993275
+"133","Guaimbé",".","Concluído","Regularizada","Terra Indígena","S",NA,"716.9316 Ha","Ativo","Principal","14.84100 Ha",NA,134,398.866187815908
+"134","Guajahã",".","Concluído","Regularizada","Terra Indígena","N",NA,"5036.8446 Ha","Ativo","Principal","40.54909 Ha",NA,135,99.2107013555612
+"135","Guarani Araponga",".","Concluído","Regularizada","Terra Indígena","N",NA,"213.2033 Ha","Ativo","Principal","7.17505 Ha",NA,136,635.65734896303
+"136","Guarani Barra do Ouro",".","Concluído","Regularizada","Terra Indígena","N",NA,"2268.6045 Ha","Ativo","Principal","40.21071 Ha",NA,137,819.875563570784
+"137","Guarani da Barragem",".","Concluído","Regularizada","Terra Indígena","N",NA,"26.3000 Ha","Ativo","Principal","2.15383 Ha",NA,138,766.718954248366
+"138","Guarani de Águas Brancas",".","Planejamento da Demarcação","Declarada","Terra Indígena","N",NA,"230.0000 Ha","Ativo","Principal","9.00000 Ha",NA,139,32.9890572390572
+"139","Guarani de Bracui",".","Concluído","Regularizada","Terra Indígena","N",NA,"2127.8664 Ha","Ativo","Principal","25.25498 Ha",NA,140,804.106585388381
+"140","Guarani do Aguapeu",".","Concluído","Regularizada","Terra Indígena","N",NA,"4372.2599 Ha","Ativo","Principal","35.90885 Ha",NA,141,179.270600339984
+"141","Guarani de Araçai",".","Demarcação Física","Declarada","Terra Indígena","S",NA,"2721.0000 Ha","Ativo","Principal","29.00000 Ha",NA,142,481.524357098056
+"142","Guarani Votouro",".","Concluído","Regularizada","Terra Indígena","S",NA,"717.3770 Ha","Ativo","Principal","16.22317 Ha",NA,143,547.168412570508
+"143","Guarita",".","Concluído","Regularizada","Terra Indígena","N",NA,"23406.8684 Ha","Ativo","Principal","95.51199 Ha",NA,144,393.988325992983
+"144","Guasuti",".","Concluído","Regularizada","Terra Indígena","S",NA,"958.7993 Ha","Ativo","Principal","13.71145 Ha",NA,145,502.487830465799
+"145","Guató",".","Concluído","Regularizada","Terra Indígena","S",NA,"10984.7941 Ha","Ativo","Principal","94.49243 Ha",NA,146,134.3749211415
+"146","Guyraroká",".","Demarcação Física","Declarada","Terra Indígena","N",NA,"11440.0000 Ha","Ativo","Principal","48.00000 Ha",NA,147,379.761712062257
+"147","Hi Merimã",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"677840.3204 Ha","Ativo","Principal","704.84196 Ha",NA,148,105.031376233297
+"148","Ibirama",".","Concluído","Regularizada","Terra Indígena","N",NA,"14084.8860 Ha","Ativo","Principal","54.87290 Ha",NA,149,584.516363834631
+"149","Ibirama-La Klãnô",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"37108.0000 Ha","Ativo","Reestudo","110.00000 Ha",NA,150,600.819071448142
+"150","Ibotirama",".","Adquirido","Reserva Indígena","Reserva Indígena","N",NA,"2019.7079 Ha","Ativo","Principal","20.01175 Ha",NA,151,433.125889266935
+"151","Icatu",".","Concluído","Regularizada","Terra Indígena","N",NA,"300.9625 Ha","Ativo","Principal","7.90179 Ha",NA,152,470.634207240949
+"152","Igarapé Capana",".","Concluído","Regularizada","Terra Indígena","N",NA,"122555.6647 Ha","Ativo","Principal","192.14066 Ha",NA,153,200.235032962438
+"153","Igarapé do Caucho",".","Concluído","Regularizada","Terra Indígena","S",NA,"12317.8938 Ha","Ativo","Principal","50.01138 Ha",NA,154,224.396619531209
+"154","Igarapé Grande",".","Concluído","Regularizada","Terra Indígena","N",NA,"1539.6777 Ha","Ativo","Principal","16.22888 Ha",NA,155,71.8300466116888
+"155","Igarapé Lage",".","Planejamento da Demarcação","Homologada","Terra Indígena","N",NA,"107321.1789 Ha","Ativo","Principal","152.29000 Ha",NA,156,169.213639960203
+"156","Igarapé Lourdes",".","Demarcação Física","Regularizada","Terra Indígena","N",NA,"185533.5768 Ha","Ativo","Principal","270.58300 Ha",NA,157,220.54411251229
+"157","Igarapé Ribeirão",".","Demarcação Física","Regularizada","Terra Indígena","N",NA,"47863.3178 Ha","Ativo","Principal","95.62000 Ha",NA,158,160.708714820073
+"158","Ilha da Cotinga",".","Concluído","Regularizada","Terra Indígena","N",NA,"1701.2020 Ha","Ativo","Principal","41.89573 Ha",NA,159,5.6
+"159","Ilha do Camaleão",".","Concluído","Regularizada","Terra Indígena","N",NA,"236.7800 Ha","Ativo","Principal","9.63830 Ha",NA,160,11.0333333333333
+"160","Imbiriba",".","Processo de Homologação","Regularizada","Terra Indígena","N","Área proposta para revisão","408.3384 Ha","Ativo","Principal","11.77048 Ha",NA,161,44.119335347432
+"161","Inauini/Teuini",".","Concluído","Regularizada","Terra Indígena","N",NA,"468996.3000 Ha","Ativo","Principal","463.68573 Ha",NA,162,180.766515958204
+"162","Inawebohona",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"377113.5744 Ha","Ativo","Principal","421.61000 Ha",NA,163,182.736153089441
+"163","Inhacorá",".","Concluído","Regularizada","Terra Indígena","N",NA,"2843.3796 Ha","Ativo","Principal","25.30706 Ha",NA,164,427.086860729069
+"164","Ipixuna",".","Concluído","Regularizada","Terra Indígena","N",NA,"215362.1079 Ha","Ativo","Principal","273.12823 Ha",NA,165,64.8246327211362
+"165","Irantxe",".","Concluído","Regularizada","Terra Indígena","N",NA,"45555.9500 Ha","Ativo","Principal","104.16348 Ha",NA,166,417.810501697956
+"166","Manoki",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"250539.8293 Ha","Ativo","Reestudo","302000.46000 Ha",NA,167,352.03148294098
+"167","Irapuá",".","Contraditório","Delimitada","Terra Indígena","N",NA,"222.0000 Ha","Ativo","Principal","8.00000 Ha",NA,168,84.5553705245629
+"168","Itaitinga",".","Concluído","Regularizada","Terra Indígena","N",NA,"135.8842 Ha","Ativo","Principal","6.78065 Ha",NA,169,10.4225352112676
+"169","Itaóca",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"533.0000 Ha","Ativo","Principal","14.00000 Ha",NA,170,52.9996307237814
+"170","Ivai",".","Concluído","Regularizada","Terra Indígena","N",NA,"7306.3478 Ha","Ativo","Principal","38.21379 Ha",NA,171,739.537513312034
+"171","Jabuti",".","Concluído","Regularizada","Terra Indígena","N",NA,"14210.6996 Ha","Ativo","Principal","63.01861 Ha",NA,172,98.7213835534214
+"172","Jacamim",".","Concluído","Regularizada","Terra Indígena","N",NA,"193493.5694 Ha","Ativo","Principal","241.51053 Ha",NA,173,218.35267372909
+"173","Jacaré de São Domingos",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"5032.2431 Ha","Ativo","Principal","29.08976 Ha",NA,174,121.306616097767
+"174","Jaguapiré",".","Concluído","Regularizada","Terra Indígena","N",NA,"2342.0155 Ha","Ativo","Principal","27.08469 Ha",NA,175,329.028196883502
+"175","Jaguari",".","Concluído","Regularizada","Terra Indígena","S",NA,"404.7055 Ha","Ativo","Principal","9.10680 Ha",NA,176,367.518897287683
+"176","Jaminaua/Envira",".","Concluído","Regularizada","Terra Indígena","N",NA,"80618.1798 Ha","Ativo","Principal","145.26311 Ha",NA,177,266.366745946399
+"177","Jaminawa Arara do Rio Bagé",".","Concluído","Regularizada","Terra Indígena","N",NA,"28926.1102 Ha","Ativo","Principal","97.74542 Ha",NA,178,300.955311473251
+"178","Jaminawa do Igarapé Preto",".","Concluído","Regularizada","Terra Indígena","N",NA,"25651.6167 Ha","Ativo","Principal","100.59860 Ha",NA,179,226.877160702646
+"179","Japuira",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"152509.8800 Ha","Ativo","Principal","193.54689 Ha",NA,180,270.851566653658
+"180","Jaquiri",".","Concluído","Regularizada","Terra Indígena","N",NA,"1819.9825 Ha","Ativo","Principal","17.89370 Ha",NA,181,42.4891389105492
+"181","Jaraguá",".","Concluído","Regularizada","Terra Indígena","N",NA,"1.7566 Ha","Ativo","Principal","0.81760 Ha",NA,182,773.9
+"182","Jaraguá",".","Análise da Delimitação","Delimitada","Terra Indígena","N",NA,"0.0000 Ha","Ativo","Reestudo","0.00000 Ha",NA,183,865.820531757755
+"183","Jarara",".","Registro Cartorial","Homologada","Terra Indígena","N",NA,"479.0728 Ha","Ativo","Principal","10.42912 Ha",NA,184,301.785348562426
+"184","Jarawara/Jamamadi/Kanamati",".","Concluído","Regularizada","Terra Indígena","N",NA,"390233.0536 Ha","Ativo","Principal","483.44841 Ha",NA,185,99.5093744070455
+"185","Jarudore",".","Reserva SPI","Regularizada","Reserva Indígena","N",NA,"4706.0000 Ha","Ativo","Principal","39.00000 Ha",NA,186,291.806799086561
+"186","Jatuarana",".","Concluído","Regularizada","Terra Indígena","N",NA,"5251.7956 Ha","Ativo","Principal","29.70088 Ha",NA,187,57.299941344059
+"187","Jauary","08772.000020/1992-43","Estudos Complementares","Delimitada","Terra Indígena","N",NA,"24831.0000 Ha","Ativo","Principal","112.00000 Ha",NA,188,16.2749133802756
+"188","Geripancó",".","Concluído","Regularizada","Reserva Indígena","N",NA,"200.0000 Ha","Ativo","Principal","0.00000 Ha",NA,189,402.689365671642
+"189","Juininha",".","Concluído","Regularizada","Terra Indígena","S",NA,"70537.5203 Ha","Ativo","Principal","137.21976 Ha",NA,190,656.396338267082
+"190","Juma",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"38351.1496 Ha","Ativo","Principal","118.18280 Ha",NA,191,86.9202884578304
+"191","Jumina",".","Concluído","Regularizada","Terra Indígena","S",NA,"41601.2713 Ha","Ativo","Principal","111.41405 Ha",NA,192,10.7398678324107
+"192","Kadiwéu",".","Processo de Homologação","Regularizada","Terra Indígena","S",NA,"538535.7804 Ha","Ativo","Principal","521.04500 Ha",NA,193,161.541262381504
+"193","Kaingang de Iraí",".","Concluído","Regularizada","Terra Indígena","N",NA,"279.7956 Ha","Ativo","Principal","9.18524 Ha",NA,194,284.640104506858
+"194","Kambiwá",".","Concluído","Regularizada","Terra Indígena","N",NA,"31495.3123 Ha","Ativo","Principal","74.02334 Ha",NA,195,605.312612322631
+"195","Kampa do Igarapé Primavera",".","Concluído","Regularizada","Terra Indígena","N",NA,"21987.2303 Ha","Ativo","Principal","79.92682 Ha",NA,196,290.855488380153
+"196","Kampa do Rio Amonea",".","Concluído","Regularizada","Terra Indígena","S",NA,"87205.4000 Ha","Ativo","Principal","158.99000 Ha",NA,197,286.393864457441
+"197","Kampa e Isolados do Rio Envira",".","Concluído","Regularizada","Terra Indígena","N",NA,"232795.0378 Ha","Ativo","Principal","394.89967 Ha",NA,198,323.794783305637
+"198","Kanamari do Rio Juruá",".","Concluído","Regularizada","Terra Indígena","N",NA,"596433.6400 Ha","Ativo","Principal","550.73140 Ha",NA,199,160.170772012344
+"199","Kanela",".","Concluído","Regularizada","Terra Indígena","N",NA,"125212.1625 Ha","Ativo","Principal","148.87900 Ha",NA,200,285.049323605025
+"200","Kanela Memortumré",".","Estudos Complementares","Delimitada","Terra Indígena","N",NA,"100221.0000 Ha","Ativo","Reestudo","263.00000 Ha",NA,201,326.282786407746
+"201","Kantaruré",".","Concluído","Regularizada","Terra Indígena","N",NA,"1811.8670 Ha","Ativo","Principal","16.53069 Ha",NA,202,418.186046511628
+"202","Kapinawá",".","Concluído","Regularizada","Terra Indígena","N",NA,"12403.0917 Ha","Ativo","Principal","55.60926 Ha",NA,203,701.241214765329
+"203","Karajá de Aruanã I",".","Concluído","Regularizada","Terra Indígena","N",NA,"14.2569 Ha","Ativo","Principal","2.09336 Ha",NA,204,254.030769230769
+"204","Karajá de Aruanã II",".","Concluído","Regularizada","Terra Indígena","N",NA,"893.2687 Ha","Ativo","Principal","11.54335 Ha",NA,205,254.815131883387
+"205","Karajá de Aruanã III",".","Concluído","Regularizada","Terra Indígena","N",NA,"705.1748 Ha","Ativo","Principal","13.99457 Ha",NA,206,256.804634790261
+"206","Karajá Santana do Araguaia",".","Concluído","Regularizada","Terra Indígena","N",NA,"1485.6063 Ha","Ativo","Principal","19.54600 Ha",NA,207,166.095473012188
+"207","Karapotó",".","Processo de Homologação","Reserva Indígena","Reserva Indígena","N","A desapropriação da área de 1810,000 por Decreto foi cancelada judicialmente, a FUNAI adquiriu parte da área por compra.","1242.5168 Ha","Ativo","Principal","34.88800 Ha",NA,208,105.067920054201
+"208","Kararaô",".","Concluído","Regularizada","Terra Indígena","N","Subgrupo Kararaô.","330837.5422 Ha","Ativo","Principal","308.92738 Ha",NA,209,181.006299903777
+"209","Karipuna",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"152929.8599 Ha","Ativo","Principal","274.39906 Ha",NA,210,166.11661385155
+"210","Kariri-Xocó",".","Concluído","Regularizada","Terra Indígena","N",NA,"699.3580 Ha","Ativo","Principal","0.00000 Ha",NA,211,46.6874065210888
+"211","Kariri-Xocó",".","Homologada","Declarada","Terra Indígena","N",NA,"4694.8823 Ha","Ativo","Reestudo","41.50570 Ha",NA,212,45.3951819119824
+"212","Karitiana",".","Concluído","Regularizada","Terra Indígena","S",NA,"89682.1380 Ha","Ativo","Principal","124.60400 Ha",NA,213,138.339105186439
+"213","Katukina/Kaxinawá",".","Concluído","Regularizada","Terra Indígena","S",NA,"23474.0358 Ha","Ativo","Principal","76.45582 Ha",NA,214,210.552994636336
+"214","Kaxarari",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"145889.9849 Ha","Ativo","Principal","201.64072 Ha",NA,215,169.804145023939
+"215","Kaxinawá Ashaninka do Rio Breu",".","Concluído","Regularizada","Terra Indígena","N",NA,"31277.8622 Ha","Ativo","Principal","158.97283 Ha",NA,216,365.477985923629
+"216","Kaxinawá Colônia Vinte e Sete",".","Concluído","Regularizada","Terra Indígena","S",NA,"105.1664 Ha","Ativo","Principal","4.66866 Ha",NA,217,211.297570850202
+"217","Kaxinawá da Praia do Carapanã",".","Concluído","Regularizada","Terra Indígena","N",NA,"60698.7189 Ha","Ativo","Principal","173.70632 Ha",NA,218,262.965476236143
+"218","Kaxinawá do Baixo Rio Jordão",".","Concluído","Regularizada","Terra Indígena","N",NA,"8726.4952 Ha","Ativo","Principal","68.54845 Ha",NA,219,322.397161059032
+"219","Kaxinawá do Rio Humaitá",".","Concluído","Regularizada","Terra Indígena","S",NA,"127383.5568 Ha","Ativo","Principal","246.00716 Ha",NA,220,295.600903244407
+"220","Kaxinawá do Rio Jordão",".","Concluído","Regularizada","Terra Indígena","S",NA,"87293.7981 Ha","Ativo","Principal","216.34499 Ha",NA,221,332.835406388565
+"221","Kaxinawá Nova Olinda",".","Concluído","Regularizada","Terra Indígena","S",NA,"27533.3987 Ha","Ativo","Principal","99.34815 Ha",NA,222,234.994054677342
+"222","Kaxinawá Seringal Independência",".","Planejamento da Demarcação","Reserva Indígena","Dominial Indigena","S",NA,"11584.1270 Ha","Ativo","Principal","57.60800 Ha",NA,223,324.704282924871
+"223","Kayabi",".","Certidão SPU","Regularizada","Terra Indígena","N",NA,"1053000.0000 Ha","Ativo","Reestudo","723.00000 Ha",NA,224,219.930261972184
+"224","Kayapó",".","Demarcação Física","Regularizada","Terra Indígena","N",NA,"3284004.9719 Ha","Ativo","Principal","972.06560 Ha",NA,225,341.416520088454
+"225","Kiriri",".","Concluído","Regularizada","Terra Indígena","N",NA,"12299.8736 Ha","Ativo","Principal","40.37700 Ha",NA,226,312.658848832446
+"226","Koatinemo",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"387834.2501 Ha","Ativo","Principal","425.40242 Ha",NA,227,209.371114321718
+"227","Kraolandia",".","Concluído","Regularizada","Terra Indígena","N",NA,"302533.3971 Ha","Ativo","Principal","374.50300 Ha",NA,228,283.737038850258
+"228","Krenak",".","Concluído","Regularizada","Terra Indígena","N",NA,"4039.8241 Ha","Ativo","Principal","27405.59000 Ha",NA,229,194.491368335285
+"229","Krikati",".","Homologada","Regularizada","Terra Indígena","N",NA,"144775.7868 Ha","Ativo","Principal","193.56252 Ha",NA,230,272.985644614826
+"230","Krukutu",".","Concluído","Regularizada","Terra Indígena","N",NA,"25.8800 Ha","Ativo","Principal","2.80829 Ha",NA,231,771.455782312925
+"231","Tenondé Porã",".","Contraditório","Delimitada","Terra Indígena","N",NA,"15969.0000 Ha","Ativo","Reestudo","161.00000 Ha",NA,232,703.404826394421
+"232","Kulina do Medio Jurua",".","Concluído","Regularizada","Terra Indígena","N",NA,"730142.9969 Ha","Ativo","Principal","630.69865 Ha",NA,233,195.77132150441
+"233","Kulina do Rio Envira",".","Concluído","Regularizada","Terra Indígena","S",NA,"84364.6082 Ha","Ativo","Principal","233.47003 Ha",NA,234,282.131901524516
+"234","Kulina Igarapé do Pau",".","Concluído","Regularizada","Terra Indígena","N",NA,"45590.9370 Ha","Ativo","Principal","142.29794 Ha",NA,235,253.895213226477
+"235","Kumaru do Lago Ualá",".","Concluído","Regularizada","Terra Indígena","N",NA,"80035.8819 Ha","Ativo","Principal","174.92408 Ha",NA,236,70.8517692675385
+"236","Kwazá do Rio São Pedro",".","Concluído","Regularizada","Terra Indígena","S",NA,"16799.8763 Ha","Ativo","Principal","56.24251 Ha",NA,237,314.740682747393
+"237","Lago Aiapua",".","Concluído","Regularizada","Terra Indígena","N",NA,"24866.0856 Ha","Ativo","Principal","92.57636 Ha",NA,238,26.7787779231995
+"238","Lago Capanã",".","Concluído","Regularizada","Terra Indígena","N",NA,"6321.5954 Ha","Ativo","Principal","47.86832 Ha",NA,239,61.4898206006853
+"239","Lago do Beruri",".","Concluído","Regularizada","Terra Indígena","N",NA,"4080.3690 Ha","Ativo","Principal","49.51747 Ha",NA,240,40.7100329111399
+"240","Lago do Limão",".","Análise da Delimitação","Delimitada","Terra Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,241,41.0554414784394
+"241","Lago Jauari",".","Concluído","Regularizada","Terra Indígena","N",NA,"12023.0844 Ha","Ativo","Principal","53.85542 Ha",NA,242,52.0304416961131
+"242","Lagoa Comprida",".","Concluído","Regularizada","Terra Indígena","N",NA,"13198.2651 Ha","Ativo","Principal","48.33400 Ha",NA,243,240.408719958874
+"243","Lagoa  Encantada",".","Exame do Min. da Justiça","Delimitada","Terra Indígena","N",NA,"1731.0000 Ha","Ativo","Principal","20.00000 Ha",NA,244,30.1580438531658
+"244","Lagoa dos Brincos",".","Concluído","Regularizada","Terra Indígena","S",NA,"1845.0580 Ha","Ativo","Principal","25.34147 Ha",NA,245,316.967828731867
+"245","Lalima",".","Concluído","Regularizada","Terra Indígena","N",NA,"3000.2101 Ha","Ativo","Principal","30.18624 Ha",NA,246,157.690344592289
+"246","Laranjinha",".","Concluído","Regularizada","Terra Indígena","N",NA,"284.2412 Ha","Ativo","Principal","7.70486 Ha",NA,247,501.674149659864
+"247","Lauro Sodré",".","Concluído","Regularizada","Terra Indígena","N",NA,"9478.6216 Ha","Ativo","Principal","55.58446 Ha",NA,248,108.77547581062
+"248","Ligeiro",".","Concluído","Regularizada","Terra Indígena","N",NA,"4565.7973 Ha","Ativo","Principal","44.36150 Ha",NA,249,571.812026930958
+"249","Jatayvari",".","Demarcação Física","Declarada","Terra Indígena","S",NA,"8800.0000 Ha","Ativo","Principal","40.00000 Ha",NA,250,478.587313332436
+"250","Limão Verde",".","Concluído","Regularizada","Terra Indígena","N",NA,"5377.2754 Ha","Ativo","Principal","30.80785 Ha",NA,251,327.879067806355
+"251","Macarrão",".","Concluído","Regularizada","Terra Indígena","N",NA,"44267.9081 Ha","Ativo","Principal","123.44117 Ha",NA,252,65.0615637738814
+"252","Mãe Maria",".","Concluído","Regularizada","Terra Indígena","N",NA,"62488.4516 Ha","Ativo","Principal","141.67700 Ha",NA,253,142.804945994158
+"253","Malacacheta",".","Concluído","Regularizada","Terra Indígena","S",NA,"28631.8258 Ha","Ativo","Principal","91.84420 Ha",NA,254,105.936381992223
+"254","Mamoadate",".","Concluído","Regularizada","Terra Indígena","N",NA,"313646.8663 Ha","Ativo","Principal","335.99878 Ha",NA,255,300.967693741531
+"255","Mangueira",".","Concluído","Regularizada","Terra Indígena","S",NA,"4063.7410 Ha","Ativo","Principal","41.56300 Ha",NA,256,119.836150126641
+"256","Mangueirinha",".","Reserva SPI","Regularizada","Reserva Indígena","S",NA,"16375.0000 Ha","Ativo","Principal","92.00000 Ha",NA,257,790.753672328987
+"257","Manoa/Pium",".","Concluído","Regularizada","Terra Indígena","N",NA,"43336.7308 Ha","Ativo","Principal","112.78000 Ha",NA,258,108.664539220346
+"258","Mapari",".","Planejamento da Demarcação","Declarada","Terra Indígena","N",NA,"157416.0000 Ha","Ativo","Principal","355.00000 Ha",NA,259,80.481085415844
+"259","Maraã Urubaxi",".","Concluído","Regularizada","Terra Indígena","N",NA,"94405.0733 Ha","Ativo","Principal","138.10204 Ha",NA,260,66.9961693461611
+"260","Maraitá",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"53038.0644 Ha","Ativo","Principal","146.03815 Ha",NA,261,61.7131300656717
+"261","Maraiwatsede",".","Homologada","Regularizada","Terra Indígena","N",NA,"165241.2291 Ha","Ativo","Principal","248.70799 Ha",NA,262,328.814594999031
+"262","Marajai",".","Concluído","Regularizada","Terra Indígena","N",NA,"1196.3486 Ha","Ativo","Principal","15.30806 Ha",NA,263,50.3265839320705
+"263","Maranduba",".","Processo de Homologação","Regularizada","Terra Indígena","N","Composta de 3 glebas: gleba 1 com 175ha/PA, Gleba 2 (Ilha) com 209ha/TO e Gleba 3 (Ilha) com 5ha/TO.","375.1538 Ha","Ativo","Principal","13.79643 Ha",NA,264,164.471941638608
+"264","Marechal Rondon",".","Concluído","Regularizada","Terra Indígena","N",NA,"98500.0000 Ha","Ativo","Principal","200.00000 Ha",NA,265,468.027824740967
+"265","Lago do Marinheiro",".","Certidão SPU","Regularizada","Terra Indígena","N",NA,"3586.2907 Ha","Ativo","Principal","27.01582 Ha",NA,266,30.8860955558203
+"266","Marrecas",".","Registrada como Dominial","Reserva Indígena","Dominial Indigena","N",NA,"16838.5694 Ha","Ativo","Principal","58.09200 Ha",NA,267,1015.64027873762
+"267","Massacara",".","Concluído","Regularizada","Terra Indígena","N",NA,"8020.0802 Ha","Ativo","Principal","34.57735 Ha",NA,268,503.778121396373
+"268","Massaco",".","Concluído","Regularizada","Terra Indígena","S",NA,"421895.0769 Ha","Ativo","Principal","403.04056 Ha",NA,269,188.164199964129
+"269","Mata da Cafurna",".","Registrada como Dominial","Reserva Indígena","Dominial Indigena","N",NA,"117.6007 Ha","Ativo","Principal","4.41000 Ha",NA,270,599.009416195857
+"270","Mata Medonha",".","Concluído","Regularizada","Terra Indígena","N",NA,"549.6226 Ha","Ativo","Principal","11.54189 Ha",NA,271,24.8699828473413
+"271","Matintin",".","Certidão SPU","Regularizada","Terra Indígena","N",NA,"21760.7012 Ha","Ativo","Principal","107.33192 Ha",NA,272,84.9368391136896
+"272","Mawetek",".","Concluído","Regularizada","Terra Indígena","N",NA,"115492.8780 Ha","Ativo","Principal","214.76227 Ha",NA,273,181.130796740557
+"273","Maxacali",".","Concluído","Regularizada","Terra Indígena","N",NA,"5305.6719 Ha","Ativo","Principal","35.08617 Ha",NA,274,366.498918083462
+"274","Mbiguaçu",".","Concluído","Regularizada","Terra Indígena","N",NA,"59.1982 Ha","Ativo","Principal","4.54577 Ha",NA,275,140.032258064516
+"275","Médio Rio Negro I",".","Concluído","Regularizada","Terra Indígena","N",NA,"1776138.9968 Ha","Ativo","Principal","1497.33209 Ha",NA,276,97.4934213454799
+"276","Médio Rio Negro II",".","Concluído","Regularizada","Terra Indígena","N",NA,"316194.9890 Ha","Ativo","Principal","431.80387 Ha",NA,277,84.1133990823297
+"277","Menkragnoti",".","Concluído","Regularizada","Terra Indígena","N","Subgrupo Menkragnoti.","4914254.8206 Ha","Ativo","Principal","1190.80246 Ha",NA,278,316.314875356187
+"278","Menkü",".","Concluído","Regularizada","Terra Indígena","N",NA,"47094.8647 Ha","Ativo","Principal","92.19500 Ha",NA,279,318.817086426176
+"279","Menkü",".","Contraditório","Delimitada","Terra Indígena","N",NA,"146398.7469 Ha","Ativo","Reestudo","263.00000 Ha",NA,280,326.295833850553
+"280","Meria",".","Concluído","Regularizada","Terra Indígena","N",NA,"585.4932 Ha","Ativo","Principal","11.56982 Ha",NA,281,68.9714912280702
+"281","Merure",".","Demarcação Física","Regularizada","Terra Indígena","N",NA,"82301.1363 Ha","Ativo","Principal","168.66200 Ha",NA,282,439.962975593364
+"282","Miguel/Josefa",".","Concluído","Regularizada","Terra Indígena","N",NA,"1628.8091 Ha","Ativo","Principal","17.81631 Ha",NA,283,19.4784031413613
+"283","Miratu",".","Concluído","Regularizada","Terra Indígena","N",NA,"13198.7880 Ha","Ativo","Principal","48.43116 Ha",NA,284,73.1520652540554
+"284","Monte Caseros",".","Concluído","Regularizada","Terra Indígena","N",NA,"1112.4105 Ha","Ativo","Principal","18.46043 Ha",NA,285,747.541136556404
+"285","Morro Alto",".","Processo de Homologação","Delimitada","Terra Indígena","N",NA,"893.0000 Ha","Ativo","Principal","19.00000 Ha",NA,286,96.4953653804699
+"286","Morro Branco",".","Concluído","Regularizada","Terra Indígena","N",NA,"48.9804 Ha","Ativo","Principal","2.79900 Ha",NA,287,237.593886462882
+"287","Morro dos Cavalos",".","Homologada","Declarada","Terra Indígena","N",NA,"1983.4901 Ha","Ativo","Principal","26.89094 Ha",NA,288,281.782835101254
+"288","Moskow",".","Concluído","Regularizada","Terra Indígena","N",NA,"14212.9983 Ha","Ativo","Principal","56.47534 Ha",NA,289,123.083253113531
+"289","Munduruku",".","Demarcação Física","Regularizada","Terra Indígena","N",NA,"2381795.7765 Ha","Ativo","Principal","1108.21328 Ha",NA,290,216.772861050631
+"290","Muriru",".","Concluído","Regularizada","Terra Indígena","N",NA,"5555.9436 Ha","Ativo","Principal","31.19681 Ha",NA,291,115.128891967825
+"291","Murutinga/Tracaja",".","Contraditório","Delimitada","Terra Indígena","N",NA,"13286.0000 Ha","Ativo","Principal","135.00000 Ha",NA,292,19.2939573212768
+"292","Nambikwara",".","Demarcação Física","Regularizada","Terra Indígena","S",NA,"1011961.4852 Ha","Ativo","Principal","533.34065 Ha",NA,293,462.223231472259
+"293","Ñande Ru Marangatu",".","Processo de Homologação","Homologada","Terra Indígena","S",NA,"9317.2160 Ha","Ativo","Principal","49.89007 Ha",NA,294,384.029287991498
+"294","Natal/Felicidade",".","Concluído","Regularizada","Terra Indígena","N",NA,"313.3411 Ha","Ativo","Principal","13.04130 Ha",NA,295,16.1533546325879
+"295","Nhamundá/Mapuera",".","Concluído","Regularizada","Terra Indígena","N",NA,"1049520.0002 Ha","Ativo","Principal","534.59203 Ha",NA,296,153.821773405216
+"296","Nioaque",".","Concluído","Regularizada","Terra Indígena","N",NA,"3029.3529 Ha","Ativo","Principal","26.66941 Ha",NA,297,245.467825969281
+"297","Nonoai",".","Demarcação Física","Declarada","Terra Indígena","N",NA,"19830.0000 Ha","Ativo","Principal","108.00000 Ha",NA,298,547.645908650665
+"298","Nonoai/Rio da Várzea",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"16415.4443 Ha","Ativo","Principal","82.27183 Ha",NA,299,459.901960102468
+"299","Nossa Senhora de Fátima",".","Adquirido","Reserva Indígena","Reserva Indígena","N",NA,"88.8880 Ha","Ativo","Principal","0.00000 Ha",NA,300,223.919821826281
+"300","Nova Esperança do Rio Jandiatuba",".","Concluído","Regularizada","Terra Indígena","N",NA,"20003.9280 Ha","Ativo","Principal","86.91001 Ha",NA,301,111.482693605579
+"301","Nova Jacundá",".","Registrada como Dominial","Reserva Indígena","Dominial Indigena","N",NA,"196.9043 Ha","Ativo","Principal","6.00000 Ha",NA,302,132.409984067977
+"302","Nove de Janeiro",".","Concluído","Regularizada","Terra Indígena","N",NA,"228777.0999 Ha","Ativo","Principal","285.76950 Ha",NA,303,75.2787789091702
+"303","Nukini",".","Concluído","Regularizada","Terra Indígena","N",NA,"27263.5212 Ha","Ativo","Principal","125.42281 Ha",NA,304,240.560979811432
+"304","Ofayé-Xavante",".","Planejamento da Demarcação","Declarada","Terra Indígena","N","Sub judice.","1937.6250 Ha","Ativo","Principal","18.99065 Ha",NA,305,388.268897149938
+"305","Ouro",".","Concluído","Regularizada","Terra Indígena","S",NA,"13572.0000 Ha","Ativo","Principal","61.00000 Ha",NA,306,82.487001545595
+"306","Pacaas Novas",".","Concluído","Regularizada","Terra Indígena","N",NA,"279906.3833 Ha","Ativo","Principal","304.20969 Ha",NA,307,156.357125505952
+"307","Pacheca",".","Concluído","Regularizada","Terra Indígena","N",NA,"1852.2050 Ha","Ativo","Principal","28.10983 Ha",NA,308,9.32206917054801
+"308","Padre",".","Concluído","Regularizada","Terra Indígena","N",NA,"797.5110 Ha","Ativo","Principal","14.12527 Ha",NA,309,35.1468381564845
+"309","Palmas",".","Homologada","Regularizada","Terra Indígena","N",NA,"3800.8794 Ha","Ativo","Principal","31.89727 Ha",NA,310,1103.59940533185
+"310","Panambizinho",".","Concluído","Regularizada","Terra Indígena","N",NA,"1272.8035 Ha","Ativo","Principal","14.96182 Ha",NA,311,343.047418499454
+"311","Panará",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"499740.0050 Ha","Ativo","Principal","427.28886 Ha",NA,312,350.331158078871
+"312","Pankararé",".","Concluído","Regularizada","Terra Indígena","N",NA,"29597.3322 Ha","Ativo","Principal","84.11005 Ha",NA,313,470.611635163732
+"313","Pankararu",".","Homologada","Regularizada","Terra Indígena","N",NA,"8377.2819 Ha","Ativo","Principal","36.61641 Ha",NA,314,445.326643162931
+"314","Paquiçamba",".","Concluído","Regularizada","Terra Indígena","N",NA,"17420.0000 Ha","Ativo","Principal","71.00000 Ha",NA,315,112.02318989951
+"315","Paquiçamba",".","Estudos Complementares","Delimitada","Terra Indígena","N",NA,"0.0000 Ha","Ativo","Reestudo","0.00000 Ha",NA,316,91.6711841742194
+"316","Paracuhuba",".","Concluído","Regularizada","Terra Indígena","N",NA,"927.5376 Ha","Ativo","Principal","12.70969 Ha",NA,317,31.4482837008411
+"317","Parakanã",".","Concluído","Regularizada","Terra Indígena","N",NA,"351697.4100 Ha","Ativo","Principal","267.35989 Ha",NA,318,169.856229840177
+"318","Paraná do Arauató",".","Concluído","Regularizada","Terra Indígena","N",NA,"5915.4450 Ha","Ativo","Principal","42.62227 Ha",NA,319,20.1121437870678
+"319","Parana do Boa Boa",".","Concluído","Regularizada","Terra Indígena","N",NA,"240545.8478 Ha","Ativo","Principal","264.39510 Ha",NA,320,78.5998019088938
+"320","Parana do Paricá",".","Concluído","Regularizada","Terra Indígena","N",NA,"7866.3200 Ha","Ativo","Principal","40.52967 Ha",NA,321,51.1606113956466
+"321","Parati-Mirim",".","Concluído","Regularizada","Terra Indígena","N",NA,"79.1997 Ha","Ativo","Principal","3.88781 Ha",NA,322,211.538461538462
+"322","Paresi",".","Concluído","Regularizada","Terra Indígena","S",NA,"563586.5345 Ha","Ativo","Principal","373.11158 Ha",NA,323,652.164237602895
+"323","Parque do Araguaia",".","Concluído","Regularizada","Terra Indígena","N",NA,"1358499.4784 Ha","Ativo","Principal","943.60306 Ha",NA,324,193.970541970872
+"324","Parque do Aripuanã",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"1603245.9806 Ha","Ativo","Principal","800.80431 Ha",NA,325,371.147186043523
+"325","Parque do Tumucumaque",".","Concluído","Regularizada","Terra Indígena","N",NA,"3071067.8764 Ha","Ativo","Principal","1016.87860 Ha",NA,326,373.069622972704
+"326","Parque do Xingu",".","Processo de Homologação","Regularizada","Terra Indígena","N","Kayapó subgrupo Metyktire.","2642003.9374 Ha","Ativo","Principal","898.33617 Ha",NA,327,319.539138797787
+"327","Patauá",".","Concluído","Regularizada","Terra Indígena","N",NA,"615.8850 Ha","Ativo","Principal","12.89414 Ha",NA,328,36.9001733102253
+"328","Pau Brasil",".","Concluído","Regularizada","Terra Indígena","N",NA,"1579.0000 Ha","Ativo","Principal","20.00000 Ha",NA,329,31.2035668789809
+"329","Paukalirajausu",".","Contraditório","Delimitada","Terra Indígena","S",NA,"8400.0000 Ha","Ativo","Principal","60.00000 Ha",NA,330,328.622355346944
+"330","Paumari do Cuniua",".","Concluído","Regularizada","Terra Indígena","N",NA,"42828.0481 Ha","Ativo","Principal","185.70308 Ha",NA,331,70.1636670555818
+"331","Paumari do Lago Manissuã",".","Concluído","Regularizada","Terra Indígena","N",NA,"22970.0651 Ha","Ativo","Principal","89.58881 Ha",NA,332,64.707945027995
+"332","Paumari do Lago Marahã",".","Homologada","Regularizada","Terra Indígena","N",NA,"118766.8862 Ha","Ativo","Principal","239.38883 Ha",NA,333,85.4965815902121
+"333","Paumari do Lago Paricá",".","Concluído","Regularizada","Terra Indígena","N",NA,"15792.1120 Ha","Ativo","Principal","54.14561 Ha",NA,334,50.5110366362486
+"334","Paumari do Rio Ituxi",".","Concluído","Regularizada","Terra Indígena","N",NA,"7572.4120 Ha","Ativo","Principal","43.26448 Ha",NA,335,74.7322858903266
+"335","Peneri/Tacaquiri",".","Concluído","Regularizada","Terra Indígena","N",NA,"189870.9641 Ha","Ativo","Principal","278.99683 Ha",NA,336,123.832823735694
+"336","Pequizal",".","Demarcação Física","Regularizada","Terra Indígena","S",NA,"9886.8211 Ha","Ativo","Principal","57.69093 Ha",NA,337,239.427165145966
+"337","Perigara",".","Concluído","Regularizada","Terra Indígena","N",NA,"10740.4115 Ha","Ativo","Principal","61.91139 Ha",NA,338,131.539866260016
+"338","Peruíbe",".","Concluído","Regularizada","Terra Indígena","N",NA,"480.4737 Ha","Ativo","Principal","9.21155 Ha",NA,339,43.2357259380098
+"339","Piaçaguera",".","Demarcação Física","Declarada","Terra Indígena","N",NA,"2795.0000 Ha","Ativo","Principal","38.00000 Ha",NA,340,18.1416369110131
+"340","Pilad Rebuá",".","Concluído","Regularizada","Terra Indígena","N",NA,"208.3702 Ha","Ativo","Principal","8.46713 Ha",NA,341,133.692093023256
+"341","Pimentel Barbosa",".","Concluído","Regularizada","Terra Indígena","N",NA,"328966.4440 Ha","Ativo","Principal","340.47900 Ha",NA,342,288.390229948555
+"342","Pinatuba",".","Concluído","Regularizada","Terra Indígena","N",NA,"29564.9382 Ha","Ativo","Principal","125.64549 Ha",NA,343,54.1736029902358
+"343","Pinhal",".","Concluído","Regularizada","Terra Indígena","S",NA,"880.0761 Ha","Ativo","Principal","17.41900 Ha",NA,344,641.548283261803
+"344","Toldo Pinhal",".","Planejamento da Demarcação","Declarada","Terra Indígena","S",NA,"4846.0000 Ha","Ativo","Reestudo","48.00000 Ha",NA,345,537.099209626047
+"345","Pinhalzinho",".","Adquirido","Reserva Indígena","Reserva Indígena","N",NA,"593.3720 Ha","Ativo","Principal","12.11031 Ha",NA,346,475.842607836681
+"346","Pirahã",".","Concluído","Regularizada","Terra Indígena","N",NA,"346910.5673 Ha","Ativo","Principal","433.98247 Ha",NA,347,70.8912813992794
+"347","Pirai",".","Demarcação Física","Declarada","Terra Indígena","N",NA,"3017.0000 Ha","Ativo","Principal","35.00000 Ha",NA,348,21.5993769074262
+"348","Pirajuí",".","Concluído","Regularizada","Terra Indígena","S",NA,"2118.2325 Ha","Ativo","Principal","19.42900 Ha",NA,349,410.465559355154
+"349","Pirakua",".","Concluído","Regularizada","Terra Indígena","N",NA,"2384.0554 Ha","Ativo","Principal","23.38710 Ha",NA,350,385.749474392398
+"350","Pirineus de Souza",".","Concluído","Regularizada","Terra Indígena","S",NA,"28212.2716 Ha","Ativo","Principal","82.63600 Ha",NA,351,434.858665532863
+"351","Pitaguary",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"1727.8686 Ha","Ativo","Principal","24.61098 Ha",NA,352,199.062900838678
+"352","Pium",".","Concluído","Regularizada","Terra Indígena","S",NA,"4607.6137 Ha","Ativo","Principal","27.14032 Ha",NA,353,98.6813633813353
+"353","Ponta da Serra",".","Concluído","Regularizada","Terra Indígena","S",NA,"15597.0000 Ha","Ativo","Principal","64.00000 Ha",NA,354,100.689423868313
+"354","Ponte de Pedra",".","Planejamento da Demarcação","Declarada","Terra Indígena","N",NA,"17000.0000 Ha","Ativo","Principal","73.00000 Ha",NA,355,403.971327043254
+"355","Porquinhos",".","Concluído","Regularizada","Terra Indígena","N",NA,"79520.0000 Ha","Ativo","Principal","113.00000 Ha",NA,356,285.504577654196
+"356","Porquinhos dos Canela-Apãnjekra",".","Demarcação Física","Declarada","Terra Indígena","N",NA,"301000.0000 Ha","Ativo","Reestudo","252.00000 Ha",NA,357,331.711605237822
+"357","Porto Lindo",".","Concluído","Em Estudo","Terra Indígena","N",NA,"1648.8899 Ha","Ativo","Principal","18.58991 Ha",NA,358,347.567475671239
+"358","Yvy-katu",".","Processo de Homologação","Em Estudo","Terra Indígena","N",NA,"9494.1636 Ha","Ativo","Reestudo","53.32308 Ha",NA,359,302.774971083939
+"359","Porto Praia",".","Concluído","Regularizada","Terra Indígena","N",NA,"4769.8617 Ha","Ativo","Principal","31.00000 Ha",NA,360,44.8015492768549
+"360","Potiguara",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"21238.4898 Ha","Ativo","Principal","68.12444 Ha",NA,361,56.680924843905
+"361","Potiguara de Monte-Mor",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"7530.5969 Ha","Ativo","Principal","57.97033 Ha",NA,362,65.7762506260086
+"362","Potrero Guaçu",".","Processo de Homologação","Declarada","Terra Indígena","S",NA,"4025.0000 Ha","Ativo","Principal","28.00000 Ha",NA,363,397.395274212369
+"363","Poyanawa",".","Concluído","Regularizada","Terra Indígena","N",NA,"24499.0885 Ha","Ativo","Principal","105.05194 Ha",NA,364,227.644094338317
+"364","Praia do Índio",".","Adquirido","Reserva Indígena","Reserva Indígena","N",NA,"31.5019 Ha","Ativo","Principal","3.26105 Ha",NA,365,16.2781456953642
+"365","Praia do Mangue",".","Adquirido","Reserva Indígena","Reserva Indígena","N",NA,"31.8449 Ha","Ativo","Principal","3.02377 Ha",NA,366,14.3489932885906
+"366","Queimadas",".","Concluído","Regularizada","Terra Indígena","N",NA,"3077.7602 Ha","Ativo","Principal","27.84037 Ha",NA,367,765.104399555468
+"367","Quixaba - Fazenda Pedrosa",".","Adquirido","Reserva Indígena","Reserva Indígena","N","A terra é constituida de duas áreas, uma adquirida pela FUNAI, provavelmente em 1998, com 16,0658 ha e outra da Arquidicocesse de Paulo Afonso adquirida em 1989 com 12,1 ha. Observação Área : Área adquirida pela FUNAI em 1988.","28.1658 Ha","Ativo","Principal","0.00000 Ha",NA,368,507.713460406897
+"368","Raimundão",".","Concluído","Regularizada","Terra Indígena","N",NA,"4276.8088 Ha","Ativo","Principal","27.67136 Ha",NA,369,101.037480063796
+"369","Rancho Jacaré",".","Concluído","Regularizada","Terra Indígena","S",NA,"777.5349 Ha","Ativo","Principal","14.07500 Ha",NA,370,386.83007862034
+"370","Raposa Serra do Sol",".","Concluído","Regularizada","Terra Indígena","N",NA,"1747464.7832 Ha","Ativo","Principal","978.13232 Ha",NA,371,507.313470909655
+"371","Recreio/São Félix",".","Concluído","Regularizada","Terra Indígena","N",NA,"251.0510 Ha","Ativo","Principal","6.92767 Ha",NA,372,22.2402826855124
+"372","Ribeirão Silveira",".","Homologada","Declarada","Terra Indígena","N",NA,"8468.9333 Ha","Ativo","Reestudo","45.96567 Ha",NA,373,311.920006479082
+"373","Rio Apaporis",".","Concluído","Regularizada","Terra Indígena","N",NA,"106960.3377 Ha","Ativo","Principal","170.33925 Ha",NA,374,127.631047091369
+"374","Rio Areia",".","Concluído","Regularizada","Terra Indígena","N",NA,"1352.3784 Ha","Ativo","Principal","20.73852 Ha",NA,375,968.827010838563
+"375","Rio Biá",".","Concluído","Regularizada","Terra Indígena","N",NA,"1185791.7100 Ha","Ativo","Principal","763.53496 Ha",NA,376,115.086942129107
+"376","Rio Branco",".","Concluído","Regularizada","Terra Indígena","S",NA,"236137.1100 Ha","Ativo","Principal","200.34000 Ha",NA,377,210.300351056575
+"377","Rio Branco Itanhaém",".","Concluído","Regularizada","Terra Indígena","N",NA,"2856.1000 Ha","Ativo","Principal","36.04500 Ha",NA,378,313.894532315244
+"378","Kuruáya",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"166784.2496 Ha","Ativo","Principal","232.67917 Ha",NA,379,237.550461514113
+"379","Rio das Cobras",".","Concluído","Regularizada","Terra Indígena","N",NA,"18681.9806 Ha","Ativo","Principal","98.16150 Ha",NA,380,705.804191747045
+"380","Rio dos Índios",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"711.7018 Ha","Ativo","Principal","13.12196 Ha",NA,381,276.820764737122
+"381","Rio dos Pardos",".","Concluído","Regularizada","Terra Indígena","N",NA,"758.2614 Ha","Ativo","Principal","12.83819 Ha",NA,382,1079.28896185906
+"382","Rio Formoso",".","Concluído","Regularizada","Terra Indígena","N",NA,"19749.4741 Ha","Ativo","Principal","85.83962 Ha",NA,383,550.000195801602
+"383","Rio Gregório",".","Concluído","Regularizada","Terra Indígena","S",NA,"187125.2158 Ha","Ativo","Principal","242.19608 Ha",NA,384,285.078320767774
+"384","Rio Gregório",".","Processo de Homologação","Declarada","Terra Indígena","S",NA,"187125.2158 Ha","Ativo","Reestudo","242196.08000 Ha",NA,385,281.120415599563
+"385","Rio Guaporé",".","Concluído","Regularizada","Terra Indígena","N",NA,"115788.0842 Ha","Ativo","Principal","222.97617 Ha",NA,386,163.151402556925
+"386","Rio Jumas",".","Concluído","Regularizada","Terra Indígena","N",NA,"9462.6983 Ha","Ativo","Principal","51.80910 Ha",NA,387,35.4594643259059
+"387","Rio Manicoré",".","Concluído","Regularizada","Terra Indígena","N",NA,"19481.0000 Ha","Ativo","Principal","77.00000 Ha",NA,388,67.6082894606685
+"388","Rio Mequens",".","Processo de Homologação","Regularizada","Terra Indígena","S",NA,"107553.0101 Ha","Ativo","Principal","142.47951 Ha",NA,389,245.765743194971
+"389","Rio Negro Ocaia",".","Concluído","Regularizada","Terra Indígena","N",NA,"104063.0000 Ha","Ativo","Principal","181.00000 Ha",NA,390,175.944710717218
+"390","Rio Negro Ocaia",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"235070.0000 Ha","Ativo","Reestudo","299.00000 Ha",NA,391,175.908391966033
+"391","Rio Omerê",".","Homologada","Homologada","Terra Indígena","S",NA,"26177.1864 Ha","Ativo","Principal","80.97564 Ha",NA,392,290.605789864148
+"392","Rio Paru DEste",".","Concluído","Regularizada","Terra Indígena","N",NA,"1195785.7917 Ha","Ativo","Principal","626.61858 Ha",NA,393,374.122611227953
+"393","Rio Pindaré",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"15002.9142 Ha","Ativo","Principal","118.11500 Ha",NA,394,21.0540427256088
+"394","Rio Téa",".","Concluído","Regularizada","Terra Indígena","N",NA,"411865.3207 Ha","Ativo","Principal","629.60837 Ha",NA,395,78.5484791422927
+"395","Rio Urubu",".","Concluído","Regularizada","Terra Indígena","N",NA,"27354.9118 Ha","Ativo","Principal","122.48515 Ha",NA,396,38.321674098848
+"396","Rodeador",".","Planejamento da Demarcação","Reserva Indígena","Dominial Indigena","N",NA,"2319.4531 Ha","Ativo","Principal","19.82600 Ha",NA,397,159.981239132424
+"397","Roosevelt",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"230826.3008 Ha","Ativo","Principal","322.40198 Ha",NA,398,250.470862732741
+"398","Sagarana",".","Concluído","Regularizada","Terra Indígena","N",NA,"18120.0636 Ha","Ativo","Principal","92.32753 Ha",NA,399,147.75960366905
+"399","Sai-Cinza",".","Concluído","Regularizada","Terra Indígena","N",NA,"125552.0800 Ha","Ativo","Principal","273.22391 Ha",NA,400,127.94519239431
+"400","Salto Grande do Jacuí",".","Concluído","Regularizada","Terra Indígena","N",NA,"234.9641 Ha","Ativo","Principal","7.25832 Ha",NA,401,287.569488817891
+"401","Sangradouro/Volta Grande",".","Concluído","Regularizada","Terra Indígena","N",NA,"100280.3969 Ha","Ativo","Principal","207.73913 Ha",NA,402,578.07379317145
+"402","Santa Inez",".","Concluído","Regularizada","Terra Indígena","S",NA,"29698.0449 Ha","Ativo","Principal","86.50600 Ha",NA,403,232.215546554125
+"403","Santana",".","Concluído","Regularizada","Terra Indígena","N",NA,"35470.7543 Ha","Ativo","Principal","105.40453 Ha",NA,404,513.400357498207
+"404","São Francisco do Canimari",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"3331.2208 Ha","Ativo","Principal","36.06073 Ha",NA,405,88.7806011325686
+"405","São Jeronimo",".","Concluído","Regularizada","Terra Indígena","N",NA,"1339.3364 Ha","Ativo","Principal","18.70639 Ha",NA,406,880.899073269621
+"406","São Leopoldo",".","Concluído","Regularizada","Terra Indígena","N",NA,"69270.5409 Ha","Ativo","Principal","199.76890 Ha",NA,407,113.89725714992
+"407","São Pedro",".","Concluído","Regularizada","Terra Indígena","N",NA,"726.1805 Ha","Ativo","Principal","15.81922 Ha",NA,408,32.2238341968912
+"408","São Pedro do Sepatini",".","Concluído","Regularizada","Terra Indígena","N",NA,"27644.2488 Ha","Ativo","Principal","110.81027 Ha",NA,409,101.841794777379
+"409","São Sebastião",".","Concluído","Regularizada","Terra Indígena","N",NA,"61058.5408 Ha","Ativo","Principal","161.78269 Ha",NA,410,88.5073534630836
+"410","Sararé",".","Concluído","Regularizada","Terra Indígena","S","Subgrupo Manairisu ou Wanairisu.","67419.5158 Ha","Ativo","Principal","131.84200 Ha",NA,411,533.227486402008
+"411","Sassoró",".","Reserva SPI","Regularizada","Reserva Indígena","N",NA,"1922.6435 Ha","Ativo","Principal","20.27754 Ha",NA,412,307.899064449064
+"412","Sepoti",".","Concluído","Regularizada","Terra Indígena","N",NA,"251348.9835 Ha","Ativo","Principal","242.62750 Ha",NA,413,60.9068231841526
+"413","Serra da Moça",".","Concluído","Regularizada","Terra Indígena","S",NA,"11626.7912 Ha","Ativo","Principal","52.56857 Ha",NA,414,107.051567315643
+"414","Serra do Itatins",".","Concluído","Regularizada","Terra Indígena","N",NA,"1212.4700 Ha","Ativo","Principal","21.46462 Ha",NA,415,679.719645732689
+"415","Serra Morena",".","Planejamento da Demarcação","Regularizada","Terra Indígena","N",NA,"147836.1461 Ha","Ativo","Principal","197.28374 Ha",NA,416,322.45720166889
+"416","Serrinha",".","Registro Cartorial","Declarada","Terra Indígena","N",NA,"11752.7578 Ha","Ativo","Principal","81.20151 Ha",NA,417,567.895784202875
+"417","Seruini/Mariene",".","Concluído","Regularizada","Terra Indígena","N",NA,"144971.3671 Ha","Ativo","Principal","198.65928 Ha",NA,418,138.567215317434
+"418","Sete Cerros",".","Registro Cartorial","Homologada","Terra Indígena","S",NA,"8584.7213 Ha","Ativo","Principal","53.10941 Ha",NA,419,382.770111607143
+"419","Sete de Setembro",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"248146.9286 Ha","Ativo","Principal","204.52921 Ha",NA,420,220.399386298783
+"420","Setemã",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"49430.0000 Ha","Ativo","Principal","125.00000 Ha",NA,421,45.9180148600227
+"421","Sororó",".","Concluído","Regularizada","Terra Indígena","N",NA,"26257.0000 Ha","Ativo","Principal","73.00000 Ha",NA,422,203.149130810212
+"422","Sucuba",".","Concluído","Regularizada","Terra Indígena","S",NA,"5983.0000 Ha","Ativo","Principal","51.00000 Ha",NA,423,93.5619040817055
+"423","Sucuriy",".","Concluído","Regularizada","Terra Indígena","N",NA,"535.1047 Ha","Ativo","Principal","10.53975 Ha",NA,424,373.078830495929
+"424","Tabalascada",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"13014.7374 Ha","Ativo","Principal","51.09234 Ha",NA,425,94.848706245485
+"425","Tabocal",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"906.1516 Ha","Ativo","Principal","16.96733 Ha",NA,426,29.930725730443
+"426","Tadarimana",".","Concluído","Regularizada","Terra Indígena","N",NA,"9785.0000 Ha","Ativo","Principal","51.00000 Ha",NA,427,255.638817259756
+"427","Taihantesu",".","Demarcação Física","Regularizada","Terra Indígena","S",NA,"5362.3344 Ha","Ativo","Principal","33.96348 Ha",NA,428,514.220338983051
+"428","Takuaraty/Yvykuarusu",".","Registro Cartorial","Homologada","Terra Indígena","S",NA,"2609.0940 Ha","Ativo","Principal","24.56558 Ha",NA,429,331.75602890833
+"429","Tapirapé/Karajá",".","Concluído","Regularizada","Terra Indígena","N",NA,"66166.0000 Ha","Ativo","Principal","109.00000 Ha",NA,430,197.905974724765
+"430","Taquaperi",".","Reserva SPI","Regularizada","Reserva Indígena","S",NA,"1776.9594 Ha","Ativo","Principal","21.02204 Ha",NA,431,488.698016003508
+"431","Taquara",".","Planejamento da Demarcação","Declarada","Terra Indígena","N",NA,"9700.0000 Ha","Ativo","Principal","50.00000 Ha",NA,432,380.334008835569
+"432","Pindoty",".","Demarcação Física","Declarada","Terra Indígena","N",NA,"3294.0000 Ha","Ativo","Principal","47.00000 Ha",NA,433,19.178775948461
+"433","Taunay/Ipegue",".","Concluído","Regularizada","Terra Indígena","N",NA,"6461.3459 Ha","Ativo","Principal","33.25990 Ha",NA,434,154.641193789357
+"434","Taunay/Ipegue",".","Exame do Min. da Justiça","Delimitada","Terra Indígena","N",NA,"33900.0000 Ha","Ativo","Reestudo","78.00000 Ha",NA,435,159.772389590265
+"435","Tekohá Añetete",".","Certidão SPU","Reserva Indígena","Reserva Indígena","S",NA,"1774.7063 Ha","Ativo","Principal","26.91454 Ha",NA,436,386.340284039675
+"436","Tembé",".","Concluído","Regularizada","Terra Indígena","N",NA,"1075.1881 Ha","Ativo","Principal","16.81784 Ha",NA,437,44.836873747495
+"437","Tenharim do Igarapé Preto",".","Concluído","Regularizada","Terra Indígena","N",NA,"87413.1478 Ha","Ativo","Principal","173.00000 Ha",NA,438,131.234615877775
+"438","Tenharim Marmelos",".","Concluído","Regularizada","Terra Indígena","N",NA,"497521.7497 Ha","Ativo","Principal","395.16325 Ha",NA,439,92.6465003791735
+"439","Terena Gleba Iriri",".","Processo de Homologação","Regularizada","Reserva Indígena","N",NA,"30588.8088 Ha","Ativo","Principal","118.00000 Ha",NA,440,341.573585926553
+"440","Tereza Cristina",".","Reserva SPI","Regularizada","Reserva Indígena","N",NA,"30060.0000 Ha","Ativo","Principal","127.00000 Ha",NA,441,217.786707849762
+"441","Itixi Mitari",".","Homologada","Regularizada","Terra Indígena","N","Em revisão. Na identificação de Ig Taboca e Igarapé Joari, foi proposta uma área contínua - Itixi Mitari - englobando esta terra já regularizada. Observação Área : Área criada da identificação de Ig Taboca, Igarapé Joari e reestudo de Terra Vermelha.","182134.7746 Ha","Ativo","Principal","294.91423 Ha",NA,442,48.6807541913152
+"442","Tibagy/Mococa",".","Concluído","Regularizada","Terra Indígena","N",NA,"859.9098 Ha","Ativo","Principal","12.50000 Ha",NA,443,583.600278875203
+"443","Tikúna de Feijoal",".","Concluído","Regularizada","Terra Indígena","N",NA,"40948.8000 Ha","Ativo","Principal","135.20720 Ha",NA,444,107.248188601153
+"444","Tingui Botó",".","Processo de Homologação","Regularizada","Reserva Indígena","N",NA,"535.0000 Ha","Ativo","Principal","18.00000 Ha",NA,445,176.496660117878
+"445","Tirecatinga",".","Concluído","Regularizada","Terra Indígena","N",NA,"130575.1964 Ha","Ativo","Principal","207.69404 Ha",NA,446,438.770068641705
+"446","Toldo Chimbangue",".","Concluído","Regularizada","Terra Indígena","S",NA,"988.6625 Ha","Ativo","Principal","18.01698 Ha",NA,447,404.607597305389
+"447","Toldo Chimbangue II",".","Registro Cartorial","Regularizada","Terra Indígena","S",NA,"954.0708 Ha","Ativo","Principal","16.37978 Ha",NA,448,413.632439889633
+"448","Toldo Imbu",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"1960.6934 Ha","Ativo","Principal","22.12225 Ha",NA,449,761.418245751123
+"449","Torá",".","Concluído","Regularizada","Terra Indígena","N",NA,"54960.9850 Ha","Ativo","Principal","128.35864 Ha",NA,450,68.279913722923
+"450","Trincheira",".","Concluído","Regularizada","Terra Indígena","N",NA,"1624.6022 Ha","Ativo","Principal","34.69212 Ha",NA,451,32.974283614989
+"451","Trincheira Bacaja",".","Concluído","Regularizada","Terra Indígena","N",NA,"1650939.2569 Ha","Ativo","Principal","646.44877 Ha",NA,452,190.621317476984
+"452","Trocará",".","Concluído","Regularizada","Terra Indígena","N",NA,"21722.0000 Ha","Ativo","Principal","74.00000 Ha",NA,453,76.1889640350185
+"453","Trocará - Doação",".","Adquirido","Reserva Indígena","Dominial Indigena","N","Doação em nome da FUNAI, contígua a terra decretada.","14.0480 Ha","Ativo","Principal","1.80000 Ha",NA,454,70.0615384615385
+"454","Trombetas/Mapuera",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"3970898.0420 Ha","Ativo","Principal","1562.28248 Ha",NA,455,193.587703419841
+"455","Truaru",".","Concluído","Regularizada","Terra Indígena","S",NA,"5652.8410 Ha","Ativo","Principal","33.09372 Ha",NA,456,125.328120557293
+"456","Truká",".","Concluído","Regularizada","Terra Indígena","N",NA,"1592.8972 Ha","Ativo","Principal","20.25945 Ha",NA,457,328.850414419155
+"457","Truká",".","Planejamento da Demarcação","Declarada","Terra Indígena","N",NA,"5769.0000 Ha","Ativo","Reestudo","173.00000 Ha",NA,458,326.046261955885
+"458","Tubarão Latunde",".","Demarcação Física","Regularizada","Terra Indígena","S",NA,"116613.3671 Ha","Ativo","Principal","177.38098 Ha",NA,459,404.843774967604
+"459","Tikuna de Santo Antonio",".","Concluído","Regularizada","Terra Indígena","N",NA,"1065.2723 Ha","Ativo","Principal","15.04527 Ha",NA,460,81.500399840064
+"460","Tukuna Porto Espiritual",".","Concluído","Regularizada","Terra Indígena","N",NA,"2839.3483 Ha","Ativo","Principal","42.17333 Ha",NA,461,102.951943107535
+"461","Tukuna Umariaçu",".","Concluído","Regularizada","Terra Indígena","N",NA,"4854.9989 Ha","Ativo","Principal","40.59212 Ha",NA,462,83.7858679899873
+"462","Tumiã",".","Concluído","Regularizada","Terra Indígena","N",NA,"124357.4172 Ha","Ativo","Principal","251.68494 Ha",NA,463,133.060759717977
+"463","Tupã-Supé",".","Concluído","Regularizada","Terra Indígena","N",NA,"8589.5101 Ha","Ativo","Principal","44.48345 Ha",NA,464,77.2689668887342
+"464","Turé/Mariquita",".","Demarcação Física","Regularizada","Terra Indígena","N",NA,"146.9798 Ha","Ativo","Principal","6.15741 Ha",NA,465,45.8172661870504
+"465","Turé/Mariquita II",".","Demarcação Física","Reserva Indígena","Reserva Indígena","N","Área adquirida pela Pará Pigmento SA como parte dos compromissos com a FUNAI e Comunidade Indígena devido aos impactos da exploração de caulim.","593.5563 Ha","Ativo","Principal","10.56227 Ha",NA,466,50.5376724442872
+"466","Tuxá",".","Processo de Homologação","Reserva Indígena","Reserva Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,467,388.855730124241
+"467","Uaça",".","Concluído","Regularizada","Terra Indígena","S",NA,"470164.0636 Ha","Ativo","Principal","278.13944 Ha",NA,468,36.5926935575643
+"468","Uati-Paraná",".","Concluído","Regularizada","Terra Indígena","N",NA,"127199.0612 Ha","Ativo","Principal","259.10713 Ha",NA,469,83.688159799573
+"469","Uirapuru",".","Processo de Homologação","Declarada","Terra Indígena","S",NA,"21680.0000 Ha","Ativo","Principal","97.00000 Ha",NA,470,690.493663379595
+"470","Umutina",".","Concluído","Regularizada","Terra Indígena","N",NA,"28120.0000 Ha","Ativo","Principal","121.90000 Ha",NA,471,191.037773969784
+"471","Uneiuxi",".","Concluído","Regularizada","Terra Indígena","N",NA,"403182.8081 Ha","Ativo","Principal","604.10181 Ha",NA,472,81.8262249814254
+"472","Uneiuxi",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"554730.4117 Ha","Ativo","Reestudo","510771.66000 Ha",NA,473,79.6736310795447
+"473","Uru-Eu-Wau-Wau",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"1867117.8000 Ha","Ativo","Principal","865.15301 Ha",NA,474,281.474966100816
+"474","Urubu Branco",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"167533.3271 Ha","Ativo","Principal","208.09420 Ha",NA,475,270.16832934891
+"475","Urucu/Juruá",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"12697.0441 Ha","Ativo","Principal","54.74000 Ha",NA,476,180.430567612688
+"476","Utiariti",".","Concluído","Regularizada","Terra Indígena","N",NA,"412304.1958 Ha","Ativo","Principal","429.32711 Ha",NA,477,533.461725669102
+"477","Vale do Guaporé",".","Demarcação Física","Regularizada","Terra Indígena","S",NA,"242593.0000 Ha","Ativo","Principal","551.00000 Ha",NA,478,389.411179269552
+"478","Vale do Javari",".","Concluído","Regularizada","Terra Indígena","N",NA,"8544482.2728 Ha","Ativo","Principal","2055.54582 Ha",NA,479,162.921600020727
+"479","Vanuire",".","Concluído","Regularizada","Terra Indígena","N",NA,"708.9304 Ha","Ativo","Principal","17.63735 Ha",NA,480,433.495118549512
+"480","Vargem Alegre",".","Adquirido","Reserva Indígena","Reserva Indígena","N",NA,"981.0815 Ha","Ativo","Principal","13.81000 Ha",NA,481,493.699193890539
+"481","Varzinha",".","Demarcação Física","Regularizada","Terra Indígena","N",NA,"776.2761 Ha","Ativo","Principal","15.26927 Ha",NA,482,633.365311004785
+"482","Ventarra",".","Certidão SPU","Regularizada","Terra Indígena","N",NA,"772.9532 Ha","Ativo","Principal","11.73535 Ha",NA,483,756.624509803922
+"483","Votouro",".","Concluído","Regularizada","Terra Indígena","S",NA,"3341.0977 Ha","Ativo","Principal","26.03919 Ha",NA,484,633.603800611154
+"484","Vui-Uata-In",".","Concluído","Regularizada","Terra Indígena","N",NA,"121198.5999 Ha","Ativo","Principal","191.69900 Ha",NA,485,102.354722131582
+"485","Waiãpi",".","Concluído","Regularizada","Terra Indígena","N",NA,"607017.2404 Ha","Ativo","Principal","481.62000 Ha",NA,486,269.901737101099
+"486","Waimiri-Atroari",".","Concluído","Regularizada","Terra Indígena","N",NA,"2585911.5689 Ha","Ativo","Principal","982.33000 Ha",NA,487,83.820100640079
+"487","WaiWái",".","Concluído","Regularizada","Terra Indígena","N",NA,"405698.0085 Ha","Ativo","Principal","308.79921 Ha",NA,488,222.616664449133
+"488","Wawi",".","Concluído","Regularizada","Terra Indígena","N",NA,"150329.1865 Ha","Ativo","Principal","219.00000 Ha",NA,489,309.794769762682
+"489","Xacriabá",".","Concluído","Regularizada","Terra Indígena","N",NA,"46415.9242 Ha","Ativo","Principal","94.38800 Ha",NA,490,695.234094700544
+"490","Xakriabá Rancharia",".","Concluído","Regularizada","Terra Indígena","N",NA,"6798.3817 Ha","Ativo","Principal","36.39700 Ha",NA,491,598.058895108299
+"491","Xambioá",".","Concluído","Regularizada","Terra Indígena","N",NA,"3326.3502 Ha","Ativo","Principal","26.55111 Ha",NA,492,167.635439822166
+"492","Xapecó",".","Demarcação Física","Homologada","Terra Indígena","N",NA,"15623.9581 Ha","Ativo","Principal","103.77937 Ha",NA,493,618.276085141903
+"493","Xerente",".","Concluído","Regularizada","Terra Indígena","N",NA,"167542.1058 Ha","Ativo","Principal","226.64981 Ha",NA,494,297.989266503397
+"494","Xikrin do Rio Catete",".","Processo de Homologação","Regularizada","Terra Indígena","N","Subgrupo Xikrin.","439150.5452 Ha","Ativo","Principal","372.58400 Ha",NA,495,288.589921068965
+"495","Xipaya",".","Processo de Homologação","Homologada","Terra Indígena","N",NA,"178723.0238 Ha","Ativo","Principal","212.56364 Ha",NA,496,242.809647742981
+"496","Xukuru-Kariri",".","Planejamento da Demarcação","Declarada","Terra Indígena","N",NA,"7073.0000 Ha","Ativo","Principal","48.00000 Ha",NA,497,431.729282922026
+"497","Xukuru",".","Concluído","Regularizada","Terra Indígena","N",NA,"27555.0583 Ha","Ativo","Principal","81.20573 Ha",NA,498,866.989252635427
+"498","Yanomami",".","Concluído","Regularizada","Terra Indígena","N",NA,"9664975.4800 Ha","Ativo","Principal","3369.93950 Ha",NA,499,367.234804641545
+"499","Zoe",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"668565.6283 Ha","Ativo","Principal","478.03837 Ha",NA,500,317.733313820978
+"500","Zoró",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"355789.5492 Ha","Ativo","Principal","304.39900 Ha",NA,501,189.327730280664
+"501","Zuruahã",".","Concluído","Regularizada","Terra Indígena","N",NA,"239069.7403 Ha","Ativo","Principal","335.46588 Ha",NA,502,114.241864986896
+"502","Riozinho do Alto Envira",".","Registro Cartorial","Homologada","Terra Indígena","N",NA,"260972.0300 Ha","Ativo","Principal","420.34588 Ha",NA,503,302.100704706717
+"503","Sapotal",".","Certidão SPU","Regularizada","Terra Indígena","N",NA,"1264.4661 Ha","Ativo","Principal","16.24586 Ha",NA,504,74.2779461279461
+"504","Anaro",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"30473.9506 Ha","Ativo","Principal","89.30687 Ha",NA,505,125.205884205884
+"505","Arara do Rio Amonia",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"20534.2205 Ha","Ativo","Principal","81.83600 Ha",NA,506,260.661757226845
+"506","Barro Alto",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"1937.1679 Ha","Ativo","Principal","33.72537 Ha",NA,507,87.036013215859
+"507","Batelão",".","Exame do Min. da Justiça","Delimitada","Terra Indígena","N",NA,"117050.0000 Ha","Ativo","Principal","224.00000 Ha",NA,508,372.506381500364
+"508","Apurinã do Igarapé Mucuim",".","Homologada","Regularizada","Terra Indígena","N",NA,"73350.6121 Ha","Ativo","Principal","127.59947 Ha",NA,509,108.140078789616
+"509","Lago  do Correio",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"13209.7815 Ha","Ativo","Principal","58.16621 Ha",NA,510,89.6014238897051
+"510","Guanabara",".","Contraditório","Declarada","Terra Indígena","N",NA,"15600.0000 Ha","Ativo","Principal","103.00000 Ha",NA,511,114.256848941279
+"511","Ponciano",".","Contraditório","Delimitada","Terra Indígena","N",NA,"4329.0000 Ha","Ativo","Principal","39.00000 Ha",NA,512,30.2649627473232
+"512","Prosperidade",".","Concluído","Regularizada","Terra Indígena","N",NA,"5572.8552 Ha","Ativo","Principal","50.22937 Ha",NA,513,65.4394955728468
+"513","Santa Cruz da Nova Aliança",".","Certidão SPU","Regularizada","Terra Indígena","N",NA,"5969.2201 Ha","Ativo","Principal","54.71004 Ha",NA,514,86.2910618519843
+"514","Mato Preto",".","Exame do Min. da Justiça","Declarada","Terra Indígena","N",NA,"4230.0000 Ha","Ativo","Principal","30.00000 Ha",NA,515,739.190546594982
+"515","Sururuá",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"36125.0000 Ha","Ativo","Principal","123.00000 Ha",NA,516,121.82277511285
+"516","Votouro/Kandoia",".","Exame do Min. da Justiça","Delimitada","Terra Indígena","N",NA,"5977.0000 Ha","Ativo","Principal","74.00000 Ha",NA,517,710.756054775917
+"517","Vista Alegre",".","Contraditório","Delimitada","Terra Indígena","N",NA,"13206.0000 Ha","Ativo","Principal","75.00000 Ha",NA,518,28.6527573202117
+"518","Tapeba",".","Análise da Delimitação","Delimitada","Terra Indígena","N",NA,"5838.0000 Ha","Ativo","Principal","100.00000 Ha",NA,519,23.3992588110725
+"519","Sombrerito",".","Demarcação Física","Declarada","Terra Indígena","N",NA,"12608.0000 Ha","Ativo","Principal","59.00000 Ha",NA,520,323.716684546854
+"520","Maró",".","Contraditório","Delimitada","Terra Indígena","N",NA,"42373.0000 Ha","Ativo","Principal","131.00000 Ha",NA,521,85.1639743796326
+"521","Pequizal do Naruvôtu",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"27980.0000 Ha","Ativo","Principal","96.00000 Ha",NA,522,329.691377324338
+"522","Tupinambá de Olivença",".","Exame do Min. da Justiça","Delimitada","Terra Indígena","N",NA,"47376.0000 Ha","Ativo","Principal","150.00000 Ha",NA,523,105.318274116099
+"523","Las Casas",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"21344.7011 Ha","Ativo","Principal","65.52576 Ha",NA,524,221.168872760443
+"524","Porto Limoeiro",".","Certidão SPU","Regularizada","Terra Indígena","N",NA,"4587.7205 Ha","Ativo","Principal","39673.08000 Ha",NA,525,77.5380174478276
+"525","Munduruku-Taquara",".","Contraditório","Delimitada","Terra Indígena","N",NA,"25323.0000 Ha","Ativo","Principal","92.00000 Ha",NA,526,151.053232355568
+"526","São Marcos - MT",".","Demarcação Física","Regularizada","Reserva Indígena","N",NA,"188478.2600 Ha","Ativo","Principal","236.64500 Ha",NA,527,536.013639131702
+"527","São Domingos do Jacapari e Estação",".","Concluído","Regularizada","Terra Indígena","N",NA,"134781.7512 Ha","Ativo","Principal","163960.95000 Ha",NA,528,60.9633498566745
+"528","São Domingos - MT",".","Concluído","Regularizada","Terra Indígena","N",NA,"5704.8096 Ha","Ativo","Principal","37.14064 Ha",NA,529,196.283338293159
+"529","São Marcos - RR",".","Concluído","Regularizada","Terra Indígena","N",NA,"654110.0998 Ha","Ativo","Principal","648.92630 Ha",NA,530,218.123771750222
+"530","Boa Vista - AM",".","Concluído","Regularizada","Terra Indígena","N","Três Glebas: 133 (demarcada anteriormente); 125 (aprox.); 25 (aprox)","337.3562 Ha","Ativo","Principal","23.59893 Ha",NA,531,13.5009548058561
+"531","Boa Vista - PR",".","Homologada","Declarada","Terra Indígena","N",NA,"7336.3308 Ha","Ativo","Principal","61.07167 Ha",NA,532,780.423349181194
+"532","Cacique Fontoura",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"32304.7226 Ha","Ativo","Principal","116.87674 Ha",NA,533,194.305428940083
+"533","Barreirinha",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"2373.8000 Ha","Ativo","Principal","31.01495 Ha",NA,534,72.1753724645486
+"534","Sarauá",".","Processo de Homologação","Regularizada","Terra Indígena","N",NA,"18610.3230 Ha","Ativo","Principal","87.73340 Ha",NA,535,63.8281110013554
+"535","Portal do Encantado",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"43057.0000 Ha","Ativo","Principal","121.00000 Ha",NA,536,457.750502845076
+"536","Tarumã",".","Demarcação Física","Declarada","Terra Indígena","N",NA,"2172.0000 Ha","Ativo","Principal","24.00000 Ha",NA,537,21.2330380868025
+"537","Tumbalalá",".","Exame do Min. da Justiça","Delimitada","Terra Indígena","N",NA,"44978.0000 Ha","Ativo","Principal","117.00000 Ha",NA,538,361.496532749903
+"538","Caieiras Velha II",".","Concluído","Regularizada","Terra Indígena","N",NA,"57.3935 Ha","Ativo","Principal","3.04501 Ha",NA,539,13.8345070422535
+"539","Cué Cué/ Marabitanas",".","Contraditório","Declarada","Terra Indígena","N",NA,"808645.0000 Ha","Ativo","Principal","521.00000 Ha",NA,540,106.137618928396
+"540","Arara da Volta Grande do Xingu",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"25524.9310 Ha","Ativo","Principal","89.41617 Ha",NA,541,115.960042131309
+"541","Caxixó",".","Análise da Delimitação","Delimitada","Terra Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,542,653.536955548926
+"542","Kawahiva do Rio Pardo",".","Contraditório","Delimitada","Terra Indígena","N",NA,"411848.0000 Ha","Ativo","Principal","323.00000 Ha",NA,543,153.624640999987
+"543","Krahó-Kanela",".","Concluído","Regularizada","Reserva Indígena","N",NA,"7612.7653 Ha","Ativo","Principal","57.60000 Ha",NA,544,184.712253352229
+"544","Utaria Wyhyna/Iròdu Iràna",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"177466.0000 Ha","Ativo","Principal","331.00000 Ha",NA,545,175.91518697237
+"545","Bragança-Marituba",".","Contraditório","Delimitada","Terra Indígena","N",NA,"13515.0000 Ha","Ativo","Principal","83.00000 Ha",NA,546,131.500489746911
+"546","Tenharim Marmelos (Gleba B)",".","Certidão SPU","Regularizada","Terra Indígena","N",NA,"474741.6023 Ha","Ativo","Principal","421.72339 Ha",NA,547,79.438164541477
+"547","Tuwa Apekuokawera",".","Contraditório","Delimitada","Terra Indígena","N",NA,"11764.0000 Ha","Ativo","Principal","64.00000 Ha",NA,548,156.515371261167
+"548","Yvyporã Laranjinha",".","Demarcação Física","Declarada","Terra Indígena","N",NA,"1238.0000 Ha","Ativo","Principal","16.00000 Ha",NA,549,470.133227597145
+"549","Tremembé de Queimadas",".","Contraditório","Declarada","Terra Indígena","N",NA,"767.0000 Ha","Ativo","Principal","16.00000 Ha",NA,550,50.6405119643851
+"550","Panambi - Lagoa Rica",".","Contraditório","Delimitada","Terra Indígena","N","Existem dois registros naquela área (Lote nº 46, Quadra 44, onde se localiza o PI Panambi). Esta área foi adquirida pelo Patrimônio Indígena.","12196.0000 Ha","Ativo","Principal","63.00000 Ha",NA,551,305.985224162648
+"551","Xapecó (Pinhalzinho-Canhadão)",".","Demarcação Física","Declarada","Terra Indígena","N","Inicialmente tratada como revisão da TI Xapecó.","660.0000 Ha","Ativo","Principal","22.00000 Ha",NA,552,717.33189033189
+"552","Passo Grande do Rio Forquilha",".","Demarcação Física","Declarada","Terra Indígena","N",NA,"1916.0000 Ha","Ativo","Principal","29.00000 Ha",NA,553,607.258424745528
+"553","Maracaxi",".","Processo de Homologação","Declarada","Terra Indígena","N",NA,"720.0000 Ha","Ativo","Principal","13.00000 Ha",NA,554,45.9512630014859
+"554","Tekoha Itamarã",".","Adquirido","Reserva Indígena","Reserva Indígena","N",NA,"242.0000 Ha","Ativo","Principal","0.00000 Ha",NA,555,448.648990712074
+"555","Hãm Yîxux",".","Planejamento da Demarcação","Reserva Indígena","Reserva Indígena","N",NA,"522.7200 Ha","Ativo","Principal","14.65503 Ha",NA,556,594.835809225958
+"556","Krenrehé",".","Planejamento da Demarcação","Regularizada","Reserva Indígena","N",NA,"6400.0000 Ha","Ativo","Principal","52.00000 Ha",NA,557,189.80150259795
+"557","Jacareúba/Katauixi (restrição uso)",".","Em Planejamento","Em Estudo","Terra Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,558,95.8276742340164
+"558","Mundo Verde/Cachoeirinha",".","Processo de Homologação","Reserva Indígena","Reserva Indígena","N",NA,"606.1916 Ha","Ativo","Principal","11.34489 Ha",NA,559,478.440026954178
+"559","Tanaru ( restrição de uso )",".","Em Planejamento","Em Estudo","Terra Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,560,351.994522105372
+"560","Piripkura ( restrição de uso )",".","Em Planejamento","Em Estudo","Terra Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,561,166.105290611093
+"561","Ilhas da Tapera/São Félix/Porto",".","Processo de Aquisição","Reserva Indígena","Reserva Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,562,354.864836295864
+"562","Apiaká do Pontal e Isolados",".","Contraditório","Delimitada","Terra Indígena","N",NA,"982324.0000 Ha","Ativo","Principal","705.00000 Ha",NA,563,197.644227291203
+"563","Tupinambá de Belmonte",".","Análise da Delimitação","Delimitada","Terra Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,564,47.1280103582218
+"564","Sissaíma",".","Contraditório","Delimitada","Terra Indígena","N",NA,"8700.0000 Ha","Ativo","Principal","75.00000 Ha",NA,565,38.4813230612195
+"565","Fazenda Remanso",".","Adquirido","Reserva Indígena","Reserva Indígena","N",NA,"336.9518 Ha","Ativo","Principal","15.90475 Ha",NA,566,448.197384806974
+"566","Fazenda Sítio",".","Adquirido","Regularizada","Reserva Indígena","N",NA,"414.0000 Ha","Ativo","Principal","13.00000 Ha",NA,567,403.847457627119
+"567","Xukuru de Cimbres",".","Demarcação Física","Reserva Indígena","Reserva Indígena","N",NA,"1166.1793 Ha","Ativo","Principal","17.15810 Ha",NA,568,641.21590702742
+"568","Tremembé da Barra do Mundaú",".","Contraditório","Delimitada","Terra Indígena","N",NA,"3580.0000 Ha","Ativo","Principal","31.60000 Ha",NA,569,22.5540147341051
+"569","Coroa Vermelha - Gleba C",".","Processo de Aquisição","Reserva Indígena","Reserva Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,570,74.6647498717637
+"570","Campo Bonito",".","Processo de Aquisição","Reserva Indígena","Reserva Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,571,28.2619844435276
+"571","Estrada do Mar",".","Processo de Aquisição","Reserva Indígena","Reserva Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,572,4.42379837655428
+"572","Riozinho - RS",".","Processo de Aquisição","Reserva Indígena","Reserva Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,573,543.236759887221
+"573","Ituna/Itata (restrição de uso)",".","Em Planejamento","Em Estudo","Terra Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,574,199.745877432385
+"574","Canelinha",".","Processo de Aquisição","Reserva Indígena","Reserva Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,575,121.256317070127
+"575","Águas Claras",".","Processo de Aquisição","Reserva Indígena","Reserva Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,576,217.445261845387
+"576","Amaral/Tekoá Kuriy",".","Processo de Aquisição","Reserva Indígena","Reserva Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,577,465.914058239721
+"577","Morro da Palha",".","Processo de Aquisição","Reserva Indígena","Reserva Indígena","N",NA,"0.0000 Ha","Ativo","Principal","0.00000 Ha",NA,578,15.2030194676202
+"578","Taego Ãwa",".","Contraditório","Delimitada","Terra Indígena","N",NA,"29000.0000 Ha","Ativo","Principal","98.00000 Ha",NA,579,195.155051024444
+"579","Wedezé",".","Contraditório","Delimitada","Terra Indígena","N",NA,"145881.0000 Ha","Ativo","Principal","252.00000 Ha",NA,580,228.426862402775
+"580","Iguatemipegua I","08620.082252/2012-03","Análise da Delimitação","Delimitada","Terra Indígena","S",NA,"41571.0000 Ha","Ativo","Principal","100.00000 Ha",NA,581,367.599926225787
+"581","Pirititi",NA,"Em Planejamento","Em Estudo","Interditada","N",NA,"43404.0000 Ha","Ativo","Principal","185.00000 Ha",NA,582,103.928782709866
+"582","Wassu-Cocal",".","Contraditório","Delimitada","Terra Indígena","N",NA,"11842.0000 Ha","Ativo","Principal","61.00000 Ha",NA,583,175.530566903175
+"583","Chão Preto",".","Concluído","Regularizada","Terra Indígena","N",NA,"12741.8456 Ha","Ativo","Principal","64634.37000 Ha",NA,584,520.110378159493
+"584","Parabubure",".","Concluído","Regularizada","Terra Indígena","N",NA,"224447.3367 Ha","Ativo","Principal","294.36400 Ha",NA,585,433.480443100043
+"585","Ubawawe",".","Concluído","Regularizada","Terra Indígena","N",NA,"52234.4773 Ha","Ativo","Principal","119.68253 Ha",NA,586,488.170365319201
+"586","Ofayé-Xavante",".","Adquirido","Reserva Indígena","Reserva Indígena","N","Doada pela CESP","484.0000 Ha","Ativo","Reestudo","8.60000 Ha",NA,587,353.315870728695
