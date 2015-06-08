@@ -197,5 +197,11 @@ kfw.SPDF <- merge(kfw.SPDF, KFW_trt, by.x="id", by.y="id")
 #Redefine the size as a numeric.
 kfw.SPDF@data["terrai_are"] <- lapply(kfw.SPDF@data["terrai_are"], function(x) as.numeric(gsub("Ha","",x)))
 
+#Merge in the community enforcement data
+KFW_enf <- "input_data/EnforcementData_FUNAIFinalReport.csv"
+KFW_enf <- read.csv(KFW_enf)
+
+#Merge in the KFW enf data
+kfw.SPDF <- merge(kfw.SPDF, KFW_enf, by.x="id", by.y="id")
 
 writePolyShape(kfw.SPDF,"processed_data/kfw_analysis_inputs.shp")
