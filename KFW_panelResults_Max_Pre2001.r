@@ -95,7 +95,7 @@ psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visu
 #Based on the Propensity Score Matches, pair comprable treatment and control units.
 #-------------------------------------------------
 #-------------------------------------------------
-drop_set<- c(drop_unmatched=TRUE,drop_method="None",drop_thresh=0.5)
+drop_set<- c(drop_unmatched=TRUE,drop_method="SD",drop_thresh=0.25)
 psm_Pairs <- SAT(dta = psmRes$data, mtd = "fastNN",constraints=c(groups="UF"),psm_eq = psmModel, ids = "id", drop_opts = drop_set, visual="TRUE", TrtBinColName="TrtBin")
 #c(groups=c("UF"),distance=NULL)
 trttable <- table (psm_Pairs@data$TrtBin)

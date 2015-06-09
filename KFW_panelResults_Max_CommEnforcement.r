@@ -95,7 +95,7 @@ psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visu
 #Based on the Propensity Score Matches, pair comprable treatment and control units.
 #-------------------------------------------------
 #-------------------------------------------------
-drop_set<- c(drop_unmatched=TRUE,drop_method="None",drop_thresh=0.5)
+drop_set<- c(drop_unmatched=TRUE,drop_method="SD",drop_thresh=0.5)
 psm_Pairs <- SAT(dta = psmRes$data, mtd = "fastNN",constraints=c(groups="UF"),psm_eq = psmModel, ids = "id", drop_opts = drop_set, visual="TRUE", TrtBinColName="TrtBin")
 #c(groups=c("UF"),distance=NULL)
 trttable <- table (psm_Pairs@data$TrtBin)
@@ -109,7 +109,8 @@ trttable <- table (psm_Pairs@data$TrtBin)
 #-------------------------------------------------
 #-------------------------------------------------
 varList = c("MeanL_","MaxL_")
-psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1982,2010,colYears="enforce_start",interpYears=c("Slope","Road_dist","Riv_Dist","UF","Elevation","terrai_are","Pop_","MeanT_","MeanP_","TrtMnt","MaxT_","MaxP_","MinP_","MinT_"))
+psm_Pairs$enforce_st <- as.numeric(psm_Pairs$enforce_st)
+psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1982,2010,colYears="enforce_st",interpYears=c("Slope","Road_dist","Riv_Dist","UF","Elevation","terrai_are","Pop_","MeanT_","MeanP_","TrtMnt","MaxT_","MaxP_","MinP_","MinT_"))
 psm_Long$Year <- as.numeric(psm_Long$Year)
 
 
