@@ -129,32 +129,32 @@ OutputEarly2=Stage2PSM(analyticModelEarly2,psm_Pairs,type="lm",table_out=TRUE)
 #create new dataset and rename column names in new dataset to enable multiple columns in stargazer
 Data_Early3 <- psm_Pairs
 colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="Pop_1990")] <- "Pop_B"
-colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="MeanT_1995")] <- "MeanT_B"
-colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="MeanP_1995")] <- "MeanP_B"
+colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="MaxT_1995")] <- "MaxT_B"
+colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="MaxP_1995")] <- "MaxP_B"
 colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="post_trend_temp_95_01")] <- "post_trend_temp"
 colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="post_trend_precip_95_01")] <- "post_trend_precip"
 #colnames(Data_Early3@data)
 
-analyticModelEarly3 <- "NDVIslopeChange_95_01 ~ TrtBin+ pre_trend_NDVI_mean + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
+analyticModelEarly3 <- "NDVIslopeChange_95_01 ~ TrtBin+ pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MaxT_B  + post_trend_temp +
+MaxP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
 OutputEarly3=Stage2PSM(analyticModelEarly3,Data_Early3,type="lm",table_out=TRUE)
 
 #analyticModelLate, treatment effect + pair fixed effects + covars 2001-2010
 #create new dataset and rename column names in new dataset to enable multiple columns in stargazer
 Data_Late <- psm_Pairs
 colnames(Data_Late@data)[(colnames(Data_Late@data)=="Pop_2000")] <- "Pop_B"
-colnames(Data_Late@data)[(colnames(Data_Late@data)=="MeanT_2001")] <- "MeanT_B"
-colnames(Data_Late@data)[(colnames(Data_Late@data)=="MeanP_2001")] <- "MeanP_B"
+colnames(Data_Late@data)[(colnames(Data_Late@data)=="MaxT_2001")] <- "MaxT_B"
+colnames(Data_Late@data)[(colnames(Data_Late@data)=="MaxP_2001")] <- "MaxP_B"
 colnames(Data_Late@data)[(colnames(Data_Late@data)=="post_trend_temp_01_10")] <- "post_trend_temp"
 colnames(Data_Late@data)[(colnames(Data_Late@data)=="post_trend_precip_01_10")] <- "post_trend_precip"
 #colnames(Data_Late@data)
 
-analyticModelLate <- "NDVIslopeChange_01_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
+analyticModelLate <- "NDVIslopeChange_01_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MaxT_B + post_trend_temp + 
+MaxP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
 OutputLate=Stage2PSM(analyticModelLate,Data_Late,type="lm",table_out=TRUE)
 
 stargazer(OutputEarly2$standardized,OutputEarly3$standardized,OutputLate$standardized,
-          keep=c("TrtBin", "pre_trend_NDVI_mean","MeanL_1995", "terrai_are","Pop_B", "MeanT_B","post_trend_temp","MeanP_B",
+          keep=c("TrtBin", "pre_trend_NDVI_mean","MeanL_1995", "terrai_are","Pop_B", "MaxT_B","post_trend_temp","MaxP_B",
                  "post_trend_precip", "Slope","Elevation","Riv_Dist","Road_dist"),
           covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI","Area (hectares)", "Baseline Population Density",
                              "Baseline Temperature", "Temperature Trends", "Baseline Precipitation", "Precipitation Trends",
@@ -180,19 +180,19 @@ OutputEver2=Stage2PSM(analyticModelEver2,psm_Pairs,type="lm",table_out=TRUE)
 #create new dataset and rename column names in new dataset to enable multiple columns in stargazer
 Data_Ever3 <- psm_Pairs
 colnames(Data_Ever3@data)[(colnames(Data_Ever3@data)=="Pop_1990")] <- "Pop_B"
-colnames(Data_Ever3@data)[(colnames(Data_Ever3@data)=="MeanT_1995")] <- "MeanT_B"
-colnames(Data_Ever3@data)[(colnames(Data_Ever3@data)=="MeanP_1995")] <- "MeanP_B"
+colnames(Data_Ever3@data)[(colnames(Data_Ever3@data)=="MaxT_1995")] <- "MaxT_B"
+colnames(Data_Ever3@data)[(colnames(Data_Ever3@data)=="MaxP_1995")] <- "MaxP_B"
 colnames(Data_Ever3@data)[(colnames(Data_Ever3@data)=="post_trend_temp_mean")] <- "post_trend_temp"
 colnames(Data_Ever3@data)[(colnames(Data_Ever3@data)=="post_trend_precip_mean")] <- "post_trend_precip"
 #colnames(Data_Ever3@data)
 
-analyticModelEver3 <- "NDVIslopeChange_95_10 ~ TrtBin + pre_trend_NDVI_mean + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID)"
+analyticModelEver3 <- "NDVIslopeChange_95_10 ~ TrtBin + pre_trend_NDVI_mean + MaxL_1995 + terrai_are + Pop_B + MaxT_B + post_trend_temp +
+MaxP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID)"
 
 OutputEver3=Stage2PSM(analyticModelEver3,Data_Ever3,type="lm",table_out=TRUE)
 
 stargazer(OutputEver2$standardized, OutputEver3$standardized,
-          keep=c("TrtBin","pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B","MeanT_B","post_trend_temp","MeanP_B",
+          keep=c("TrtBin","pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B","MeanT_B","post_trend_temp","MaxP_B",
                  "post_trend_precip","Slope","Elevation","Riv_Dist","Road_dist"),
           covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI","Area (hectares)","Baseline Population Density",
                              "Baseline Temperature", "Temperature Trends", "Baseline Precipitation", "Precipitation Trends",
