@@ -12,6 +12,7 @@ library(stargazer)
 library(lmtest)
 library(multiwayvcov)
 loadLibs()
+#------
 #-------------------------------------------------
 #-------------------------------------------------
 #Load in Processed Data - produced from script KFW_dataMerge.r
@@ -76,6 +77,22 @@ dta_Shp@data$NA_check[is.na(dta_Shp@data$demend_y)] <- 1
 int_Shp <- dta_Shp[dta_Shp@data$NA_check != 1,]
 dta_Shp <- int_Shp
 
+#-------------------------------------------------
+#-------------------------------------------------
+#Same as above (for approval rather than demarcation)
+#-------------------------------------------------
+#-------------------------------------------------
+#Make a binary to test treatment..
+dta_Shp@data["TrtBin_App"] <- 0
+dta_Shp@data$TrtBin_App[dta_Shp@data$apprend_y <= 2001] <- 1
+dta_Shp@data$TrtBin_App[(dta_Shp@data$apprend_m > 5) & (dta_Shp@data$apprend_y==2001)] <- 0
+
+#Remove units that did not ever receive any treatment (within-sample test)
+dta_Shp@data$NA_check_App <- 0
+dta_Shp@data$NA_check_App[is.na(dta_Shp@data$apprend_y)] <- 1
+int_Shp <- dta_Shp[dta_Shp@data$NA_check_App != 1,]
+dta_Shp <- int_Shp
+
 
 #-------------------------------------------------
 #-------------------------------------------------
@@ -113,6 +130,51 @@ psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1
 psm_Long$Year <- as.numeric(psm_Long$Year)
 
 
+##INTERACTIONS
+
+#Create interaction term with post2001 & treatment
+psm_Long["post2001_Bin"] <- 0
+psm_Long$post2001_Bin[psm_Long$Year > 2001] <- 1
+psm_Long["post2001_Trt"] <- ((psm_Long$post2001_Bin)*(psm_Long$TrtMnt))
+
+#Interaction terrain area & treatment
+psm_Long["area_Trt"] <- ((psm_Long$terrai_are)*(psm_Long$TrtMnt))
+
+#Interaction Pop_ & treatment
+psm_Long["Pop_Trt"] <-((psm_Long$Pop_)*(psm_Long$TrtMnt))
+
+#Interaction MeanT & treatment
+psm_Long["MeanT_Trt"] <-((psm_Long$MeanT_)*(psm_Long$TrtMnt))
+
+#Interaction MeanP & treatment
+psm_Long["MeanP_Trt"] <- ((psm_Long$MeanP_)*(psm_Long$TrtMnt))
+
+#Interaction MaxT & treatment
+psm_Long["MaxT_Trt"] <- ((psm_Long$MaxT_)*(psm_Long$TrtMnt))
+
+#Interaction MaxP & treatment
+psm_Long["MaxP_Trt"] <- ((psm_Long$MaxP_)*(psm_Long$TrtMnt))
+
+#Interaction MinT & Treatment
+psm_Long["MinT_Trt"] <- ((psm_Long$MinT_)*(psm_Long$TrtMnt))
+
+#Interaction MinP & Treatment
+psm_Long["MinP_Trt"] <- ((psm_Long$MinP_)*(psm_Long$TrtMnt))
+
+#Interaction Year & Treatment
+psm_Long["Year_Trt"] <- ((psm_Long$Year)*(psm_Long$TrtMnt))
+
+#Interaction Slope & treatment
+psm_Long["Slope_Trt"] <- ((psm_Long$Slope)*(psm_Long$TrtMnt))
+
+#Interaction Elevation & treatment
+psm_Long["Elevation_Trt"] <- ((psm_Long$Elevation)*(psm_Long$TrtMnt))
+
+#Interaction River Distance & treatment
+psm_Long["RivDist_Trt"] <- ((psm_Long$Riv_Dist)*(psm_Long$TrtMnt))
+
+#Interaction Road Distance & treatment
+psm_Long["RoadDist_Trt"] <- ((psm_Long$Road_dist)*(psm_Long$TrtMnt))
 
 pModelMean_A <- "MeanL_ ~ TrtMnt + factor(reu_id) "
 pModelMean_B <- "MeanL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) "
@@ -122,10 +184,20 @@ pModelMean_A_fit <- Stage2PSM(pModelMean_A ,psm_Long,type="cmreg", table_out=TRU
 pModelMean_B_fit <- Stage2PSM(pModelMean_B ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMean_C_fit <- Stage2PSM(pModelMean_C ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 
+#Model with interactions
+pModelMean_Int <- "MeanL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + \n
+MaxP_ + MinT_ + MinP_ + factor(reu_id) + Year + area_Trt+ Pop_Trt + \n
+MeanT_Trt + MeanP_Trt + MaxT_Trt + MaxP_Trt + MinT_Trt + MinP_Trt + \n
+Year_Trt + Slope_Trt + Elevation_Trt + RivDist_Trt + RoadDist_Trt"
+
+#RoadDist was only significant interaction
+pModelMean_Int4 <- "MeanL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + \n
+MaxP_ + MinT_ + MinP_ + factor(reu_id) + Year + RoadDist_Trt"
+
+pModelMean_Int4_fit <- Stage2PSM(pModelMean_Int4 ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 
 
-stargazer(pModelMean_A_fit $cmreg,pModelMean_B_fit $cmreg,pModelMean_C_fit $cmreg,type="html",align=TRUE,keep=c("TrtMnt","MeanT_","MeanP_","Pop_","MaxT_","MaxP_","MinT_","MinP_","Year"),
-          covariate.labels=c("TrtMnt","MeanT","MeanP","Pop","MaxT","MaxP","MinT","MinP","Year"),
+stargazer(pModelMean_A_fit $cmreg,pModelMean_B_fit $cmreg,pModelMean_C_fit $cmreg,pModelMean_Int_fit $cmreg,type="html",align=TRUE,
           omit.stat=c("f","ser"),
           title="Regression Results",
           dep.var.labels=c("Mean NDVI")
