@@ -12,7 +12,6 @@ library(stargazer)
 library(lmtest)
 library(multiwayvcov)
 loadLibs()
-#------
 #-------------------------------------------------
 #-------------------------------------------------
 #Load in Processed Data - produced from script KFW_dataMerge.r
@@ -77,21 +76,6 @@ dta_Shp@data$NA_check[is.na(dta_Shp@data$demend_y)] <- 1
 int_Shp <- dta_Shp[dta_Shp@data$NA_check != 1,]
 dta_Shp <- int_Shp
 
-#-------------------------------------------------
-#-------------------------------------------------
-#Same as above (for approval rather than demarcation)
-#-------------------------------------------------
-#-------------------------------------------------
-#Make a binary to test treatment..
-dta_Shp@data["TrtBin_App"] <- 0
-dta_Shp@data$TrtBin_App[dta_Shp@data$apprend_y <= 2001] <- 1
-dta_Shp@data$TrtBin_App[(dta_Shp@data$apprend_m > 5) & (dta_Shp@data$apprend_y==2001)] <- 0
-
-#Remove units that did not ever receive any treatment (within-sample test)
-dta_Shp@data$NA_check_App <- 0
-dta_Shp@data$NA_check_App[is.na(dta_Shp@data$apprend_y)] <- 1
-int_Shp <- dta_Shp[dta_Shp@data$NA_check_App != 1,]
-dta_Shp <- int_Shp
 
 
 #-------------------------------------------------
