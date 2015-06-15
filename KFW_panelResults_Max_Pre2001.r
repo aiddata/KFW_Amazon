@@ -113,6 +113,20 @@ psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1
 psm_Long$Year <- as.numeric(psm_Long$Year)
 
 
+##INTERACTIONS WITH TREATMENT
+psm_Long["area_Trt"] <- ((psm_Long$terrai_are)*(psm_Long$TrtMnt))
+psm_Long["Pop_Trt"] <-((psm_Long$Pop_)*(psm_Long$TrtMnt))
+psm_Long["MeanT_Trt"] <-((psm_Long$MeanT_)*(psm_Long$TrtMnt))
+psm_Long["MeanP_Trt"] <- ((psm_Long$MeanP_)*(psm_Long$TrtMnt))
+psm_Long["MaxT_Trt"] <- ((psm_Long$MaxT_)*(psm_Long$TrtMnt))
+psm_Long["MaxP_Trt"] <- ((psm_Long$MaxP_)*(psm_Long$TrtMnt))
+psm_Long["MinT_Trt"] <- ((psm_Long$MinT_)*(psm_Long$TrtMnt))
+psm_Long["MinP_Trt"] <- ((psm_Long$MinP_)*(psm_Long$TrtMnt))
+psm_Long["Year_Trt"] <- ((psm_Long$Year)*(psm_Long$TrtMnt))
+psm_Long["Slope_Trt"] <- ((psm_Long$Slope)*(psm_Long$TrtMnt))
+psm_Long["Elevation_Trt"] <- ((psm_Long$Elevation)*(psm_Long$TrtMnt))
+psm_Long["RivDist_Trt"] <- ((psm_Long$Riv_Dist)*(psm_Long$TrtMnt))
+psm_Long["RoadDist_Trt"] <- ((psm_Long$Road_dist)*(psm_Long$TrtMnt))
 
 pModelMax_A <- "MaxL_ ~ TrtMnt + factor(reu_id) "
 pModelMax_B <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) "
@@ -122,6 +136,22 @@ pModelMax_A_fit <- Stage2PSM(pModelMax_A ,psm_Long,type="cmreg", table_out=TRUE,
 pModelMax_B_fit <- Stage2PSM(pModelMax_B ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_C_fit <- Stage2PSM(pModelMax_C ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 
+##MODELS WITH INTERACTIONS
+pModelMax_Int1 <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + area_Trt"
+pModelMax_Int2 <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + Pop_Trt"
+pModelMax_Int3 <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + MeanT_Trt"
+pModelMax_Int4 <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + MeanP_Trt"
+pModelMax_Int5 <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + MaxT_Trt"
+pModelMax_Int6 <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + MaxP_Trt"
+pModelMax_Int7 <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + MinT_Trt"
+pModelMax_Int8 <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + MinP_Trt"
+pModelMax_Int9 <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + Year_Trt"
+pModelMax_Int10 <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + Slope_Trt"
+pModelMax_Int11 <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + Elevation_Trt"
+pModelMax_Int12 <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + RivDist_Trt"
+pModelMax_Int13 <- "MaxL_ ~ TrtMnt + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + RoadDist_Trt"
+
+pModelMax_C_fit <- Stage2PSM(pModelMax_Int2 ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 
 
 stargazer(pModelMax_A_fit $cmreg,pModelMax_B_fit $cmreg,pModelMax_C_fit $cmreg,type="html",align=TRUE,keep=c("TrtMnt","MeanT_","MeanP_","Pop_","MaxT_","MaxP_","MinT_","MinP_","Year"),
