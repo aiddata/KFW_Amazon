@@ -108,10 +108,6 @@ trttable <- table (psm_Pairs@data$TrtBin)
 #to a long-form dataset for the panel model.
 #-------------------------------------------------
 #-------------------------------------------------
-#Clean up data entry
-psm_Pairs$enforce_st[psm_Pairs$enforce_st == "1998-1999"] <- NA
-psm_Pairs$enforce_st <- as.numeric(paste(psm_Pairs$enforce_st))
-
 varList = c("MeanL_","MaxL_")
 psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1982,2010,colYears=c("demend_y","enforce_st"),interpYears=c("Slope","Road_dist","Riv_Dist","UF","Elevation","terrai_are","Pop_","MeanT_","MeanP_","MaxT_","MaxP_","MinP_","MinT_"))
 psm_Long$Year <- as.numeric(psm_Long$Year)
