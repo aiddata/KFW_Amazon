@@ -120,15 +120,18 @@ pModelMax_A <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + factor(reu_id) "
 pModelMax_B <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) "
 pModelMax_C <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year"
 pModelMax_D <- "MaxL_ ~ TrtMnt_demend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_ + factor(reu_id) + Year + Post2004 + Post2004*TrtMnt_demend_y + Post2004*TrtMnt_demend_y*Road_dist + Post2004*Road_dist"
+pModelMax_E <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_ + factor(reu_id) + Year + Post2004 + Post2004*TrtMnt_demend_y + Post2004*TrtMnt_demend_y*Road_dist + Post2004*Road_dist"
+
 
 pModelMax_A_fit <- Stage2PSM(pModelMax_A ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_B_fit <- Stage2PSM(pModelMax_B ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_C_fit <- Stage2PSM(pModelMax_C ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_D_fit <- Stage2PSM(pModelMax_D ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
+pModelMax_E_fit <- Stage2PSM(pModelMax_E ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 
 
-stargazer(pModelMax_A_fit$cmreg,pModelMax_B_fit$cmreg,pModelMax_C_fit$cmreg,pModelMax_D_fit$cmreg,type="html",align=TRUE,keep=c("TrtMnt_demend_y","TrtMnt_enforce_st","MeanT_","MeanP_","Pop_","MaxT_","MaxP_","MinT_","MinP_","Year","Post2004","TrtMnt_demend_y:Post2004","Post2004:Road_dist","TrtMnt_demend_y:Road_dist","TrtMnt_demend_y:Post2004:Road_dist"),
-          covariate.labels=c("TrtMntDem","TrtMntEnf","MeanT","MeanP","Pop","MaxT","MaxP","MinT","MinP","Year","Post2004","Post04*TrtMnt","Post04*RoadDist","TrtMnt*RoadDist","TrtMnt*RoadDist*Post2004"),
+stargazer(pModelMax_A_fit$cmreg,pModelMax_B_fit$cmreg,pModelMax_C_fit$cmreg,pModelMax_D_fit$cmreg,pModelMax_E_fit$cmreg,type="html",align=TRUE,keep=c("TrtMnt_demend_y","TrtMnt_enforce_st","MeanT_","MeanP_","Pop_","MaxT_","MaxP_","MinT_","MinP_","Year","Post2004","TrtMnt_demend_y:Post2004","Post2004:Road_dist","TrtMnt_demend_y:Road_dist","TrtMnt_demend_y:Post2004:Road_dist"),
+          covariate.labels=c("TrtMntDem","TrtMntEnf","MeanT","MeanP","Pop","MaxT","MaxP","MinT","MinP","Year","Post2004","Post04*TrtMntDem","Post04*RoadDist","TrtMntDem*RoadDist","TrtMntDem*RoadDist*Post2004"),
           omit.stat=c("f","ser"),
           title="Regression Results",
           dep.var.labels=c("Max NDVI")
