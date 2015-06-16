@@ -65,17 +65,22 @@ dta_Shp$post_trend_precip_01_10 <- timeRangeTrend(dta_Shp,"MeanP_[0-9][0-9][0-9]
 #Define the Treatment Variable and Population
 #-------------------------------------------------
 #-------------------------------------------------
-#Make a binary to test treatment..
-dta_Shp@data["TrtBin"] <- 0
-dta_Shp@data$TrtBin[dta_Shp@data$demend_y <= 2001] <- 1
-dta_Shp@data$TrtBin[(dta_Shp@data$demend_m > 4) & (dta_Shp@data$demend_y==2001)] <- 0
 
-#Remove units that did not ever receive any treatment (within-sample test)
-dta_Shp@data$NA_check <- 0
-dta_Shp@data$NA_check[is.na(dta_Shp@data$demend_y)] <- 1
-int_Shp <- dta_Shp[dta_Shp@data$NA_check != 1,]
-dta_Shp <- int_Shp
+#Drop out indigenous lands outside of PPTAL
+dta_Shp@data$proj_check <- 0
+dta_Shp@data$proj_check[is.na(dta_Shp@data$reu_id)] <- 1
+proj_Shp <- dta_Shp[dta_Shp@data$proj_check !=1,]
+dta_Shp <- proj_Shp
 
+projtable <- table(proj_Shp@data$proj_check)
+View(projtable)
+
+
+#Make a binary for treatment as ever receiving enforcement
+dta_Shp@data["TrtBin"]<-0
+dta_Shp@data$TrtBin[dta_Shp@data$enforce_st !="NA"] <-1
+demtable <- table(dta_Shp@data$TrtBin)
+View(demtable)
 
 #-------------------------------------------------
 #-------------------------------------------------
@@ -114,99 +119,42 @@ psm_PairsB <- psm_Pairs
 ind <- sapply(psm_PairsB@data, is.numeric)
 psm_PairsB@data[ind] <- lapply(psm_PairsB@data[ind],scale)
 
-## Early vs. Late
+#Ever vs. Never
 
-#analyticModelEarly1, no pair FE, no covars, 1995-2001
-summary(analyticModelEarly1 <- lm(NDVILevelChange_95_01 ~ TrtBin, data=psm_Pairs))
-#Standardized Betas
-summary(analyticModelEarly1B <- lm(NDVILevelChange_95_01 ~ TrtBin, data=psm_PairsB))
+#OLS, no pair FEs, no covars, 1995-2010
 
-#analyticModelEarly2, treatment effect + pair fixed effects, 1995-2001
-analyticModelEarly2 <- "NDVILevelChange_95_01 ~ TrtBin + factor(PSM_match_ID)"
+summary(analyticModelEver1 <- lm(NDVILevelChange_95_10 ~ TrtBin, data=psm_Pairs))
+summary(analyticModelEver1B <- lm(NDVILevelChange_95_10 ~ TrtBin, data=psm_PairsB))
 
-OutputEarly2=Stage2PSM(analyticModelEarly2,psm_Pairs,type="lm",table_out=TRUE)
+#analyticModelEver2, pair FEs, no covars, 1995-2010
 
-#analyticModelEarly3, treatment effect + pair fixed effects + covars 1995-2001
+analyticModelEver2 <- "NDVILevelChange_95_10 ~ TrtBin + factor(PSM_match_ID)"
+
+OutputEver2=Stage2PSM(analyticModelEver2,psm_Pairs,type="lm",table_out=TRUE)
+
+#analyticModelEver3, pair FEs, covars, 1995-2010
 
 #create new dataset and rename column names in new dataset to enable multiple columns in stargazer
-Data_Early3 <- psm_Pairs
-colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="Pop_1990")] <- "Pop_B"
-colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="MeanT_1995")] <- "MeanT_B"
-colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="MeanP_1995")] <- "MeanP_B"
-colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="post_trend_temp_95_01")] <- "post_trend_temp"
-colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="post_trend_precip_95_01")] <- "post_trend_precip"
-#colnames(Data_Early3@data)
+Data_Ever3 <- psm_Pairs
+colnames(Data_Ever3@data)[(colnames(Data_Ever3@data)=="Pop_1990")] <- "Pop_B"
+colnames(Data_Ever3@data)[(colnames(Data_Ever3@data)=="MeanT_1995")] <- "MeanT_B"
+colnames(Data_Ever3@data)[(colnames(Data_Ever3@data)=="MeanP_1995")] <- "MeanP_B"
+colnames(Data_Ever3@data)[(colnames(Data_Ever3@data)=="post_trend_temp_mean")] <- "post_trend_temp"
+colnames(Data_Ever3@data)[(colnames(Data_Ever3@data)=="post_trend_precip_mean")] <- "post_trend_precip"
+#colnames(Data_Ever3@data)
 
-analyticModelEarly3 <- "NDVILevelChange_95_01 ~ TrtBin+ pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
-OutputEarly3=Stage2PSM(analyticModelEarly3,Data_Early3,type="lm",table_out=TRUE)
+analyticModelEver3 <- "NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID)"
 
-#analyticModelLate, treatment effect + pair fixed effects + covars 2001-2010
-#create new dataset and rename column names in new dataset to enable multiple columns in stargazer
-Data_Late <- psm_Pairs
-colnames(Data_Late@data)[(colnames(Data_Late@data)=="Pop_2000")] <- "Pop_B"
-colnames(Data_Late@data)[(colnames(Data_Late@data)=="MeanT_2001")] <- "MeanT_B"
-colnames(Data_Late@data)[(colnames(Data_Late@data)=="MeanP_2001")] <- "MeanP_B"
-colnames(Data_Late@data)[(colnames(Data_Late@data)=="post_trend_temp_01_10")] <- "post_trend_temp"
-colnames(Data_Late@data)[(colnames(Data_Late@data)=="post_trend_precip_01_10")] <- "post_trend_precip"
-#colnames(Data_Late@data)
+OutputEver3=Stage2PSM(analyticModelEver3,Data_Ever3,type="lm",table_out=TRUE)
 
-analyticModelLate <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
-OutputLate=Stage2PSM(analyticModelLate,Data_Late,type="lm",table_out=TRUE)
-
-stargazer(OutputEarly2$standardized,OutputEarly3$standardized,OutputLate$standardized,
-          keep=c("TrtBin", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B", "MeanT_B","post_trend_temp","MeanP_B",
-                 "post_trend_precip", "Slope","Elevation","Riv_Dist","Road_dist"),
-          covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI","Area (hectares)", "Baseline Population Density",
+stargazer(OutputEver2$standardized, OutputEver3$standardized,
+          keep=c("TrtBin","pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B","MeanT_B","post_trend_temp","MeanP_B",
+                 "post_trend_precip","Slope","Elevation","Riv_Dist","Road_dist"),
+          covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI","Area (hectares)","Baseline Population Density",
                              "Baseline Temperature", "Temperature Trends", "Baseline Precipitation", "Precipitation Trends",
                              "Slope", "Elevation", "Distance to River", "Distance to Road"),
-          dep.var.labels=c("Max NDVI 1995-2001 "," Max NDVI 2001-2010"),
+          dep.var.labels=c("Max NDVI 1995-2010"),
           title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
-
-#---------------------------------
-#---------------------------------
-# Tabulating Descriptive Statistics for Treatment and Control Groups, pre- and post-balance
-#---------------------------------
-#---------------------------------
-
-#Using dta_Shp for the full dataset, no TrtBin
-
-summary(dta_Shp$terrai_are)
-summary(dta_Shp$Pop_1990)
-summary(dta_Shp$MeanL_1995)
-summary(dta_Shp$MaxL_1995)
-summary(dta_Shp$MeanT_1995)
-summary(dta_Shp$MeanP_1995)
-summary(dta_Shp$Slope)
-summary(dta_Shp$Elevation)
-summary(dta_Shp$Riv_Dist)
-summary(dta_Shp$Road_dist)
-
-#Using dta_Shp to get pre-matching, pre-paired data
-describeBy(dta_Shp$terrai_are, dta_Shp$TrtBin)
-describeBy(dta_Shp$Pop_1990, dta_Shp$TrtBin)
-describeBy(dta_Shp$MeanL_1995, dta_Shp$TrtBin)
-describeBy(dta_Shp$MaxL_1995, dta_Shp$TrtBin)
-describeBy(dta_Shp$MeanT_1995, dta_Shp$TrtBin)
-describeBy(dta_Shp$MeanP_1995, dta_Shp$TrtBin)
-describeBy(dta_Shp$Slope, dta_Shp$TrtBin)
-describeBy(dta_Shp$Elevation, dta_Shp$TrtBin)
-describeBy(dta_Shp$Riv_Dist, dta_Shp$TrtBin)
-describeBy(dta_Shp$Road_dist, dta_Shp$TrtBin)
-
-#Using psm_pairs to get post-matching, post-paired data
-describeBy(psm_Pairs$terrai_are, psm_Pairs$TrtBin)
-describeBy(psm_Pairs$Pop_1990, psm_Pairs$TrtBin)
-describeBy(psm_Pairs$MeanL_1995, psm_Pairs$TrtBin)
-describeBy(psm_Pairs$MaxL_1995, psm_Pairs$TrtBin)
-describeBy(psm_Pairs$MeanT_1995, psm_Pairs$TrtBin)
-describeBy(psm_Pairs$MeanP_1995, psm_Pairs$TrtBin)
-describeBy(psm_Pairs$Slope, psm_Pairs$TrtBin)
-describeBy(psm_Pairs$Elevation, psm_Pairs$TrtBin)
-describeBy(psm_Pairs$Riv_Dist, psm_Pairs$TrtBin)
-describeBy(psm_Pairs$Road_dist, psm_Pairs$TrtBin)
-
-
 
 
