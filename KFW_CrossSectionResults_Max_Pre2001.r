@@ -151,7 +151,7 @@ colnames(Data_Late@data)[(colnames(Data_Late@data)=="post_trend_temp_01_10")] <-
 colnames(Data_Late@data)[(colnames(Data_Late@data)=="post_trend_precip_01_10")] <- "post_trend_precip"
 #colnames(Data_Late@data)
 
-analyticModelLate <- "NDVILevelChange_01_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
+analyticModelLate <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
 MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
 OutputLate=Stage2PSM(analyticModelLate,Data_Late,type="lm",table_out=TRUE)
 
