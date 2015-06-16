@@ -66,14 +66,19 @@ dta_Shp$post_trend_precip_01_10 <- timeRangeTrend(dta_Shp,"MeanP_[0-9][0-9][0-9]
 #-------------------------------------------------
 #-------------------------------------------------
 
-#Make a binary for receiving enforcement
+#Drop out indigenous lands outside of PPTAL
+dta_Shp@data$proj_check <- 0
+dta_Shp@data$proj_check[is.na(dta_Shp@data$reu_id)] <- 1
+proj_Shp <- dta_Shp[dta_Shp@data$proj_check !=1,]
+dta_Shp <- proj_Shp
+
+projtable <- table(proj_Shp@data$proj_check)
+View(projtable)
+
+
+#Make a binary for treatment as ever receiving enforcement
 dta_Shp@data["TrtBin"]<-0
 dta_Shp@data$TrtBin[dta_Shp@data$enforce_st !="NA"] <-1
-
-dta_Shp@data["TrtBin"] <- 0
-dta_Shp@data$NA_check <- 0
-dta_Shp@data$NA_check[is.na(dta_Shp@data$enforce_st)] <- 1
-dta_Shp@data$TrtBin[dta_Shp@data$NA_check != 1] <- 1
 demtable <- table(dta_Shp@data$TrtBin)
 View(demtable)
 
