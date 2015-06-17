@@ -66,8 +66,8 @@ dta_Shp$post_trend_precip_01_10 <- timeRangeTrend(dta_Shp,"MeanP_[0-9][0-9][0-9]
 #-------------------------------------------------
 #-------------------------------------------------
 
-#Make a binary for ever treated vs. never treated
 
+#Eliminate non-PPTAL indigenous lands
 dta_Shp@data$proj_check <- 0
 dta_Shp@data$proj_check[is.na(dta_Shp@data$reu_id)] <- 1
 proj_Shp <- dta_Shp[dta_Shp@data$proj_check !=1,]
@@ -76,6 +76,7 @@ dta_Shp <- proj_Shp
 projtable <- table(proj_Shp@data$proj_check)
 View(projtable)
 
+#Make a binary for ever treated vs. never treated
 dta_Shp@data["TrtBin"] <- 0
 dta_Shp@data$NA_check <- 0
 dta_Shp@data$NA_check[is.na(dta_Shp@data$demend_y)] <- 1
@@ -96,14 +97,13 @@ pre_trend_precip_mean + pre_trend_precip_max"
 
 psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=TRUE)
 
-
 #-------------------------------------------------
 #-------------------------------------------------
 #Based on the Propensity Score Matches, pair comprable treatment and control units.
 #-------------------------------------------------
 #-------------------------------------------------
 drop_set<- c(drop_unmatched=TRUE,drop_method="None",drop_thresh=0.5)
-psm_Pairs <- SAT(dta = psmRes, mtd = "fastNN",constraints=c(groups="UF"),psm_eq = psmModel, ids = "id", drop_opts = drop_set, visual="TRUE", TrtBinColName="TrtBin")
+psm_Pairs <- SAT(dta = psmRes$data, mtd = "fastNN",constraints=c(groups="UF"),psm_eq = psmModel, ids = "id", drop_opts = drop_set, visual="TRUE", TrtBinColName="TrtBin")
 #c(groups=c("UF"),distance=NULL)
 trttable <- table (psm_Pairs@data$TrtBin)
 View(trttable)
