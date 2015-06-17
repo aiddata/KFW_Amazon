@@ -60,6 +60,7 @@ dta_Shp$post_trend_precip_min <- timeRangeTrend(dta_Shp,"MinP_[0-9][0-9][0-9][0-
 dta_Shp$post_trend_precip_95_01 <- timeRangeTrend(dta_Shp,"MeanP_[0-9][0-9][0-9][0-9]",1995,2001,"SP_ID")
 dta_Shp$post_trend_precip_01_10 <- timeRangeTrend(dta_Shp,"MeanP_[0-9][0-9][0-9][0-9]",2001,2010,"SP_ID")
 
+
 #-------------------------------------------------
 #-------------------------------------------------
 #Define the Treatment Variable and Population
@@ -67,12 +68,12 @@ dta_Shp$post_trend_precip_01_10 <- timeRangeTrend(dta_Shp,"MeanP_[0-9][0-9][0-9]
 #-------------------------------------------------
 #Make a binary to test treatment..
 dta_Shp@data["TrtBin"] <- 0
-dta_Shp@data$TrtBin[dta_Shp@data$demend_y <= 2001] <- 1
-dta_Shp@data$TrtBin[(dta_Shp@data$demend_m > 4) & (dta_Shp@data$demend_y==2001)] <- 0
+dta_Shp@data$TrtBin[dta_Shp@data$regend_y <= 2003] <- 1
+#dta_Shp@data$TrtBin[(dta_Shp@data$demend_m > 4) & (dta_Shp@data$demend_y==2001)] <- 0
 
 #Remove units that did not ever receive any treatment (within-sample test)
 dta_Shp@data$NA_check <- 0
-dta_Shp@data$NA_check[is.na(dta_Shp@data$demend_y)] <- 1
+dta_Shp@data$NA_check[is.na(dta_Shp@data$regend_y)] <- 1
 int_Shp <- dta_Shp[dta_Shp@data$NA_check != 1,]
 dta_Shp <- int_Shp
 
@@ -95,11 +96,11 @@ psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visu
 #Based on the Propensity Score Matches, pair comprable treatment and control units.
 #-------------------------------------------------
 #-------------------------------------------------
-drop_set<- c(drop_unmatched=TRUE,drop_method="SD",drop_thresh=0.25)
+drop_set<- c(drop_unmatched=TRUE,drop_method="None",drop_thresh=0.25)
 psm_Pairs <- SAT(dta = psmRes$data, mtd = "fastNN",constraints=c(groups="UF"),psm_eq = psmModel, ids = "id", drop_opts = drop_set, visual="TRUE", TrtBinColName="TrtBin")
 #c(groups=c("UF"),distance=NULL)
 trttable <- table (psm_Pairs@data$TrtBin)
-#View(trttable)
+View(trttable)
 
 
 #-------------------------------------------------
@@ -108,30 +109,28 @@ trttable <- table (psm_Pairs@data$TrtBin)
 #to a long-form dataset for the panel model.
 #-------------------------------------------------
 #-------------------------------------------------
+#Clean up data entry
+#psm_Pairs$enforce_st[psm_Pairs$enforce_st == "1998-1999"] <- NA
+#psm_Pairs$enforce_st <- as.numeric(paste(psm_Pairs$enforce_st))
+
 varList = c("MeanL_","MaxL_")
-psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1982,2010,colYears=c("demend_y","enforce_st"),interpYears=c("Slope","Road_dist","Riv_Dist","UF","Elevation","terrai_are","Pop_","MeanT_","MeanP_","MaxT_","MaxP_","MinP_","MinT_"))
+psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1982,2010,colYears=c("demend_y","apprend_y","regend_y"),interpYears=c("Slope","Road_dist","Riv_Dist","UF","Elevation","terrai_are","Pop_","MeanT_","MeanP_","MaxT_","MaxP_","MinP_","MinT_"))
 psm_Long$Year <- as.numeric(psm_Long$Year)
 
-#Create post-2004 dummy
-psm_Long$Post2004 <- 0
-psm_Long$Post2004[psm_Long$Year >= 2004] <- 1
 
-pModelMax_A <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + factor(reu_id) "
-pModelMax_B <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) "
-pModelMax_C <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year"
-pModelMax_D <- "MaxL_ ~ TrtMnt_demend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_ + factor(reu_id) + Year + Post2004 + Post2004*TrtMnt_demend_y + Post2004*TrtMnt_demend_y*Road_dist + Post2004*Road_dist"
-pModelMax_E <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_ + factor(reu_id) + Year + Post2004 + Post2004*TrtMnt_demend_y + Post2004*TrtMnt_demend_y*Road_dist + Post2004*Road_dist"
 
+pModelMax_A <- "MaxL_ ~ TrtMnt_regend_y + factor(reu_id) "
+pModelMax_B <- "MaxL_ ~ TrtMnt_regend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) "
+pModelMax_C <- "MaxL_ ~ TrtMnt_regend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year"
 
 pModelMax_A_fit <- Stage2PSM(pModelMax_A ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_B_fit <- Stage2PSM(pModelMax_B ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_C_fit <- Stage2PSM(pModelMax_C ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
-pModelMax_D_fit <- Stage2PSM(pModelMax_D ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
-pModelMax_E_fit <- Stage2PSM(pModelMax_E ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 
 
-stargazer(pModelMax_A_fit$cmreg,pModelMax_B_fit$cmreg,pModelMax_C_fit$cmreg,pModelMax_D_fit$cmreg,pModelMax_E_fit$cmreg,type="html",align=TRUE,keep=c("TrtMnt_demend_y","TrtMnt_enforce_st","MeanT_","MeanP_","Pop_","MaxT_","MaxP_","MinT_","MinP_","Year","Post2004","TrtMnt_demend_y:Post2004","Post2004:Road_dist","TrtMnt_demend_y:Road_dist","TrtMnt_demend_y:Post2004:Road_dist"),
-          covariate.labels=c("TrtMntDem","TrtMntEnf","MeanT","MeanP","Pop","MaxT","MaxP","MinT","MinP","Year","Post2004","Post04*TrtMntDem","Post04*RoadDist","TrtMntDem*RoadDist","TrtMntDem*RoadDist*Post2004"),
+
+stargazer(pModelMax_A_fit $cmreg,pModelMax_B_fit $cmreg,pModelMax_C_fit $cmreg,type="html",align=TRUE,keep=c("TrtMnt","MeanT_","MeanP_","Pop_","MaxT_","MaxP_","MinT_","MinP_","Year"),
+          covariate.labels=c("TrtMnt_regend_y","MeanT","MeanP","Pop","MaxT","MaxP","MinT","MinP","Year"),
           omit.stat=c("f","ser"),
           title="Regression Results",
           dep.var.labels=c("Max NDVI")
