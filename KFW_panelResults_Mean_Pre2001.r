@@ -99,7 +99,7 @@ drop_set<- c(drop_unmatched=TRUE,drop_method="None",drop_thresh=0.5)
 psm_Pairs <- SAT(dta = psmRes$data, mtd = "fastNN",constraints=c(groups="UF"),psm_eq = psmModel, ids = "id", drop_opts = drop_set, visual="TRUE", TrtBinColName="TrtBin")
 #c(groups=c("UF"),distance=NULL)
 trttable <- table (psm_Pairs@data$TrtBin)
-#View(trttable)
+View(trttable)
 
 
 #-------------------------------------------------
@@ -109,14 +109,14 @@ trttable <- table (psm_Pairs@data$TrtBin)
 #-------------------------------------------------
 #-------------------------------------------------
 varList = c("MeanL_","MaxL_")
-psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1982,2010,colYears=c("demend_y","enforce_st"),interpYears=c("Slope","Road_dist","Riv_Dist","UF","Elevation","terrai_are","Pop_","MeanT_","MeanP_","TrtMnt","MaxT_","MaxP_","MinP_","MinT_"))
+psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1982,2010,colYears=c("demend_y","apprend_y", "regend_y"),interpYears=c("Slope","Road_dist","Riv_Dist","UF","Elevation","terrai_are","Pop_","MeanT_","MeanP_","MaxT_","MaxP_","MinP_","MinT_"))
 psm_Long$Year <- as.numeric(psm_Long$Year)
 
 
 
-pModelMean_A <- "MeanL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + factor(reu_id)"
-pModelMean_B <- "MeanL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) "
-pModelMean_C <- "MeanL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year"
+pModelMean_A <- "MeanL_ ~ TrtMnt_demend_y + factor(reu_id)"
+pModelMean_B <- "MeanL_ ~ TrtMnt_demend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) "
+pModelMean_C <- "MeanL_ ~ TrtMnt_demend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year"
 pModelMean_D <- "MeanL_ ~ TrtMnt_demend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_ + factor(reu_id) + Year + Post2004 + Post2004*TrtMnt_demend_y + Post2004*TrtMnt_demend_y*Road_dist + Post2004*Road_dist"
 
 
@@ -128,7 +128,7 @@ pModelMean_D_fit <- Stage2PSM(pModelMean_D ,psm_Long,type="cmreg", table_out=TRU
 
 
 stargazer(pModelMean_A_fit$cmreg,pModelMean_B_fit$cmreg,pModelMean_C_fit$cmreg,pModelMean_D_fit$cmreg,type="html",align=TRUE,keep=c("TrtMnt_demend_y","TrtMnt_enforce_st","MeanT_","MeanP_","Pop_","MaxT_","MaxP_","MinT_","MinP_","Year","Post2004","TrtMnt_demend_y:Post2004","Post2004:Road_dist","TrtMnt_demend_y:Road_dist","TrtMnt_demend_y:Post2004:Road_dist"),
-          covariate.labels=c("TrtMntDem","TrtMntEnf","MeanT","MeanP","Pop","MaxT","MaxP","MinT","MinP","Year","Post2004","Post04*TrtMnt","Post04*RoadDist","TrtMnt*RoadDist","TrtMnt*RoadDist*Post2004"),
+          covariate.labels=c("TrtMntDem","MeanT","MeanP","Pop","MaxT","MaxP","MinT","MinP","Year","Post2004","Post04*TrtMnt","Post04*RoadDist","TrtMnt*RoadDist","TrtMnt*RoadDist*Post2004"),
           omit.stat=c("f","ser"),
           title="Regression Results",
           dep.var.labels=c("Mean NDVI")
