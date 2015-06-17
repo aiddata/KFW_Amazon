@@ -82,6 +82,24 @@ dta_Shp@data$TrtBin[dta_Shp@data$enforce_st !="NA"] <-1
 demtable <- table(dta_Shp@data$TrtBin)
 View(demtable)
 
+#Testing the enforcement data
+enftable <- table (dta_Shp@data$demend_y, dta_Shp@data$enforce_to)
+View(enftable)
+enftable <- table (dta_Shp@data$demend_y[dta_Shp@data$enforce_to>0])
+View(enftable)
+enfdesc <- table(dta_Shp@data$enforce_to, dta_Shp@data$enforce_st)
+View(enfdesc)
+
+dta_Shp@data$enf_check <- 0
+dta_Shp@data$enf_check <- dta_Shp$enforce_st - dta_Shp$demend_y
+enf_check <- table (dta_Shp@data$enf_check)  
+View(enf_check)
+
+idcheck <- table (dta_Shp@data$reu_id[dta_Shp@data$enf_check==-1]
+                  
+dta_Shp@data$id[dta_Shp@data$enf_check==-1]
+dta_Shp@data$terrai_nom[dta_Shp@data$id==479]
+
 #-------------------------------------------------
 #-------------------------------------------------
 #Define and run the first-stage of the PSM, calculating propensity scores
