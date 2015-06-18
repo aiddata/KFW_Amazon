@@ -151,14 +151,28 @@ colnames(Data_Late@data)[(colnames(Data_Late@data)=="post_trend_temp_01_10")] <-
 colnames(Data_Late@data)[(colnames(Data_Late@data)=="post_trend_precip_01_10")] <- "post_trend_precip"
 #colnames(Data_Late@data)
 
-analyticModelLate <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
+analyticModelLate <- "NDVILevelChange_01_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
 MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
 OutputLate=Stage2PSM(analyticModelLate,Data_Late,type="lm",table_out=TRUE)
 
-stargazer(OutputEarly2$standardized,OutputEarly3$standardized,OutputLate$standardized,
-          keep=c("TrtBin", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B", "MeanT_B","post_trend_temp","MeanP_B",
+#analyticModelLate_Enf, treatment effect + pair fixed effects + covars + enforcement years covar, 2001-2010
+Data_Late_Enf <- psm_Pairs
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="Pop_2000")] <- "Pop_B"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="MeanT_2001")] <- "MeanT_B"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="MeanP_2001")] <- "MeanP_B"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="post_trend_temp_01_10")] <- "post_trend_temp"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="post_trend_precip_01_10")] <- "post_trend_precip"
+
+analyticModelLate_Enf <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
+MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
+
+OutputLate_Enf=Stage2PSM(analyticModelLate_Enf,Data_Late_Enf,type="lm",table_out=TRUE)
+
+
+stargazer(OutputEarly2$standardized,OutputEarly3$standardized,OutputLate$standardized,OutputLate_Enf$standardized,
+          keep=c("TrtBin", "enforce_to", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B", "MeanT_B","post_trend_temp","MeanP_B",
                  "post_trend_precip", "Slope","Elevation","Riv_Dist","Road_dist"),
-          covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI","Area (hectares)", "Baseline Population Density",
+          covariate.labels=c("Treatment", "Enforcement", "Pre-Trend NDVI", "Baseline NDVI","Area (hectares)", "Baseline Population Density",
                              "Baseline Temperature", "Temperature Trends", "Baseline Precipitation", "Precipitation Trends",
                              "Slope", "Elevation", "Distance to River", "Distance to Road"),
           dep.var.labels=c("Max NDVI 1995-2001 "," Max NDVI 2001-2010"),
