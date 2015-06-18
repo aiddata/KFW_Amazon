@@ -139,7 +139,7 @@ MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor
 OutputEver3=Stage2PSM(analyticModelEver3,Data_Ever3,type="lm",table_out=TRUE)
 
 stargazer(OutputEver2$standardized, OutputEver3$standardized,
-          keep=c("TrtBin","pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B","MeanT_B","post_trend_temp","MeanP_B",
+          keep=c("TrtBin","pre_trend_NDVI_mean","MeanL_1995", "terrai_are","Pop_B","MeanT_B","post_trend_temp","MeanP_B",
                  "post_trend_precip","Slope","Elevation","Riv_Dist","Road_dist"),
           covariate.labels=c("Treatment (Enforcement Support)", "Pre-Trend NDVI", "Baseline NDVI","Area (hectares)","Baseline Population Density",
                              "Baseline Temperature", "Temperature Trends", "Baseline Precipitation", "Precipitation Trends",
