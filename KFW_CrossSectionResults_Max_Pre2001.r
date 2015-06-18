@@ -75,7 +75,7 @@ dta_Shp@data$NA_check <- 0
 dta_Shp@data$NA_check[is.na(dta_Shp@data$demend_y)] <- 1
 int_Shp <- dta_Shp[dta_Shp@data$NA_check != 1,]
 dta_Shp <- int_Shp
-
+table(dta_Shp@data$TrtBin)
 
 #-------------------------------------------------
 #-------------------------------------------------
