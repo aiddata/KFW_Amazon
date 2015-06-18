@@ -97,6 +97,9 @@ pre_trend_precip_mean + pre_trend_precip_max"
 
 psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=TRUE)
 
+max(psmRes$data$PSM_trtProb)
+min(psmRes$data$PSM_trtProb)
+
 #-------------------------------------------------
 #-------------------------------------------------
 #Based on the Propensity Score Matches, pair comprable treatment and control units.
@@ -151,10 +154,23 @@ MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor
 
 OutputEver3=Stage2PSM(analyticModelEver3,Data_Ever3,type="lm",table_out=TRUE)
 
-stargazer(OutputEver2$standardized, OutputEver3$standardized,
-          keep=c("TrtBin","pre_trend_NDVI_mean","MeanL_1995", "terrai_are","Pop_B","MeanT_B","post_trend_temp","MeanP_B",
+#analyticalModelEver4, pair FEs, include enforcement years total as covar, 1995-2010
+Data_Ever4 <- psm_Pairs
+colnames(Data_Ever4@data)[(colnames(Data_Ever3@data)=="Pop_1990")] <- "Pop_B"
+colnames(Data_Ever4@data)[(colnames(Data_Ever3@data)=="MeanT_1995")] <- "MeanT_B"
+colnames(Data_Ever4@data)[(colnames(Data_Ever3@data)=="MeanP_1995")] <- "MeanP_B"
+colnames(Data_Ever4@data)[(colnames(Data_Ever3@data)=="post_trend_temp_mean")] <- "post_trend_temp"
+colnames(Data_Ever4@data)[(colnames(Data_Ever3@data)=="post_trend_precip_mean")] <- "post_trend_precip"
+
+analyticModelEver4 <- "NDVILevelChange_95_10 ~ TrtBin + enforce_to + pre_trend_NDVI_mean + MeanL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID)"
+
+OutputEver4=Stage2PSM(analyticModelEver4,Data_Ever4,type="lm",table_out=TRUE)
+
+stargazer(OutputEver2$standardized, OutputEver3$standardized, OutputEver4$standardized,
+          keep=c("TrtBin","enforce_to", "pre_trend_NDVI_mean","MeanL_1995", "terrai_are","Pop_B","MeanT_B","post_trend_temp","MeanP_B",
                  "post_trend_precip","Slope","Elevation","Riv_Dist","Road_dist"),
-          covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI","Area (hectares)","Baseline Population Density",
+          covariate.labels=c("Treatment", "Enforcement Years", "Pre-Trend NDVI", "Baseline NDVI","Area (hectares)","Baseline Population Density",
                              "Baseline Temperature", "Temperature Trends", "Baseline Precipitation", "Precipitation Trends",
                              "Slope", "Elevation", "Distance to River", "Distance to Road"),
           dep.var.labels=c("Mean NDVI 1995-2010"),
