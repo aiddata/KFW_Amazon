@@ -174,4 +174,46 @@ stargazer(OutputEver2$standardized, OutputEver3$standardized, OutputEver4$standa
           dep.var.labels=c("Max NDVI 1995-2010"),
           title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
 
+#---------------------------------
+#---------------------------------
+# Tabulating Descriptive Statistics for Treatment and Control Groups, pre- and post-balance
+#---------------------------------
+#---------------------------------
+
+#Using dta_Shp for the full dataset, no TrtBin
+
+mean(dta_Shp$terrai_are)
+summary(dta_Shp$Pop_1990)
+summary(dta_Shp$MeanL_1995)
+summary(dta_Shp$MaxL_1995)
+summary(dta_Shp$MeanT_1995)
+summary(dta_Shp$MeanP_1995)
+summary(dta_Shp$Slope)
+summary(dta_Shp$Elevation)
+summary(dta_Shp$Riv_Dist)
+summary(dta_Shp$Road_dist)
+
+#Using dta_Shp to get pre-matching, pre-paired data
+describeBy(dta_Shp$terrai_are, dta_Shp$TrtBin)
+describeBy(dta_Shp$Pop_1990, dta_Shp$TrtBin)
+describeBy(dta_Shp$MeanL_1995, dta_Shp$TrtBin)
+describeBy(dta_Shp$MaxL_1995, dta_Shp$TrtBin)
+describeBy(dta_Shp$MeanT_1995, dta_Shp$TrtBin)
+describeBy(dta_Shp$MeanP_1995, dta_Shp$TrtBin)
+describeBy(dta_Shp$Slope, dta_Shp$TrtBin)
+describeBy(dta_Shp$Elevation, dta_Shp$TrtBin)
+describeBy(dta_Shp$Riv_Dist, dta_Shp$TrtBin)
+describeBy(dta_Shp$Road_dist, dta_Shp$TrtBin)
+
+#Using psm_pairs to get post-matching, post-paired data
+describeBy(psm_Pairs$terrai_are, psm_Pairs$TrtBin)
+describeBy(psm_Pairs$Pop_1990, psm_Pairs$TrtBin)
+describeBy(psm_Pairs$MeanL_1995, psm_Pairs$TrtBin)
+describeBy(psm_Pairs$MaxL_1995, psm_Pairs$TrtBin)
+describeBy(psm_Pairs$MeanT_1995, psm_Pairs$TrtBin)
+describeBy(psm_Pairs$MeanP_1995, psm_Pairs$TrtBin)
+describeBy(psm_Pairs$Slope, psm_Pairs$TrtBin)
+describeBy(psm_Pairs$Elevation, psm_Pairs$TrtBin)
+describeBy(psm_Pairs$Riv_Dist, psm_Pairs$TrtBin)
+describeBy(psm_Pairs$Road_dist, psm_Pairs$TrtBin)
 
