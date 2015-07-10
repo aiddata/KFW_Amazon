@@ -129,6 +129,16 @@ pModelMax_C_fit <- Stage2PSM(pModelMax_C ,psm_Long,type="cmreg", table_out=TRUE,
 pModelMax_D_fit <- Stage2PSM(pModelMax_D ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_E_fit <- Stage2PSM(pModelMax_E ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 
+
+##texreg to output regression results visualizations
+texreg::plotreg(pModelMax_B_fit$cmreg, custom.model.names=c("Panel Results, Max NDVI"), 
+                omit.coef="(Pop_)|(Min)|(Mean)|(Max)|(Year)|(match)|(Intercept)|(factor)", 
+                custom.note="standard deviation")
+
+texreg::plotreg(pModelMax_C_fit$cmreg,custom.model.names=c("Panel Results, Max NDVI"), 
+                omit.coef="(Pop_)|(Min)|(Mean)|(Max)|(Year)|(Intercept)|(factor)", 
+                custom.note="standard deviation")
+
 ## stargazer output with variable labels
 stargazer(pModelMax_A_fit$cmreg,pModelMax_B_fit$cmreg,pModelMax_C_fit$cmreg,pModelMax_D_fit$cmreg,pModelMax_E_fit$cmreg,type="html",align=TRUE,keep=c("TrtMnt_demend_y","TrtMnt_enforce_st","MeanT_","MeanP_","Pop_","MaxT_","MaxP_","MinT_","MinP_","Year","Post2004","TrtMnt_demend_y:Post2004","Post2004:Road_dist","TrtMnt_demend_y:Road_dist","TrtMnt_demend_y:Post2004:Road_dist"),
           covariate.labels=c("Treatment (Demarcation)","Treatment (Enforcement Support)","Mean Temperature","Mean Precipitation","Population","Max Temperature","Max Precipitation","Min Temperature","Min Precipitation","Year","Post2004","Post2004*TreatmentDemarcation","Post2004*Road Distance","TreatmentDemarcation*Road Distance","Post2004*TreatmentDemarcation*Road Distance"),
