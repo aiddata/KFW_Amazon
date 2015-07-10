@@ -130,15 +130,20 @@ OutputEarly2=Stage2PSM(analyticModelEarly2,psm_Pairs,type="lm",table_out=TRUE)
 
 #create new dataset and rename column names in new dataset to enable multiple columns in stargazer
 Data_Early3 <- psm_Pairs
-colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="Pop_1990")] <- "Pop_B"
-colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="MeanT_1995")] <- "MeanT_B"
-colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="MeanP_1995")] <- "MeanP_B"
-colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="post_trend_temp_95_01")] <- "post_trend_temp"
-colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="post_trend_precip_95_01")] <- "post_trend_precip"
-#colnames(Data_Early3@data)
+colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="TrtBin")] <- "Treatment"
+colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="pre_trend_NDVI_max")] <- "NDVI_PreTrends"
+colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="MaxL_1995")] <- "NDVI_Baseline"
+colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="Riv_Dist")] <- "River_Distance"
+colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="Road_dist")] <- "Road_Distance"
+colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="terrai_are")] <- "Area"
+colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="Pop_1990")] <- "Population"
+colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="MeanT_1995")] <- "Mean_Temp"
+colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="MeanP_1995")] <- "Mean_Precip"
+colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="post_trend_temp_95_01")] <- "Temp_Trends"
+colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="post_trend_precip_95_01")] <- "Precip_Trends"
 
-analyticModelEarly3 <- "NDVILevelChange_95_01 ~ TrtBin+ pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
+analyticModelEarly3 <- "NDVILevelChange_95_01 ~ Treatment + NDVI_PreTrends + NDVI_Baseline + Area + Population + Mean_Temp  + Temp_Trends +
+Mean_Precip + Precip_Trends + Slope + Elevation + River_Distance + Road_Distance + factor(PSM_match_ID)"
 OutputEarly3=Stage2PSM(analyticModelEarly3,Data_Early3,type="lm",table_out=TRUE)
 
 #analyticModelLate, treatment effect + pair fixed effects + covars 2001-2010
@@ -157,38 +162,33 @@ OutputLate=Stage2PSM(analyticModelLate,Data_Late,type="lm",table_out=TRUE)
 
 #analyticModelLate_Enf, treatment effect + pair fixed effects + covars + enforcement years covar, 2001-2010
 Data_Late_Enf <- psm_Pairs
-colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="Pop_2000")] <- "Pop_B"
-colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="MeanT_2001")] <- "MeanT_B"
-colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="MeanP_2001")] <- "MeanP_B"
-colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="post_trend_temp_01_10")] <- "post_trend_temp"
-colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="post_trend_precip_01_10")] <- "post_trend_precip"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="TrtBin")] <- "Treatment"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="enforce_to")] <- "Enforcement_Years"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="pre_trend_NDVI_max")] <- "NDVI_PreTrends"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="MaxL_1995")] <- "NDVI_Baseline"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="Riv_Dist")] <- "River_Distance"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="Road_dist")] <- "Road_Distance"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="terrai_are")] <- "Area"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="Pop_2000")] <- "Population"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="MeanT_2001")] <- "Mean_Temp"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="MeanP_2001")] <- "Mean_Precip"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="post_trend_temp_01_10")] <- "Temp_Trends"
+colnames(Data_Late_Enf@data)[(colnames(Data_Late_Enf@data)=="post_trend_precip_01_10")] <- "Precip_Trends"
 
-analyticModelLate_Enf <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
+
+analyticModelLate_Enf <- "NDVILevelChange_01_10 ~ Treatment + Enforcement_Years + NDVI_PreTrends + NDVI_Baseline + Area + Population + Mean_Temp + Temp_Trends + 
+Mean_Precip + Precip_Trends + Slope + Elevation + River_Distance + Road_Distance + factor(PSM_match_ID)"
 
 OutputLate_Enf=Stage2PSM(analyticModelLate_Enf,Data_Late_Enf,type="lm",table_out=TRUE)
 
-texreg::plotreg(OutputLate_Enf$standardized, omit.coef="(enforce_to)|(Slope)|(Pop)|(terrai_are)|(Elevation)|(Riv_Dist)|(Road_dist)|(Mean)|(pre)|(post)|(Intercept)|(factor)", 
-                custom.model.names=c("Cross-Section Results, Max NDVI, 2001-2010"), custom.note="standard deviation")
-texreg::plotreg(OutputLate_Enf$standardized, omit.coef="(Intercept)|(factor)", 
-                custom.model.names=c("Cross-Section Results, Max NDVI, 2001-2010"), 
-                custom.note="standard deviation")
-
-texreg::plotreg(OutputEarly3$standardized, omit.coef="(Slope)|(Pop)|(terrai_are)|(Elevation)|(Riv_Dist)|(Road_dist)|(Mean)|(pre)|(post)|(Intercept)|(factor)", 
-                custom.model.names=c("Cross-Section Results, Max NDVI, 1995-2001"), custom.note="standard deviation")
+#texreg for pretty results visualizations
 texreg::plotreg(OutputEarly3$standardized, omit.coef="(Intercept)|(factor)", 
                 custom.model.names=c("Cross-Section Results, Max NDVI, 1995-2001"), 
                 custom.note="standard deviation")
 
-
-stargazer(OutputEarly2$standardized,OutputEarly3$standardized,OutputLate$standardized,OutputLate_Enf$standardized,
-          keep=c("TrtBin", "enforce_to", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B", "MeanT_B","post_trend_temp","MeanP_B",
-                 "post_trend_precip", "Slope","Elevation","Riv_Dist","Road_dist"),
-          covariate.labels=c("Treatment", "Enforcement", "Pre-Trend NDVI", "Baseline NDVI","Area (hectares)", "Baseline Population Density",
-                             "Baseline Temperature", "Temperature Trends", "Baseline Precipitation", "Precipitation Trends",
-                             "Slope", "Elevation", "Distance to River", "Distance to Road"),
-          dep.var.labels=c("Max NDVI 1995-2001 "," Max NDVI 2001-2010"),
-          title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
+texreg::plotreg(OutputLate_Enf$standardized, omit.coef="(Intercept)|(factor)", 
+                custom.model.names=c("Cross-Section Results, Max NDVI, 2001-2010"), 
+                custom.note="standard deviation")
 
 #---------------------------------
 #---------------------------------
