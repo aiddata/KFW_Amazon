@@ -6,8 +6,8 @@
 #-------------------------------------------------
 #-------------------------------------------------
 library(devtools)
-devtools::install_github("itpir/SAT@master")
-library(SAT)
+devtools::install_github("itpir/SCI@master")
+library(SCI)
 library(stargazer)
 loadLibs()
 #-------------------------------------------------
@@ -163,6 +163,37 @@ analyticModelEver4 <- "NDVILevelChange_95_10 ~ TrtBin + enforce_to + pre_trend_N
 MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID)"
 
 OutputEver4=Stage2PSM(analyticModelEver4,Data_Ever4,type="lm",table_out=TRUE)
+
+#________________________________________________________________________
+
+#Create high pressure variable from pre_trend_NDVI
+temp <- fivenum(Data_Ever3$pre_trend_NDVI_Max)
+
+#Categorical
+temp_median <- fivenum(Data_Ever3@data$pre_trend_NDVI_max)[3]
+temp_categorical <- ifelse(Data_Ever3@data$pre_trend_NDVI_max > temp_median, 1, 0)
+length(which(temp_categorical<1))
+
+#variable containing all data in regions with pretrend NDVI above the median
+#temp_new <- dta_Shp@data[dta_Shp@data$pre_trend_NDVI_max>temp_median,]
+
+#Interaction term [ Pretrend NDVI max continuous and treatment]
+Data_Ever3@data$pre_trend_NDVI_max_int <- Data_Ever3@data$pre_trend_NDVI_max*Data_Ever3@data$TrtBin
+#Interaction term [Pretrend NDVI max categorical and treatment]
+pre_trend_NDVI_max_cat_int <- temp_categorical*Data_Ever3@data$TrtBin
+
+#_______________________________________________________________________
+
+analyticModelEver4 <- "NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_max_int"
+
+OutputEver4=Stage2PSM(analyticModelEver4,Data_Ever3,type="lm",table_out=TRUE)
+
+analyticModelEver5 <- "NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + temp_categorical + pre_trend_NDVI_max_cat_int +factor(PSM_match_ID) "
+
+OutputEver5=Stage2PSM(analyticModelEver5,Data_Ever3,type="lm",table_out=TRUE)
+
 
 
 stargazer(OutputEver2$standardized, OutputEver3$standardized, OutputEver4$standardized,
