@@ -139,113 +139,40 @@ colnames(Data_Early3@data)[(colnames(Data_Early3@data)=="post_trend_precip_95_01
 
 analyticModelEarly3 <- "NDVILevelChange_95_01 ~ TrtBin+ pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
 MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
-
 OutputEarly3=Stage2PSM(analyticModelEarly3,Data_Early3,type="lm",table_out=TRUE)
 
-##INTERACTION TERMS EARLY
-#Interaction pretrend NDVI & treatment
-Data_Early3@data["pretrend_Trt"] <- ((Data_Early3@data$pre_trend_NDVI_max)*(Data_Early3@data$TrtBin))
+#________________________________________________________________________
 
-#Interaction MeanL1995 & treatment
-Data_Early3@data["MaxL1995_Trt"] <- ((Data_Early3@data$MaxL_1995)*(Data_Early3@data$TrtBin))
+#Create high pressure variable from pre_trend_NDVI
+temp <- fivenum(Data_Early3$pre_trend_NDVI_Max)
 
-#Interaction area & treatment
-Data_Early3@data["area_Trt"] <- ((Data_Early3@data$terrai_are)*(Data_Early3@data$TrtBin))
+#Categorical
+temp_median <- fivenum(Data_Early3@data$pre_trend_NDVI_max)[3]
+temp_categorical <- ifelse(Data_Early3@data$pre_trend_NDVI_max > temp_median, 1, 0)
+length(which(temp_categorical<1))
 
-#Interaction Population & treatment
-Data_Early3@data["Pop_Trt"] <- ((Data_Early3@data$Pop_B)*(Data_Early3@data$TrtBin))
+#variable containing all data in regions with pretrend NDVI above the median
+#temp_new <- dta_Shp@data[dta_Shp@data$pre_trend_NDVI_max>temp_median,]
 
-#Interaction MeanT & treatment
-Data_Early3@data["MeanT_Trt"] <- ((Data_Early3@data$MeanT_B)*(Data_Early3@data$TrtBin))
+#Interaction term [ Pretrend NDVI max continuous and treatment]
+Data_Early3@data$pre_trend_NDVI_max_int <- Data_Early3@data$pre_trend_NDVI_max*Data_Early@data$TrtBin
+#Interaction term [Pretrend NDVI max categorical and treatment]
+pre_trend_NDVI_max_cat_int <- temp_categorical*Data_Early3@data$TrtBin
 
-#Interaction post trend Temp & treatment
-Data_Early3@data["postT_Trt"] <- ((Data_Early3@data$post_trend_temp)*(Data_Early3@data$TrtBin))
-
-#Interaction MeanP & Treatment
-Data_Early3@data["MeanP_Trt"] <- ((Data_Early3@data$MeanP_B)*(Data_Early3@data$TrtBin))
-
-#Interaction posttrend & Treatment
-Data_Early3@data["posttrendP_Trt"] <- ((Data_Early3@data$post_trend_precip)*(Data_Early3@data$TrtBin))
-
-#Interaction Slope & Treatment
-Data_Early3@data["Slope_Trt"] <- ((Data_Early3@data$Slope)*(Data_Early3@data$TrtBin))
-
-#Interaction Elevation & treatment
-Data_Early3@data["Elevation_Trt"] <- ((Data_Early3@data$Elevation)*(Data_Early3@data$TrtBin))
-
-#Interaction Riv Dist & treatment
-Data_Early3@data["RivDist_Trt"] <- ((Data_Early3@data$Riv_Dist)*(Data_Early3@data$TrtBin))
-
-#Interaction Road Distance & treatment
-Data_Early3@data["RoadDist_Trt"] <- ((Data_Early3@data$Road_dist)*(Data_Early3@data$TrtBin))
+#_______________________________________________________________________
 
 
-## MODELS WITH INTERACTIONS
-analyticModelEarly_1 <- "NDVILevelChange_95_01 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + pretrend_Trt"
+analyticModelEarly_1 <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_mean + MeanL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
+MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_max_int"
 
-analyticModelEarly_2 <- "NDVILevelChange_95_01 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + MaxL1995_Trt"
+OutputEarly_1=Stage2PSM(analyticModelEarly_1,Data_Early3,type="lm",table_out=TRUE)
 
-analyticModelEarly_3 <- "NDVILevelChange_95_01 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + area_Trt"
+analyticModelEarly_2 <- "NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_max_cat_int"
 
-analyticModelEarly_4 <- "NDVILevelChange_95_01 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + Pop_Trt"
+OutputEarly_2=Stage2PSM(analyticModelEarly_2,Data_Early3,type="lm",table_out=TRUE)
 
-analyticModelEarly_5 <- "NDVILevelChange_95_01 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + MeanT_Trt"
-
-analyticModelEarly_6 <- "NDVILevelChange_95_01 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + postT_Trt"
-
-analyticModelEarly_7 <- "NDVILevelChange_95_01 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + MeanP_Trt"
-
-analyticModelEarly_8 <- "NDVILevelChange_95_01 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + posttrendP_Trt"
-
-analyticModelEarly_9 <- "NDVILevelChange_95_01 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + Slope_Trt"
-
-analyticModelEarly_10 <- "NDVILevelChange_95_01 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + Elevation_Trt"
-
-analyticModelEarly_11 <- "NDVILevelChange_95_01 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + RivDist_Trt"
-
-analyticModelEarly_12 <- "NDVILevelChange_95_01 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B  + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + RoadDist_Trt"
-
-OutputEarly3_1=Stage2PSM(analyticModelEarly_1,Data_Early3,type="lm",table_out=TRUE)
-OutputEarly3_2=Stage2PSM(analyticModelEarly_2,Data_Early3,type="lm",table_out=TRUE)
-OutputEarly3_3=Stage2PSM(analyticModelEarly_3,Data_Early3,type="lm",table_out=TRUE)
-OutputEarly3_4=Stage2PSM(analyticModelEarly_4,Data_Early3,type="lm",table_out=TRUE)
-OutputEarly3_5=Stage2PSM(analyticModelEarly_5,Data_Early3,type="lm",table_out=TRUE)
-OutputEarly3_6=Stage2PSM(analyticModelEarly_6,Data_Early3,type="lm",table_out=TRUE)
-OutputEarly3_7=Stage2PSM(analyticModelEarly_7,Data_Early3,type="lm",table_out=TRUE)
-OutputEarly3_8=Stage2PSM(analyticModelEarly_8,Data_Early3,type="lm",table_out=TRUE)
-OutputEarly3_9=Stage2PSM(analyticModelEarly_9,Data_Early3,type="lm",table_out=TRUE)
-OutputEarly3_10=Stage2PSM(analyticModelEarly_10,Data_Early3,type="lm",table_out=TRUE)
-OutputEarly3_11=Stage2PSM(analyticModelEarly_11,Data_Early3,type="lm",table_out=TRUE)
-OutputEarly3_12=Stage2PSM(analyticModelEarly_12,Data_Early3,type="lm",table_out=TRUE)
-
-stargazer(OutputEarly3$standardized, OutputEarly3_1$standardized, 
-          OutputEarly3_2$standardized, OutputEarly3_3$standardized, OutputEarly3_4$standardized, 
-          OutputEarly3_5$standardized, OutputEarly3_6$standardized, OutputEarly3_7$standardized, 
-          OutputEarly3_8$standardized, OutputEarly3_9$standardized, OutputEarly3_10$standardized, 
-          OutputEarly3_11$standardized, OutputEarly3_12$standardized, 
-          keep=c("TrtBin", "pretrend_Trt", "MaxL1995_Trt", "area_Trt", "Pop_Trt", 
-                 "MeanT_Trt", "postT_Trt", "MeanP_Trt", "posttrendP_Trt", "Slope_Trt", 
-                 "Elevation_Trt", "RivDist_Trt", "RoadDist_Trt"),
-          covariate.labels=c("Treatment", "Pretrend Interaction", "MaxL1995 Interaction", 
-                             "Area Interaction", "Pop Interaction", "MeanT Interaction", "PostT Interaction", "MeanP INteraction", 
-                             "PosttrendP Interaction", "Slope Interaction", "Elevation Interaction", "RivDist Int", "RoadDist Int"),
-          dep.var.labels=c("Mean NDVI 1995-2010"),
-          title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
-
-
-
+#________________________________________________________________________
 
 #analyticModelLate, treatment effect + pair fixed effects + covars 2001-2010
 #create new dataset and rename column names in new dataset to enable multiple columns in stargazer
@@ -257,9 +184,42 @@ colnames(Data_Late@data)[(colnames(Data_Late@data)=="post_trend_temp_01_10")] <-
 colnames(Data_Late@data)[(colnames(Data_Late@data)=="post_trend_precip_01_10")] <- "post_trend_precip"
 #colnames(Data_Late@data)
 
-analyticModelLate <- "NDVILevelChange_01_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
+analyticModelLate <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
 MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
 OutputLate=Stage2PSM(analyticModelLate,Data_Late,type="lm",table_out=TRUE)
+
+#________________________________________________________________________
+
+#Create high pressure variable from pre_trend_NDVI
+temp <- fivenum(Data_Late$pre_trend_NDVI_Max)
+
+#Categorical
+temp_median <- fivenum(Data_Late@data$pre_trend_NDVI_max)[3]
+temp_categorical <- ifelse(Data_Late@data$pre_trend_NDVI_max > temp_median, 1, 0)
+length(which(temp_categorical<1))
+
+#variable containing all data in regions with pretrend NDVI above the median
+#temp_new <- dta_Shp@data[dta_Shp@data$pre_trend_NDVI_max>temp_median,]
+
+#Interaction term [ Pretrend NDVI max continuous and treatment]
+Data_Late@data$pre_trend_NDVI_max_int <- Data_Late@data$pre_trend_NDVI_max*Data_Late@data$TrtBin
+#Interaction term [Pretrend NDVI max categorical and treatment]
+pre_trend_NDVI_max_cat_int <- temp_categorical*Data_Late@data$TrtBin
+
+#_______________________________________________________________________
+
+
+analyticModelLate1 <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_mean + MeanL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
+MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_max_int"
+
+OutputLate1=Stage2PSM(analyticModelLate1,Data_Late,type="lm",table_out=TRUE)
+
+analyticModelLate2 <- "NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_max_cat_int"
+
+OutputLate2=Stage2PSM(analyticModelLate2,Data_Late,type="lm",table_out=TRUE)
+
+#________________________________________________________________________
 
 stargazer(OutputEarly2$standardized,OutputEarly3$standardized,OutputLate$standardized,
           keep=c("TrtBin", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B", "MeanT_B","post_trend_temp","MeanP_B",
@@ -316,15 +276,3 @@ describeBy(psm_Pairs$Road_dist, psm_Pairs$TrtBin)
 
 
 
-#####################################################################################
-library(xlsx)
-
-setwd("/Users/Alec/Desktop/KFW_Amazon")
-new_data <- read.csv("Alldata_62lands.csv", header=TRUE, quote="\"", stringsAsFactors=TRUE, strip.white=TRUE)
-
-psmModel <-  "Category_1 ~ terrai_are + Pop_1990 + MeanT_1995 + pre_trend_temp_mean + pre_trend_temp_min + 
-pre_trend_temp_max + MeanP_1995 + pre_trend_precip_min + Slope + Elevation +  MeanL_1995 + MaxL_1995 + Riv_Dist + Road_dist +
-pre_trend_precip_mean + pre_trend_precip_max"
-
-
-#df <- read.csv("Correlation_dta_R_1.csv", header=TRUE, quote="\"", stringsAsFactors=TRUE, strip.white=TRUE)
