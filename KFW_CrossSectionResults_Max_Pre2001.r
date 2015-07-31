@@ -15,6 +15,7 @@ loadLibs()
 #Load in Processed Data - produced from script KFW_dataMerge.r
 #-------------------------------------------------
 #-------------------------------------------------
+setwd("/Users/Alec/Documents/KFW_Amazon_Git")
 shpfile = "processed_data/kfw_analysis_inputs.shp"
 dta_Shp = readShapePoly(shpfile)
 
@@ -141,6 +142,39 @@ analyticModelEarly3 <- "NDVILevelChange_95_01 ~ TrtBin+ pre_trend_NDVI_max + Max
 MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
 OutputEarly3=Stage2PSM(analyticModelEarly3,Data_Early3,type="lm",table_out=TRUE)
 
+#________________________________________________________________________
+
+#Create high pressure variable from pre_trend_NDVI
+temp <- fivenum(Data_Early3$pre_trend_NDVI_Max)
+
+#Categorical
+temp_median <- fivenum(Data_Early3@data$pre_trend_NDVI_max)[3]
+temp_categorical <- ifelse(Data_Early3@data$pre_trend_NDVI_max > temp_median, 1, 0)
+length(which(temp_categorical<1))
+
+#variable containing all data in regions with pretrend NDVI above the median
+#temp_new <- dta_Shp@data[dta_Shp@data$pre_trend_NDVI_max>temp_median,]
+
+#Interaction term [ Pretrend NDVI max continuous and treatment]
+Data_Early3@data$pre_trend_NDVI_max_int <- Data_Early3@data$pre_trend_NDVI_max*Data_Early@data$TrtBin
+#Interaction term [Pretrend NDVI max categorical and treatment]
+pre_trend_NDVI_max_cat_int <- temp_categorical*Data_Early3@data$TrtBin
+
+#_______________________________________________________________________
+
+
+analyticModelEarly_4 <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_mean + MeanL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
+MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_max_int"
+
+OutputEarly_4=Stage2PSM(analyticModelEarly_4,Data_Early3,type="lm",table_out=TRUE)
+
+analyticModelEarly_5 <- "NDVILevelChange_95_10 ~ TrtBin + temp_categorical + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_max_cat_int"
+
+OutputEarly_5=Stage2PSM(analyticModelEarly_5,Data_Early3,type="lm",table_out=TRUE)
+
+#________________________________________________________________________
+
 #analyticModelLate, treatment effect + pair fixed effects + covars 2001-2010
 #create new dataset and rename column names in new dataset to enable multiple columns in stargazer
 Data_Late <- psm_Pairs
@@ -168,6 +202,38 @@ MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(
 
 OutputLate_Enf=Stage2PSM(analyticModelLate_Enf,Data_Late_Enf,type="lm",table_out=TRUE)
 
+#___________________________________________________________________________________________
+
+#Create high pressure variable from pre_trend_NDVI
+temp <- fivenum(Data_Late$pre_trend_NDVI_Max)
+
+#Categorical
+temp_median_late <- fivenum(Data_Late@data$pre_trend_NDVI_max)[3]
+temp_categorical_late <- ifelse(Data_Late@data$pre_trend_NDVI_max > temp_median_late, 1, 0)
+length(which(temp_categorical_late<1))
+
+#variable containing all data in regions with pretrend NDVI above the median
+#temp_new <- dta_Shp@data[dta_Shp@data$pre_trend_NDVI_max>temp_median,]
+
+#Interaction term [ Pretrend NDVI max continuous and treatment]
+Data_Late@data$pre_trend_NDVI_max_int <- Data_Late@data$pre_trend_NDVI_max*Data_Late@data$TrtBin
+#Interaction term [Pretrend NDVI max categorical and treatment]
+pre_trend_NDVI_max_cat_int <- temp_categorical_late*Data_Late@data$TrtBin
+
+#___________________________________________________________________________________________
+
+
+analyticModelLate1 <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_mean + MeanL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
+MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_max_int"
+
+OutputLate1=Stage2PSM(analyticModelLate1,Data_Late,type="lm",table_out=TRUE)
+
+analyticModelLate2 <- "NDVILevelChange_95_10 ~ TrtBin + temp_categorical_late + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_max_cat_int"
+
+OutputLate2=Stage2PSM(analyticModelLate2,Data_Late,type="lm",table_out=TRUE)
+
+#________________________________________________________________________
 
 stargazer(OutputEarly2$standardized,OutputEarly3$standardized,OutputLate$standardized,OutputLate_Enf$standardized,
           keep=c("TrtBin", "enforce_to", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B", "MeanT_B","post_trend_temp","MeanP_B",

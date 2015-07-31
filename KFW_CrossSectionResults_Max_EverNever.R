@@ -15,8 +15,10 @@ loadLibs()
 #Load in Processed Data - produced from script KFW_dataMerge.r
 #-------------------------------------------------
 #-------------------------------------------------
+setwd("/Users/Alec/Documents/KFW_Amazon_Git")
 shpfile = "processed_data/kfw_analysis_inputs.shp"
 dta_Shp = readShapePoly(shpfile)
+
 
 #-------------------------------------------------
 #-------------------------------------------------
@@ -182,19 +184,19 @@ Data_Ever3@data$pre_trend_NDVI_max_int <- Data_Ever3@data$pre_trend_NDVI_max*Dat
 #Interaction term [Pretrend NDVI max categorical and treatment]
 pre_trend_NDVI_max_cat_int <- temp_categorical*Data_Ever3@data$TrtBin
 
-#_______________________________________________________________________
-
-analyticModelEver4 <- "NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_max_int"
-
-OutputEver4=Stage2PSM(analyticModelEver4,Data_Ever3,type="lm",table_out=TRUE)
+#_________________________________________________________________________________________
 
 analyticModelEver5 <- "NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + temp_categorical + pre_trend_NDVI_max_cat_int +factor(PSM_match_ID) "
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_max_int"
 
 OutputEver5=Stage2PSM(analyticModelEver5,Data_Ever3,type="lm",table_out=TRUE)
 
+analyticModelEver6 <- "NDVILevelChange_95_10 ~ TrtBin + temp_categorical + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + pre_trend_NDVI_max_cat_int +factor(PSM_match_ID) "
 
+OutputEver6=Stage2PSM(analyticModelEver6,Data_Ever3,type="lm",table_out=TRUE)
+
+#_________________________________________________________________________________________
 
 stargazer(OutputEver2$standardized, OutputEver3$standardized, OutputEver4$standardized,
           keep=c("TrtBin", "enforce_to", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B","MeanT_B","post_trend_temp","MeanP_B",

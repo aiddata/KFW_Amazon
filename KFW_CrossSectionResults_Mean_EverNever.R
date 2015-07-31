@@ -15,6 +15,7 @@ loadLibs()
 #Load in Processed Data - produced from script KFW_dataMerge.r
 #-------------------------------------------------
 #-------------------------------------------------
+setwd("/Users/Alec/Documents/KFW_Amazon_Git")
 shpfile = "processed_data/kfw_analysis_inputs.shp"
 dta_Shp = readShapePoly(shpfile)
 
@@ -166,6 +167,37 @@ analyticModelEver4 <- "NDVILevelChange_95_10 ~ TrtBin + enforce_to + pre_trend_N
 MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID)"
 
 OutputEver4=Stage2PSM(analyticModelEver4,Data_Ever4,type="lm",table_out=TRUE)
+
+#________________________________________________________________
+
+#Create high pressure variable from pre_trend_NDVI
+
+
+#Categorical
+temp_median <- fivenum(Data_Ever3@data$pre_trend_NDVI_mean)[3]
+temp_categorical <- ifelse(Data_Ever3@data$pre_trend_NDVI_mean > temp_median, 1, 0)
+length(which(temp_categorical<1))
+
+#variable containing all data in regions with pretrend NDVI above the median
+#temp_new <- dta_Shp@data[dta_Shp@data$pre_trend_NDVI_mean>temp_median,]
+
+#Interaction term [ Pretrend NDVI mean continuous and treatment]
+pre_trend_NDVI_mean_int <- Data_Ever3@data$pre_trend_NDVI_mean*Data_Ever3@data$TrtBin
+#Interaction term [Pretrend NDVI mean categorical and treatment]
+pre_trend_NDVI_mean_cat_int <- temp_categorical*Data_Ever3@data$TrtBin
+#___________________________________________________________________________________________
+
+analyticModelEver5 <- "NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_mean + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_mean_int"
+
+OutputEver5=Stage2PSM(analyticModelEver5,Data_Ever3,type="lm",table_out=TRUE)
+
+analyticModelEver6 <- "NDVILevelChange_95_10 ~ TrtBin + temp_categorical + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_mean_cat_int"
+
+OutputEver6=Stage2PSM(analyticModelEver6,Data_Ever3,type="lm",table_out=TRUE)
+
+#___________________________________________________________________________________________
 
 stargazer(OutputEver2$standardized, OutputEver3$standardized, OutputEver4$standardized,
           keep=c("TrtBin","enforce_to", "pre_trend_NDVI_mean","MeanL_1995", "terrai_are","Pop_B","MeanT_B","post_trend_temp","MeanP_B",
