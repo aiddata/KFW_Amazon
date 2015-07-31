@@ -15,7 +15,6 @@ loadLibs()
 #Load in Processed Data - produced from script KFW_dataMerge.r
 #-------------------------------------------------
 #-------------------------------------------------
-setwd("/Users/Alec/Desktop/KFW_Amazon")
 shpfile = "processed_data/kfw_analysis_inputs.shp"
 dta_Shp = readShapePoly(shpfile)
 
@@ -88,7 +87,7 @@ pre_trend_temp_max + MeanP_1995 + pre_trend_precip_min +
 pre_trend_NDVI_mean + pre_trend_NDVI_max + Slope + Elevation +  MeanL_1995 + MaxL_1995 + Riv_Dist + Road_dist +
 pre_trend_precip_mean + pre_trend_precip_max"
 
-psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=FALSE)
+psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=TRUE)
 
 
 #-------------------------------------------------
@@ -142,38 +141,6 @@ analyticModelEarly3 <- "NDVILevelChange_95_01 ~ TrtBin+ pre_trend_NDVI_mean + Me
 MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
 OutputEarly3=Stage2PSM(analyticModelEarly3,Data_Early3,type="lm",table_out=TRUE)
 
-#________________________________________________________________________
-
-#Create high pressure variable from pre_trend_NDVI
-temp <- fivenum(Data_Early3$pre_trend_NDVI_mean)
-
-#Categorical
-temp_median <- fivenum(Data_Early3@data$pre_trend_NDVI_mean)[3]
-temp_categorical_early <- ifelse(Data_Early3@data$pre_trend_NDVI_mean > temp_median, 1, 0)
-length(which(temp_categorical_early<1))
-
-#variable containing all data in regions with pretrend NDVI above the median
-#temp_new <- dta_Shp@data[dta_Shp@data$pre_trend_NDVI_max>temp_median,]
-
-#Interaction term [ Pretrend NDVI max continuous and treatment]
-Data_Early3@data$pre_trend_NDVI_mean_int <- Data_Early3@data$pre_trend_NDVI_mean*Data_Early@data$TrtBin
-#Interaction term [Pretrend NDVI max categorical and treatment]
-pre_trend_NDVI_mean_cat_int <- temp_categorical_early*Data_Early3@data$TrtBin
-
-#_______________________________________________________________________
-
-analyticModelEarly_1 <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_mean + MeanL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_mean_int"
-
-OutputEarly_1=Stage2PSM(analyticModelEarly_1,Data_Early3,type="lm",table_out=TRUE)
-
-analyticModelEarly_2 <- "NDVILevelChange_95_10 ~ TrtBin + temp_categorical_early + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_mean_cat_int"
-
-OutputEarly_2=Stage2PSM(analyticModelEarly_2,Data_Early3,type="lm",table_out=TRUE)
-
-#________________________________________________________________________
-
 #analyticModelLate, treatment effect + pair fixed effects + covars 2001-2010
 #create new dataset and rename column names in new dataset to enable multiple columns in stargazer
 Data_Late <- psm_Pairs
@@ -184,42 +151,9 @@ colnames(Data_Late@data)[(colnames(Data_Late@data)=="post_trend_temp_01_10")] <-
 colnames(Data_Late@data)[(colnames(Data_Late@data)=="post_trend_precip_01_10")] <- "post_trend_precip"
 #colnames(Data_Late@data)
 
-analyticModelLate <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_mean + MeanL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
+analyticModelLate <- "NDVILevelChange_01_10 ~ TrtBin + pre_trend_NDVI_mean + MeanL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
 MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
 OutputLate=Stage2PSM(analyticModelLate,Data_Late,type="lm",table_out=TRUE)
-
-#________________________________________________________________________
-
-#Create high pressure variable from pre_trend_NDVI
-temp <- fivenum(Data_Late$pre_trend_NDVI_mean)
-
-#Categorical
-temp_median <- fivenum(Data_Late@data$pre_trend_NDVI_mean)[3]
-temp_categorical_late <- ifelse(Data_Late@data$pre_trend_NDVI_mean > temp_median, 1, 0)
-length(which(temp_categorical_late<1))
-
-#variable containing all data in regions with pretrend NDVI above the median
-#temp_new <- dta_Shp@data[dta_Shp@data$pre_trend_NDVI_max>temp_median,]
-
-#Interaction term [ Pretrend NDVI max continuous and treatment]
-Data_Late@data$pre_trend_NDVI_mean_int <- Data_Late@data$pre_trend_NDVI_mean*Data_Late@data$TrtBin
-#Interaction term [Pretrend NDVI max categorical and treatment]
-pre_trend_NDVI_mean_cat_int <- temp_categorical_late*Data_Late@data$TrtBin
-
-#_______________________________________________________________________
-
-
-analyticModelLate1 <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_mean + MeanL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
-MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_mean_int"
-
-OutputLate1=Stage2PSM(analyticModelLate1,Data_Late,type="lm",table_out=TRUE)
-
-analyticModelLate2 <- "NDVILevelChange_95_10 ~ TrtBin + temp_categorical_late + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_mean_cat_int"
-
-OutputLate2=Stage2PSM(analyticModelLate2,Data_Late,type="lm",table_out=TRUE)
-
-#________________________________________________________________________
 
 stargazer(OutputEarly2$standardized,OutputEarly3$standardized,OutputLate$standardized,
           keep=c("TrtBin", "pre_trend_NDVI_mean","MeanL_1995", "terrai_are","Pop_B", "MeanT_B","post_trend_temp","MeanP_B",
