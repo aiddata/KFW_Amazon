@@ -62,6 +62,11 @@ dta_Shp$post_trend_precip_min <- timeRangeTrend(dta_Shp,"MinP_[0-9][0-9][0-9][0-
 dta_Shp$post_trend_precip_95_01 <- timeRangeTrend(dta_Shp,"MeanP_[0-9][0-9][0-9][0-9]",1995,2001,"SP_ID")
 dta_Shp$post_trend_precip_01_10 <- timeRangeTrend(dta_Shp,"MeanP_[0-9][0-9][0-9][0-9]",2001,2010,"SP_ID")
 
+
+
+
+
+
 #-------------------------------------------------
 #-------------------------------------------------
 #Define the Treatment Variable and Population
@@ -77,6 +82,19 @@ dta_Shp <- proj_Shp
 
 projtable <- table(proj_Shp@data$proj_check)
 View(projtable)
+
+#------------------------------------------------------------
+#Adding predicted pretrend relevant covariates
+
+dta_Shp@data["AvgDistanceToFederalConservationUnits"] <- my_data$AvgDistanceToFederalConservationUnits
+dta_Shp@data["AvgDistanceToStateConservationUnits"] <- my_data$AvgDistanceToStateConservationUnits
+dta_Shp@data["AvgDistanceToLoggingCenters"] <- my_data$AvgDistanceToLoggingCenters
+dta_Shp@data["AvgDistanceFromRailways"] <- my_data$AvgDistanceFromRailways
+dta_Shp@data["AvgDistanceFromMiningAreas"] <- my_data$AvgDistanceFromMiningAreas
+dta_Shp@data["AvgDistanceToNearestCities"] <- my_data$AvgDistanceToNearestCities
+dta_Shp@data["AvgDistanceToMajorCities"] <- my_data$AvgDistanceToMajorCities
+#-------------------------------------------------------------
+
 
 #Make a binary for ever treated vs. never treated
 dta_Shp@data["TrtBin"] <- 0
@@ -97,7 +115,7 @@ pre_trend_temp_max + MeanP_1995 + pre_trend_precip_min +
 pre_trend_NDVI_mean + pre_trend_NDVI_max + Slope + Elevation +  MeanL_1995 + MaxL_1995 + Riv_Dist + Road_dist +
 pre_trend_precip_mean + pre_trend_precip_max"
 
-psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=TRUE)
+psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=FALSE)
 
 #-------------------------------------------------
 #-------------------------------------------------
@@ -197,6 +215,10 @@ MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + pre_tr
 OutputEver6=Stage2PSM(analyticModelEver6,Data_Ever3,type="lm",table_out=TRUE)
 
 #_________________________________________________________________________________________
+
+
+
+
 
 stargazer(OutputEver2$standardized, OutputEver3$standardized, OutputEver4$standardized,
           keep=c("TrtBin", "enforce_to", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B","MeanT_B","post_trend_temp","MeanP_B",
