@@ -199,6 +199,82 @@ OutputEver6=Stage2PSM(analyticModelEver6,Data_Ever3,type="lm",table_out=TRUE)
 
 #___________________________________________________________________________________________
 
+
+
+pressure_model_1_mean <- "pre_trend_NDVI_mean ~ terrai_are + Pop_B + MeanT_B + MeanP_B + pre_trend_temp_mean + 
+pre_trend_temp_min + pre_trend_temp_max + pre_trend_precip_min + pre_trend_precip_max + pre_trend_precip_mean + 
+Slope + Elevation + Riv_Dist + Road_dist + AvgD_FedCU + AvgD_StaCU + AvgD_Log + AvgD_Rail + 
+AvgD_Mine + AvgD_City" #+ AvgDistanceToMajorCities"
+
+Output_1=Stage2PSM(pressure_model_1_mean,Data_Ever3,type="lm",table_out=TRUE)
+
+View(dta_Shp)
+pre_coefs_mean <- coef(Output_1$standardized)
+pre_coefs_mean_1 <- coef(Output_1$unstandardized)
+
+pre_coefs_mean_1
+
+#Create unstandardized predicted variables based on coefficients
+
+model_int_mean_1 <- pre_coefs_mean_1[1]
+model_int_mean_2 <- pre_coefs_mean_1[2] * dta_Shp@data$terrai_are
+model_int_mean_3 <- pre_coefs_mean_1[3] * dta_Shp@data$Pop_1990
+model_int_mean_4 <- pre_coefs_mean_1[4] * dta_Shp@data$MeanT_1995
+model_int_mean_5 <- pre_coefs_mean_1[5] * dta_Shp@data$MeanP_1995
+model_int_mean_6 <- pre_coefs_mean_1[6] * dta_Shp@data$pre_trend_temp_mean
+model_int_mean_7 <- pre_coefs_mean_1[7] * dta_Shp@data$pre_trend_temp_min
+model_int_mean_8 <- pre_coefs_mean_1[8] * dta_Shp@data$pre_trend_temp_max
+model_int_mean_9 <- pre_coefs_mean_1[9] * dta_Shp@data$pre_trend_precip_min
+model_int_mean_10 <- pre_coefs_mean_1[10] * dta_Shp@data$pre_trend_precip_max
+model_int_mean_11 <- pre_coefs_mean_1[11] * dta_Shp@data$pre_trend_precip_mean
+model_int_mean_12 <- pre_coefs_mean_1[12] * dta_Shp@data$Slope
+model_int_mean_13 <- pre_coefs_mean_1[13] * dta_Shp@data$Elevation
+model_int_mean_14 <- pre_coefs_mean_1[14] * dta_Shp@data$Riv_Dist
+model_int_mean_15 <- pre_coefs_mean_1[15] * dta_Shp@data$Road_dist
+model_int_mean_16 <- pre_coefs_mean_1[16] * dta_Shp@data$AvgDistanceToFederalConservationUnits
+model_int_mean_17 <- pre_coefs_mean_1[17] * dta_Shp@data$AvgDistanceToStateConservationUnits
+model_int_mean_18 <- pre_coefs_mean_1[18] * dta_Shp@data$AvgDistanceFromMiningAreas
+model_int_mean_19 <- pre_coefs_mean_1[19] * dta_Shp@data$AvgDistanceFromRailways
+model_int_mean_20 <- pre_coefs_mean_1[20] * dta_Shp@data$AvgDistanceFromMiningAreas
+model_int_mean_21 <- pre_coefs_mean_1[21] * dta_Shp@data$AvgDistanceToNearestCities
+#model_int_mean_22 <- pre_coefs_mean_1[22] * dta_Shp@data$AvgDistanceToMajorCities
+
+predict_NDVI_mean <-model_int_mean_1+model_int_mean_2+model_int_mean_3+model_int_mean_4+model_int_mean_5+
+  model_int_mean_6+model_int_mean_7+model_int_mean_8+model_int_mean_9+model_int_mean_10+
+  model_int_mean_11+model_int_mean_12+model_int_mean_13+model_int_mean_14+model_int_mean_15+
+  model_int_mean_16+model_int_mean_17+model_int_mean_18+model_int_mean_19+model_int_mean20+
+  model_int_mean_21#+model_int_mean_22
+
+predict_NDVI_mean
+
+#________________________________________________________________________
+
+#Create high pressure variable from predicted pre-trend NDVI
+temp <- fivenum(dta_Shp$predict_NDVI_mean)
+
+#Categorical
+predict_median <- fivenum(dta_Shp@data$predict_NDVI_mean)[3]
+predict_mean_categorical <- ifelse(dta_Shp@data$predict_NDVI_mean > temp_median, 1, 0)
+length(which(predict_categorical<1))
+
+#Interaction term [ Predicted pretrend NDVI max continuous and treatment]
+dta_Shp@data$predict_NDVI_mean_int <- dta_Shp@data$predict_NDVI_mean*dta_Shp@data$TrtBin
+#Interaction term [Predicted pretrend NDVI max categorical and treatment]
+predict_NDVI_mean_cat_int <- predict_mean_categorical*dta_Shp@data$TrtBin
+
+#_________________________________________________________________________________________
+
+analyticModelEver7 <- "NDVILevelChange_95_10 ~ TrtBin + predict_NDVI_mean + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + predict_NDVI_mean_int"
+
+OutputEver7=Stage2PSM(analyticModelEver7,dta_Shp,type="lm",table_out=TRUE)
+
+analyticModelEver8 <- "NDVILevelChange_95_10 ~ TrtBin + predict_mean_categorical + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + predict_NDVI_mean_cat_int +factor(PSM_match_ID) "
+
+OutputEver8=Stage2PSM(analyticModelEver8,dta_Shp,type="lm",table_out=TRUE)
+#__________________________________________________________________________________________
+
 stargazer(OutputEver2$standardized, OutputEver3$standardized, OutputEver4$standardized,
           keep=c("TrtBin","enforce_to", "pre_trend_NDVI_mean","MeanL_1995", "terrai_are","Pop_B","MeanT_B","post_trend_temp","MeanP_B",
                  "post_trend_precip","Slope","Elevation","Riv_Dist","Road_dist"),
