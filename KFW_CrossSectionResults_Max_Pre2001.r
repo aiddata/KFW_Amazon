@@ -235,6 +235,92 @@ OutputLate2=Stage2PSM(analyticModelLate2,Data_Late,type="lm",table_out=TRUE)
 
 #________________________________________________________________________
 
+#_________________________________________________________________________________________
+#Predicted pre trends
+pressure_model_1_max <- "pre_trend_NDVI_max ~ terrai_are + Pop_B + MeanT_B + MeanP_B + pre_trend_temp_mean + 
+pre_trend_temp_min + pre_trend_temp_max + pre_trend_precip_min + pre_trend_precip_max + pre_trend_precip_mean + 
+Slope + Elevation + Riv_Dist + Road_dist + AvgD_FedCU + AvgD_StaCU + AvgD_Log + AvgD_Rail + 
+AvgD_Mine + AvgD_City" #+ AvgDistanceToMajorCities"
+
+Output_1=Stage2PSM(pressure_model_1_max,Data_Late,type="lm",table_out=TRUE)
+
+pre_coefs_max <- coef(Output_1$standardized)
+pre_coefs_max_1 <- coef(Output_1$unstandardized)
+
+pre_coefs_max_1
+
+#Create unstandardized predicted variables based on coefficients
+
+model_int_1 <- pre_coefs_max_1[1]
+model_int_2 <- pre_coefs_max_1[2] * Data_Late@data$terrai_are
+model_int_3 <- pre_coefs_max_1[3] * Data_Late@data$Pop_B
+model_int_4 <- pre_coefs_max_1[4] * Data_Late@data$MeanT_B
+model_int_5 <- pre_coefs_max_1[5] * Data_Late@data$MeanP_B
+model_int_6 <- pre_coefs_max_1[6] * Data_Late@data$pre_trend_temp_mean
+model_int_7 <- pre_coefs_max_1[7] * Data_Late@data$pre_trend_temp_min
+model_int_8 <- pre_coefs_max_1[8] * Data_Late@data$pre_trend_temp_max
+model_int_9 <- pre_coefs_max_1[9] * Data_Late@data$pre_trend_precip_min
+model_int_10 <- pre_coefs_max_1[10] * Data_Late@data$pre_trend_precip_max
+model_int_11 <- pre_coefs_max_1[11] * Data_Late@data$pre_trend_precip_mean
+model_int_12 <- pre_coefs_max_1[12] * Data_Late@data$Slope
+model_int_13 <- pre_coefs_max_1[13] * Data_Late@data$Elevation
+model_int_14 <- pre_coefs_max_1[14] * Data_Late@data$Riv_Dist
+model_int_15 <- pre_coefs_max_1[15] * Data_Late@data$Road_dist
+model_int_16 <- pre_coefs_max_1[16] * Data_Late@data$AvgD_FedCU
+model_int_17 <- pre_coefs_max_1[17] * Data_Late@data$AvgD_StaCU
+model_int_18 <- pre_coefs_max_1[18] * Data_Late@data$AvgD_Log
+model_int_19 <- pre_coefs_max_1[19] * Data_Late@data$AvgD_Rail
+model_int_20 <- pre_coefs_max_1[20] * Data_Late@data$AvgD_Mine
+model_int_21 <- pre_coefs_max_1[21] * Data_Late@data$AvgD_City
+#model_int_22 <- pre_trend_coefs_1[22] * Data_Late@data$AvgD_MajCi
+
+predict_NDVI_max <- model_int_1+model_int_2+model_int_3+model_int_4+model_int_5+model_int_6+
+  model_int_7+model_int_8+model_int_9+model_int_10+model_int_11+model_int_12+
+  model_int_13+model_int_14+model_int_15+model_int_16+model_int_17+model_int_18+model_int_19+
+  model_int_20+model_int_21#+model_int_22
+
+predict_NDVI_max
+
+Data_Late@data["predict_NDVI_max"] <- predict_NDVI_max
+
+#-------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------
+#Run models with predicted NDVI as high pressure & categorical high pressure
+#------------------------------------------------------------------------------------
+
+#Create high pressure variable from predicted pre-trend NDVI
+temp <- fivenum(Data_Late@data$predict_NDVI_max)
+
+#Categorical
+temp_median <- fivenum(Data_Late@data$predict_NDVI_max)[3]
+predict_categorical <- ifelse(Data_Late@data$predict_NDVI_max > temp_median, 1, 0)
+length(which(temp_categorical<1))
+
+#variable containing all data in regions with pretrend NDVI above the median
+#temp_new <- dta_Shp@data[dta_Shp@data$pre_trend_NDVI_max>temp_median,]
+
+#Interaction term [ Predicted pretrend NDVI max continuous and treatment]
+Data_Late@data$predict_NDVI_max_int <- Data_Late@data$predict_NDVI_max*Data_Late@data$TrtBin
+#Interaction term [Predicted pretrend NDVI max categorical and treatment]
+predict_NDVI_max_cat_int <- predict_categorical*Data_Late@data$TrtBin
+
+#_________________________________________________________________________________________
+
+analyticModelLate3 <- "NDVILevelChange_95_10 ~ TrtBin + predict_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + predict_NDVI_max_int"
+
+OutputEver3=Stage2PSM(analyticModelLate3,Data_Late,type="lm",table_out=TRUE)
+
+analyticModelLate4 <- "NDVILevelChange_95_10 ~ TrtBin + predict_categorical + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + predict_NDVI_max_cat_int +factor(PSM_match_ID) "
+
+OutputEver4=Stage2PSM(analyticModelLate4,Data_Late,type="lm",table_out=TRUE)
+
+
+
+#-------------------------------------------------------------------------------------
+
+
 stargazer(OutputEarly2$standardized,OutputEarly3$standardized,OutputLate$standardized,OutputLate_Enf$standardized,
           keep=c("TrtBin", "enforce_to", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B", "MeanT_B","post_trend_temp","MeanP_B",
                  "post_trend_precip", "Slope","Elevation","Riv_Dist","Road_dist"),
