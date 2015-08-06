@@ -145,11 +145,11 @@ OutputEarly3=Stage2PSM(analyticModelEarly3,Data_Early3,type="lm",table_out=TRUE)
 
 #analyticalModelEver4, pair FEs, include enforcement years total as covar, 1995-2010
 Data_Early4 <- psm_Pairs
-colnames(Data_Ever4@data)[(colnames(Data_Ever4@data)=="Pop_1990")] <- "Pop_B"
-colnames(Data_Ever4@data)[(colnames(Data_Ever4@data)=="MeanT_1995")] <- "MeanT_B"
-colnames(Data_Ever4@data)[(colnames(Data_Ever4@data)=="MeanP_1995")] <- "MeanP_B"
-colnames(Data_Ever4@data)[(colnames(Data_Ever4@data)=="post_trend_temp_mean")] <- "post_trend_temp"
-colnames(Data_Ever4@data)[(colnames(Data_Ever4@data)=="post_trend_precip_mean")] <- "post_trend_precip"
+colnames(Data_Early4@data)[(colnames(Data_Early4@data)=="Pop_1990")] <- "Pop_B"
+colnames(Data_Early4@data)[(colnames(Data_Early4@data)=="MeanT_1995")] <- "MeanT_B"
+colnames(Data_Early4@data)[(colnames(Data_Early4@data)=="MeanP_1995")] <- "MeanP_B"
+colnames(Data_Early4@data)[(colnames(Data_Early4@data)=="post_trend_temp_mean")] <- "post_trend_temp"
+colnames(Data_Early@data)[(colnames(Data_Early4@data)=="post_trend_precip_mean")] <- "post_trend_precip"
 
 analyticModelEarly4 <- "NDVILevelChange_95_10 ~ TrtBin + enforce_to + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
 MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID)"
