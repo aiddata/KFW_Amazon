@@ -205,7 +205,7 @@ KFW_enf <- read.csv(KFW_enf)
 kfw.SPDF <- merge(kfw.SPDF, KFW_enf, by.x="id", by.y="id")
 
 #Merge in the covariates to predict high-pressure communities, collected by Ash
-KFW_covars <- "input_data/HighPressureCommCovars_Ash.csv"
+KFW_covars <- "input_data/HighPressureCommCovars__Abbrev_Ash.csv"
 KFW_covars <- read.csv(KFW_covars)
 
 kfw.SPDF <- merge (kfw.SPDF, KFW_covars, by.x="id", by.y="id")
