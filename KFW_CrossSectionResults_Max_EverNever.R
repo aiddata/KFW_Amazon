@@ -16,7 +16,7 @@ loadLibs()
 #-------------------------------------------------
 #-------------------------------------------------
 
-shpfile = "processed_data/kfw_analysis_inputs_1.shp"
+shpfile = "processed_data/kfw_analysis_inputs.shp"
 dta_Shp = readShapePoly(shpfile)
 
 
