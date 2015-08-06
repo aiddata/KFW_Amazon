@@ -17,6 +17,7 @@ loadLibs()
 #Load in Processed Data - produced from script KFW_dataMerge.r
 #-------------------------------------------------
 #-------------------------------------------------
+
 shpfile = "processed_data/kfw_analysis_inputs.shp"
 dta_Shp = readShapePoly(shpfile)
 
@@ -88,7 +89,7 @@ pre_trend_temp_max + MeanP_1995 + pre_trend_precip_min +
 pre_trend_NDVI_mean + pre_trend_NDVI_max + Slope + Elevation +  MeanL_1995 + MaxL_1995 + Riv_Dist + Road_dist +
 pre_trend_precip_mean + pre_trend_precip_max"
 
-psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=TRUE)
+psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=FALSE)
 
 
 #-------------------------------------------------
@@ -127,7 +128,40 @@ pModelMax_A_fit <- Stage2PSM(pModelMax_A ,psm_Long,type="cmreg", table_out=TRUE,
 pModelMax_B_fit <- Stage2PSM(pModelMax_B ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_C_fit <- Stage2PSM(pModelMax_C ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 
+#------------------------------------------------------------------------
+#------------------------------------------------------------------------
+View(psm_Long$MaxL)
+temp_TS_median <- fivenum(psm_Long$MaxL[1041:1120])[3]
+high_pressure_regions_1995 <- ifelse(psm_Long$MaxL[1041:1120] > temp_TS_median, 1, 0)
 
+
+high_pressure_regions <- ifelse(psm_Long$reu_id == 118 | psm_Long$reu_id == 142 | 
+                                  psm_Long$reu_id == 105 | psm_Long$reu_id == 148 | 
+                                  psm_Long$reu_id == 154 | psm_Long$reu_id == 159 | 
+                                  psm_Long$reu_id == 160 | psm_Long$reu_id == 161 | 
+                                  psm_Long$reu_id == 162 | psm_Long$reu_id == 163 | 
+                                  psm_Long$reu_id == 146 | psm_Long$reu_id == 168 | 
+                                  psm_Long$reu_id == 151 | psm_Long$reu_id == 157 | 
+                                  psm_Long$reu_id == 170 | psm_Long$reu_id == 174 | 
+                                  psm_Long$reu_id == 115 | psm_Long$reu_id == 80 | 
+                                  psm_Long$reu_id == 147 | psm_Long$reu_id == 74 | 
+                                  psm_Long$reu_id == 88 | psm_Long$reu_id == 155 | 
+                                  psm_Long$reu_id == 100 | psm_Long$reu_id == 123 | 
+                                  psm_Long$reu_id == 172 | psm_Long$reu_id == 133 | 
+                                  psm_Long$reu_id == 85 | psm_Long$reu_id == 89 | 
+                                  psm_Long$reu_id == 171 | psm_Long$reu_id == 86 | 
+                                  psm_Long$reu_id == 91 | psm_Long$reu_id == 175 | 
+                                  psm_Long$reu_id == 130 | psm_Long$reu_id == 113 | 
+                                  psm_Long$reu_id == 109 | psm_Long$reu_id == 103 | 
+                                  psm_Long$reu_id == 134 | psm_Long$reu_id == 179 | 
+                                  psm_Long$reu_id == 94 | psm_Long$reu_id == 95, 1, 0)
+
+high_pressure_regions_int <- (high_pressure_regions * psm_Long$TrtMnt_demend_y)
+
+pModelMax_HP <- "MaxL_ ~ TrtMnt_demend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year + high_pressure_regions + high_pressure_regions_int"
+pModelMax_HP_fit <- Stage2PSM(pModelMax_C ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
+
+#temp_HPR <- ifelse(psm_Long$Year <= 1995 & high_pressure_regions == 1, 1, 0)
 
 stargazer(pModelMax_A_fit $cmreg,pModelMax_B_fit $cmreg,pModelMax_C_fit $cmreg,type="html",align=TRUE,keep=c("TrtMnt","MeanT_","MeanP_","Pop_","MaxT_","MaxP_","MinT_","MinP_","Year"),
           covariate.labels=c("TrtMnt_regend_y","MeanT","MeanP","Pop","MaxT","MaxP","MinT","MinP","Year"),
