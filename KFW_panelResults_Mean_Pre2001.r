@@ -17,7 +17,7 @@ loadLibs()
 #Load in Processed Data - produced from script KFW_dataMerge.r
 #-------------------------------------------------
 #-------------------------------------------------
-setwd("/Users/Alec/Documents/KFW_Amazon_Git")
+
 shpfile = "processed_data/kfw_analysis_inputs.shp"
 dta_Shp = readShapePoly(shpfile)
 

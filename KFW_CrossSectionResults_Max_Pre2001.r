@@ -142,6 +142,20 @@ analyticModelEarly3 <- "NDVILevelChange_95_01 ~ TrtBin+ pre_trend_NDVI_max + Max
 MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID)"
 OutputEarly3=Stage2PSM(analyticModelEarly3,Data_Early3,type="lm",table_out=TRUE)
 
+
+#analyticalModelEver4, pair FEs, include enforcement years total as covar, 1995-2010
+Data_Early4 <- psm_Pairs
+colnames(Data_Ever4@data)[(colnames(Data_Ever4@data)=="Pop_1990")] <- "Pop_B"
+colnames(Data_Ever4@data)[(colnames(Data_Ever4@data)=="MeanT_1995")] <- "MeanT_B"
+colnames(Data_Ever4@data)[(colnames(Data_Ever4@data)=="MeanP_1995")] <- "MeanP_B"
+colnames(Data_Ever4@data)[(colnames(Data_Ever4@data)=="post_trend_temp_mean")] <- "post_trend_temp"
+colnames(Data_Ever4@data)[(colnames(Data_Ever4@data)=="post_trend_precip_mean")] <- "post_trend_precip"
+
+analyticModelEarly4 <- "NDVILevelChange_95_10 ~ TrtBin + enforce_to + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID)"
+
+OutputEarly4=Stage2PSM(analyticModelEarly4,Data_Early4,type="lm",table_out=TRUE)
+
 #________________________________________________________________________
 
 #Create high pressure variable from pre_trend_NDVI
@@ -163,15 +177,15 @@ pre_trend_NDVI_max_cat_int <- temp_categorical*Data_Early3@data$TrtBin
 #_______________________________________________________________________
 
 
-analyticModelEarly_4 <- "NDVILevelChange_01_10 ~ TrtBin + enforce_to + pre_trend_NDVI_mean + MeanL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
+analyticModelEarly_5 <- "NDVILevelChange_01_10 ~ TrtBin + pre_trend_NDVI_mean + MeanL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp + 
 MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_max_int"
 
-OutputEarly_4=Stage2PSM(analyticModelEarly_4,Data_Early3,type="lm",table_out=TRUE)
+OutputEarly_5=Stage2PSM(analyticModelEarly_5,Data_Early3,type="lm",table_out=TRUE)
 
-analyticModelEarly_5 <- "NDVILevelChange_95_10 ~ TrtBin + temp_categorical + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+analyticModelEarly_6 <- "NDVILevelChange_95_10 ~ TrtBin + temp_categorical + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
 MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + pre_trend_NDVI_max_cat_int"
 
-OutputEarly_5=Stage2PSM(analyticModelEarly_5,Data_Early3,type="lm",table_out=TRUE)
+OutputEarly_6=Stage2PSM(analyticModelEarly_6,Data_Early3,type="lm",table_out=TRUE)
 
 #-----------------------------------------------------------------------
 #Predicted pre trends
@@ -244,15 +258,15 @@ predict_NDVI_early_max_cat_int <- predict_categorical*Data_Early3@data$TrtBin
 
 #_________________________________________________________________________________________
 
-analyticModelEarly3 <- "NDVILevelChange_95_10 ~ TrtBin + predict_NDVI_early_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+analyticModelEarly_7 <- "NDVILevelChange_95_10 ~ TrtBin + predict_NDVI_early_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
 MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + predict_NDVI_early_max_int"
 
-OutputEarly3=Stage2PSM(analyticModelEarly3,Data_Early3,type="lm",table_out=TRUE)
+OutputEarly_7=Stage2PSM(analyticModelEarly_7,Data_Early3,type="lm",table_out=TRUE)
 
-analyticModelEarly4 <- "NDVILevelChange_95_10 ~ TrtBin + predict_categorical_early + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+analyticModelEarly_8 <- "NDVILevelChange_95_10 ~ TrtBin + predict_categorical_early + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
 MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + predict_NDVI_early_max_cat_int +factor(PSM_match_ID) "
 
-OutputEarly4=Stage2PSM(analyticModelEarly4,Data_Early3,type="lm",table_out=TRUE)
+OutputEarly_8=Stage2PSM(analyticModelEarly_8,Data_Early3,type="lm",table_out=TRUE)
 #_________________________________________________________________________________________
 
 #analyticModelLate, treatment effect + pair fixed effects + covars 2001-2010

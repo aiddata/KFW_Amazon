@@ -83,20 +83,6 @@ dta_Shp <- proj_Shp
 projtable <- table(proj_Shp@data$proj_check)
 View(projtable)
 
-#------------------------------------------------------------
-#Adding predicted pretrend relevant covariates
-#unnecessary now
-
-
-#dta_Shp@data["AvgDistanceToFederalConservationUnits"] <- my_data$AvgDistanceToFederalConservationUnits
-#dta_Shp@data["AvgDistanceToStateConservationUnits"] <- my_data$AvgDistanceToStateConservationUnits
-#dta_Shp@data["AvgDistanceToLoggingCenters"] <- my_data$AvgDistanceToLoggingCenters
-#dta_Shp@data["AvgDistanceFromRailways"] <- my_data$AvgDistanceFromRailways
-#dta_Shp@data["AvgDistanceFromMiningAreas"] <- my_data$AvgDistanceFromMiningAreas
-#dta_Shp@data["AvgDistanceToNearestCities"] <- my_data$AvgDistanceToNearestCities
-#dta_Shp@data["AvgDistanceToMajorCities"] <- my_data$AvgDistanceToMajorCities
-#-------------------------------------------------------------
-
 
 #Make a binary for ever treated vs. never treated
 dta_Shp@data["TrtBin"] <- 0
