@@ -306,15 +306,15 @@ predict_NDVI_max_cat_int <- predict_categorical*Data_Late@data$TrtBin
 
 #_________________________________________________________________________________________
 
-analyticModelEver7 <- "NDVILevelChange_95_10 ~ TrtBin + predict_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+analyticModelLate3 <- "NDVILevelChange_95_10 ~ TrtBin + predict_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
 MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID) + predict_NDVI_max_int"
 
-OutputEver7=Stage2PSM(analyticModelEver7,Data_Late,type="lm",table_out=TRUE)
+OutputEver3=Stage2PSM(analyticModelLate3,Data_Late,type="lm",table_out=TRUE)
 
-analyticModelEver8 <- "NDVILevelChange_95_10 ~ TrtBin + predict_categorical + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
+analyticModelLate4 <- "NDVILevelChange_95_10 ~ TrtBin + predict_categorical + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
 MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + predict_NDVI_max_cat_int +factor(PSM_match_ID) "
 
-OutputEver8=Stage2PSM(analyticModelEver8,Data_Late,type="lm",table_out=TRUE)
+OutputEver4=Stage2PSM(analyticModelLate4,Data_Late,type="lm",table_out=TRUE)
 
 
 
