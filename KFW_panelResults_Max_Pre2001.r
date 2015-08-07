@@ -69,12 +69,12 @@ dta_Shp$post_trend_precip_01_10 <- timeRangeTrend(dta_Shp,"MeanP_[0-9][0-9][0-9]
 #-------------------------------------------------
 #Make a binary to test treatment..
 dta_Shp@data["TrtBin"] <- 0
-dta_Shp@data$TrtBin[dta_Shp@data$regend_y <= 2003] <- 1
-#dta_Shp@data$TrtBin[(dta_Shp@data$demend_m > 4) & (dta_Shp@data$demend_y==2001)] <- 0
+dta_Shp@data$TrtBin[dta_Shp@data$demend_y <= 2001] <- 1
+dta_Shp@data$TrtBin[(dta_Shp@data$demend_m > 4) & (dta_Shp@data$demend_y==2001)] <- 0
 
 #Remove units that did not ever receive any treatment (within-sample test)
 dta_Shp@data$NA_check <- 0
-dta_Shp@data$NA_check[is.na(dta_Shp@data$regend_y)] <- 1
+dta_Shp@data$NA_check[is.na(dta_Shp@data$demend_y)] <- 1
 int_Shp <- dta_Shp[dta_Shp@data$NA_check != 1,]
 dta_Shp <- int_Shp
 
