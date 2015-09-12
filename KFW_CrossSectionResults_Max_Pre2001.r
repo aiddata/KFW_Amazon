@@ -189,10 +189,23 @@ OutputEarly_6=Stage2PSM(analyticModelEarly_6,Data_Early3,type="lm",table_out=TRU
 
 #-----------------------------------------------------------------------
 #Predicted pre trends
-pressure_model_early_max <- "pre_trend_NDVI_max ~ terrai_are + Pop_B + MeanT_B + MeanP_B + pre_trend_temp_mean + 
+dta_Shp2 <- subset(dta_Shp, pre_trend_NDVI_max<0)
+dta_Shp3 <- dta_Shp
+dta_Shp3$BinNDVI=0
+dta_Shp3$BinNDVI[dta_Shp3$pre_trend_NDVI_max<0]=1
+
+summary(pressure_model_early_max <- lm(pre_trend_NDVI_max ~ terrai_are + Pop_1995 + MeanT_1995 + MeanP_1995 + pre_trend_temp_mean + 
 pre_trend_temp_min + pre_trend_temp_max + pre_trend_precip_min + pre_trend_precip_max + pre_trend_precip_mean + 
 Slope + Elevation + Riv_Dist + Road_dist + AvgD_FedCU + AvgD_StaCU + AvgD_Log + AvgD_Rail + 
-AvgD_Mine + AvgD_City" #+ AvgDistanceToMajorCities"
+AvgD_Mine + AvgD_City, data=dta_Shp)) 
+summary(BinNDVI <- glm(pre_trend_NDVI_max ~ terrai_are + Pop_1995 + MeanT_1995 + MeanP_1995 + pre_trend_temp_mean + 
+                                         pre_trend_temp_min + pre_trend_temp_max + pre_trend_precip_min + pre_trend_precip_max + pre_trend_precip_mean + 
+                                         Slope + Elevation + Riv_Dist + Road_dist + AvgD_FedCU + AvgD_StaCU + AvgD_Log + AvgD_Rail + 
+                                         AvgD_Mine + AvgD_City, data=dta_Shp2)) 
+
+#+ AvgDistanceToMajorCities"
+
+
 
 Output_1=Stage2PSM(pressure_model_early_max,Data_Early3,type="lm",table_out=TRUE)
 
