@@ -89,15 +89,17 @@ colnames(urb_trv)[2] <- "UrbTravTime"
 kfw.SPDF <- merge(kfw.SPDF, urb_trv, by.x="id", by.y="id")
 
 #Air Temperature----------------------------------------------
-air_temp <- "input_data/sciclone_extracts/TEMP_extract_merge.csv"
+air_temp <- "input_data/sciclone_extracts/temp_extract_merge.csv"
 air_temp <- read.csv(air_temp)
 
 for (i in 2:length(air_temp))
 {
-  splt <- strsplit(colnames(air_temp)[i],"_")
-  splt[[1]][1] <- sub("X","",splt[[1]][1])
-  month = splt[[1]][2]
-  year = splt[[1]][1]
+  #splt <- strsplit(colnames(air_temp)[i],"_")
+  #splt[[1]][1] <- sub("X","",splt[[1]][1])
+  #month = splt[[1]][2]
+  #year = splt[[1]][1]
+  year = substr(colnames(air_temp)[i], 6, 9)
+  month = substr(colnames(air_temp)[i], 10, 11)
   dt = paste(year,"-",month,sep="")
   colnames(air_temp)[i] <- dt
 }
@@ -127,15 +129,17 @@ kfw.SPDF <- merge(kfw.SPDF, air_temp_min, by.x="id", by.y="id")
 
 
 #Precipitation----------------------------------------------
-precip <- "input_data/sciclone_extracts/PRECIP_extract_merge.csv"
+precip <- "input_data/sciclone_extracts/precip_extract_merge.csv"
 precip <- read.csv(precip)
 
 for (i in 2:length(precip))
 {
-  splt <- strsplit(colnames(precip)[i],"_")
-  splt[[1]][1] <- sub("X","",splt[[1]][1])
-  month = splt[[1]][2]
-  year = splt[[1]][1]
+  #splt <- strsplit(colnames(precip)[i],"_")
+  #splt[[1]][1] <- sub("X","",splt[[1]][1])
+  #month = splt[[1]][2]
+  #year = splt[[1]][1]
+  year = substr(colnames(precip)[i], 6, 9)
+  month = substr(colnames(precip)[i], 10, 11)
   dt = paste(year,"-",month,sep="")
   colnames(precip)[i] <- dt
 }
