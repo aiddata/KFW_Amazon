@@ -1,4 +1,4 @@
-library(GISTools)
+library(maptools)
 library(reshape)
 library(splitstackshape)
 library(ggplot2)
