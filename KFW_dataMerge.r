@@ -89,20 +89,23 @@ colnames(urb_trv)[2] <- "UrbTravTime"
 kfw.SPDF <- merge(kfw.SPDF, urb_trv, by.x="id", by.y="id")
 
 #Air Temperature----------------------------------------------
-air_temp <- "input_data/sciclone_extracts/temp_extract_merge.csv"
+air_temp <-("input_data/sciclone_extracts/temp_extract_merge.csv")
 air_temp <- read.csv(air_temp)
 
-for (i in 2:length(air_temp))
-{
-  #splt <- strsplit(colnames(air_temp)[i],"_")
-  #splt[[1]][1] <- sub("X","",splt[[1]][1])
-  #month = splt[[1]][2]
-  #year = splt[[1]][1]
-  year = substr(colnames(air_temp)[i], 6, 9)
-  month = substr(colnames(air_temp)[i], 10, 11)
-  dt = paste(year,"-",month,sep="")
-  colnames(air_temp)[i] <- dt
+keep <- c("id")
+for (i in 2:length(air_temp)) {
+  
+  if (substr(colnames(air_temp)[i], 1, 4) == "at41") {
+    
+    year = substr(colnames(air_temp)[i], 6, 9)
+    month = substr(colnames(air_temp)[i], 10, 11)
+    dt = paste(year,"-",month,sep="")
+    colnames(air_temp)[i] <- dt
+    
+    keep<-append(keep, dt)
+  } 
 }
+air_temp <- air_temp[keep]
 
 air_temp_ts <- melt(air_temp,id="id")
 air_temp_ts <- cSplit(air_temp_ts, "variable", "-")
@@ -132,17 +135,21 @@ kfw.SPDF <- merge(kfw.SPDF, air_temp_min, by.x="id", by.y="id")
 precip <- "input_data/sciclone_extracts/precip_extract_merge.csv"
 precip <- read.csv(precip)
 
-for (i in 2:length(precip))
-{
-  #splt <- strsplit(colnames(precip)[i],"_")
-  #splt[[1]][1] <- sub("X","",splt[[1]][1])
-  #month = splt[[1]][2]
-  #year = splt[[1]][1]
+keep <- c("id")
+for (i in 2:length(precip)) {
+  
+  if (substr(colnames(precip)[i], 1, 4) == "pc41"){
+
   year = substr(colnames(precip)[i], 6, 9)
   month = substr(colnames(precip)[i], 10, 11)
   dt = paste(year,"-",month,sep="")
   colnames(precip)[i] <- dt
+  
+  keep<-append(keep,dt)
+  }
 }
+
+precip <- precip[keep]
 
 precip_ts <- melt(precip,id="id")
 precip_ts <- cSplit(precip_ts, "variable", "-")
@@ -154,7 +161,7 @@ precip_max <- reshape(precip_ts_max, idvar=c("id"), direction="wide", timevar="v
 precip_min <- reshape(precip_ts_min, idvar=c("id"), direction="wide", timevar="variable_1")
 
 #Rename vars
-for (i in 2:length(air_temp_mean))
+for (i in 2:length(precip_mean))
 {
   colnames(precip_mean)[i] <- sub("value.","MeanP_",colnames(precip_mean)[i])
   colnames(precip_max)[i] <- sub("value.","MaxP_",colnames(precip_max)[i])
