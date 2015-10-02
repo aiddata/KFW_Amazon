@@ -99,7 +99,7 @@ drop_set<- c(drop_unmatched=TRUE,drop_method="NONE",drop_thresh=0.25)
 psm_Pairs <- SAT(dta = psmRes$data, mtd = "fastNN",constraints=c(groups="UF"),psm_eq = psmModel, ids = "id", drop_opts = drop_set, visual="TRUE", TrtBinColName="TrtBin")
 #c(groups=c("UF"),distance=NULL)
 trttable <- table (psm_Pairs@data$TrtBin)
-#View(trttable)
+View(trttable)
 
 
 #-------------------------------------------------
@@ -116,18 +116,39 @@ psm_Long$Year <- as.numeric(psm_Long$Year)
 psm_Long$Post2004 <- 0
 psm_Long$Post2004[psm_Long$Year >= 2004] <- 1
 
-pModelMax_A <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + factor(reu_id) "
-pModelMax_B <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) "
-pModelMax_C <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year"
-pModelMax_D <- "MaxL_ ~ TrtMnt_demend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_ + factor(reu_id) + Year + Post2004 + Post2004*TrtMnt_demend_y + Post2004*TrtMnt_demend_y*Road_dist + Post2004*Road_dist"
-pModelMax_E <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_ + factor(reu_id) + Year + Post2004 + Post2004*TrtMnt_demend_y + Post2004*TrtMnt_demend_y*Road_dist + Post2004*Road_dist"
+#Create arc of deforestation dummy
+psm_Long$arc<-NA
+psm_Long$arc[which(psm_Long$UF=="PA")] <-1
+psm_Long$arc[which(psm_Long$UF!="PA")]<-0
+
+#Create dummy for each year post-demarcation
+DemYears <- summaryBy(TrtMnt_demend_y~reu_id, data=psm_Long,FUN=c(mean,sum))
+psm_Long2 <- psm_Long
+psm_Long3 <- merge(psm_Long2, DemYears, by="reu_id")
+psm_Long<-psm_Long3
+
+pModelMax_A <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + factor(reu_id)"
+pModelMax_B <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + Pop_ + MeanT_ + MeanP_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) "
+pModelMax_C <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + Pop_ + MeanT_ + MeanP_ + MaxT_ + MaxP_ + MinT_ + MinP_  + Year + factor(reu_id)"
+pModelMax_C1 <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + Pop_ + MeanT_ + MeanP_+ MaxT_ + MaxP_ + MinT_ + MinP_  + factor(Year) + factor(reu_id)"
+
+pModelMax_D <- "MaxL_ ~ TrtMnt_demend_y + Pop_+ MeanT_ + MeanP_ + MaxT_ + MaxP_ + MinT_ + MinP_ + factor(Year) + factor(reu_id) + Post2004 + Post2004*TrtMnt_demend_y + Post2004*TrtMnt_demend_y*Road_dist + Post2004*Road_dist"
+pModelMax_E <- "MaxL_ ~ TrtMnt_demend_y + Pop_+TrtMnt_enforce_st + MeanT_ + MeanP_ + MaxT_ + MaxP_ + MinT_ + MinP_ + factor(Year) + factor(reu_id) + Post2004 + Post2004*TrtMnt_demend_y + Post2004*TrtMnt_demend_y*Road_dist + Post2004*Road_dist"
 
 
-pModelMax_A_fit <- Stage2PSM(pModelMax_A ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
+pModelMax_A_fit <- Stage2PSM(pModelMax_A ,psm_Long,type="cmreg", table_out=TRUE,opts=c("reu_id","Year"))
 pModelMax_B_fit <- Stage2PSM(pModelMax_B ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_C_fit <- Stage2PSM(pModelMax_C ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
+pModelMax_C1_fit <- Stage2PSM(pModelMax_C1 ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_D_fit <- Stage2PSM(pModelMax_D ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_E_fit <- Stage2PSM(pModelMax_E ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
+
+#Interaction with number of years post demarcation (to 2010 end year)
+pModelMax_F <- "MaxL_ ~ TrtMnt_demend_y + Pop_ + MeanT_ + MeanP_+ MaxT_ + MaxP_ + MinT_ + MinP_  + TrtMnt_demend_y*factor(TrtMnt_demend_y.sum) + factor(Year) + factor(reu_id)"
+pModelMax_G <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + Pop_ + MeanT_ + MeanP_+ MaxT_ + MaxP_ + MinT_ + MinP_  + TrtMnt_demend_y*factor(TrtMnt_demend_y.sum) + factor(Year) + factor(reu_id)"
+
+pModelMax_F_fit <- Stage2PSM(pModelMax_F ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
+pModelMax_G_fit <- Stage2PSM(pModelMax_G ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 
 
 ##texreg to output regression results visualizations
@@ -147,10 +168,22 @@ stargazer(pModelMax_A_fit$cmreg,pModelMax_B_fit$cmreg,pModelMax_C_fit$cmreg,pMod
           dep.var.labels=c("Max NDVI")
 )
 
-## stargazer output with variable names instead of labels
-# stargazer(pModelMax_A_fit$cmreg,pModelMax_B_fit$cmreg,pModelMax_C_fit$cmreg,pModelMax_D_fit$cmreg,pModelMax_E_fit$cmreg,type="html",align=TRUE,keep=c("TrtMnt_demend_y","TrtMnt_enforce_st","MeanT_","MeanP_","Pop_","MaxT_","MaxP_","MinT_","MinP_","Year","Post2004","TrtMnt_demend_y:Post2004","Post2004:Road_dist","TrtMnt_demend_y:Road_dist","TrtMnt_demend_y:Post2004:Road_dist"),
-#           covariate.labels=c("TrtMntDem","TrtMntEnf","MeanT","MeanP","Pop","MaxT","MaxP","MinT","MinP","Year","Post2004","Post04*TrtMntDem","Post04*RoadDist","TrtMntDem*RoadDist","TrtMntDem*RoadDist*Post2004"),
-#           omit.stat=c("f","ser"),
-#           title="Regression Results",
-#           dep.var.labels=c("Max NDVI")
-# )
+
+stargazer(pModelMax_A_fit$cmreg,pModelMax_B_fit$cmreg,pModelMax_C_fit$cmreg,pModelMax_C1_fit$cmreg,pModelMax_D_fit$cmreg,pModelMax_E_fit$cmreg,
+          type="html",align=TRUE,
+          keep=c("TrtMnt_demend_y","TrtMnt_enforce_st","MeanT_","MeanP_","Pop_","MaxT_","MaxP_","MinT_","MinP_",
+                 "Year","Post2004","TrtMnt_demend_y:Post2004","Post2004:Road_dist","TrtMnt_demend_y:Road_dist",
+                 "TrtMnt_demend_y:Post2004:Road_dist"),
+#           covariate.labels=c("Treatment (Demarcation)","Treatment (Enforcement Support)","Mean Temp",
+#                              "Mean Precip","Population","Max Temperature","Max Precipitation","Min Temperature","Min Precipitation","Year","Post2004","Post2004*TreatmentDemarcation","Post2004*Road Distance","TreatmentDemarcation*Road Distance","Post2004*TreatmentDemarcation*Road Distance"),
+          omit.stat=c("f","ser"),
+          title="Regression Results",
+          dep.var.labels=c("Max NDVI")
+)
+
+stargazer(pModelMax_C1_fit$cmreg,pModelMax_F_fit$cmreg,pModelMax_G_fit$cmreg,
+          type="html", align=TRUE,
+          keep=c("TrtMnt","Pop","Mean","Max","Min","Year","factor"),
+          title="Regression Results",
+          dep.var.labels=c("Max NDVI"))
+
