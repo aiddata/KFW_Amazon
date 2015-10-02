@@ -425,8 +425,17 @@ MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + predic
 OutputLate4=Stage2PSM(analyticModelLate4,Data_Late,type="lm",table_out=TRUE)
 
 #-------------------------------------------------------------------------------------
+#without enforcement years
+stargazer(OutputEarly2$standardized,OutputEarly3$standardized,OutputLate$standardized,
+          keep=c("TrtBin", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B", "MeanT_B","post_trend_temp","MeanP_B",
+                 "post_trend_precip", "Slope","Elevation","Riv_Dist","Road_dist"),
+          covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI","Area (hectares)", "Baseline Population Density",
+                             "Baseline Temperature", "Temperature Trends", "Baseline Precipitation", "Precipitation Trends",
+                             "Slope", "Elevation", "Distance to River", "Distance to Road"),
+          dep.var.labels=c("Max NDVI 1995-2001 "," Max NDVI 2001-2010"),
+          title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
 
-
+#with enforcement years
 stargazer(OutputEarly2$standardized,OutputEarly3$standardized,OutputLate$standardized,OutputLate_Enf$standardized,
           keep=c("TrtBin", "enforce_to", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_B", "MeanT_B","post_trend_temp","MeanP_B",
                  "post_trend_precip", "Slope","Elevation","Riv_Dist","Road_dist"),
