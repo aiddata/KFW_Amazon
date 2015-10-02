@@ -118,15 +118,25 @@ varList = c("MeanL_","MaxL_")
 psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1982,2010,colYears=c("demend_y","apprend_y","regend_y"),interpYears=c("Slope","Road_dist","Riv_Dist","UF","Elevation","terrai_are","Pop_","MeanT_","MeanP_","MaxT_","MaxP_","MinP_","MinT_"))
 psm_Long$Year <- as.numeric(psm_Long$Year)
 
+write.csv(psm_Long,file="/Users/rbtrichler/Documents/AidData/KFW Brazil Eval/KFW/KFW_Comm/psm_Long.csv")
 
+#create dummy for being in UF in arc of deforestation (para, mato grosso, rondonia, maranhao, tocantins)
+psm_Long$arc<-NA
+psm_Long$arc[which(psm_Long$UF=="PA")] <-1
+psm_Long$arc[which(psm_Long$UF!="PA")]<-0
 
-pModelMax_A <- "MaxL_ ~ TrtMnt_regend_y + factor(reu_id) "
-pModelMax_B <- "MaxL_ ~ TrtMnt_regend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) "
-pModelMax_C <- "MaxL_ ~ TrtMnt_regend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + Year"
+pModelMax_A <- "MaxL_ ~ TrtMnt_demend_y + factor(reu_id) "
+pModelMax_B <- "MaxL_ ~ TrtMnt_demend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) "
+pModelMax_C <- "MaxL_ ~ TrtMnt_demend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + Year + factor(reu_id)"
+pModelMax_D <- "MaxL_ ~ TrtMnt_demend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) + factor(Year)"
+pModelMax_E <- "MaxL_ ~ TrtMnt_demend_y + MeanT_ + MeanP_ + Pop_ + MaxT_ + MaxP_ + MinT_ + MinP_  + TrtMnt_demend_y*arc + factor(reu_id) + factor(Year)"
 
 pModelMax_A_fit <- Stage2PSM(pModelMax_A ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_B_fit <- Stage2PSM(pModelMax_B ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_C_fit <- Stage2PSM(pModelMax_C ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
+pModelMax_D_fit <- Stage2PSM(pModelMax_D ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
+pModelMax_E_fit <- Stage2PSM(pModelMax_E ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
+
 
 #------------------------------------------------------------------------
 #------------------------------------------------------------------------
