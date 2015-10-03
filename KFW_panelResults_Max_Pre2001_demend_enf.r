@@ -84,8 +84,13 @@ dta_Shp <- int_Shp
 #-------------------------------------------------
 psmModel <-  "TrtBin ~ terrai_are + Pop_1990 + MeanT_1995 + pre_trend_temp_mean + pre_trend_temp_min + 
 pre_trend_temp_max + MeanP_1995 + pre_trend_precip_min + 
-pre_trend_NDVI_mean + pre_trend_NDVI_max + Slope + Elevation +  MeanL_1995 + MaxL_1995 + Riv_Dist + Road_dist +
+pre_trend_NDVI_mean + pre_trend_NDVI_max + Slope + Elevation + MaxL_1995 + Riv_Dist + Road_dist +
 pre_trend_precip_mean + pre_trend_precip_max"
+
+psmModel <-  "TrtBin ~  Slope + Elevation + Road_dist"
+
+#psmModel <- "TrtBin ~ Pop_1990 + MeanT_1995 + pre_trend_temp_mean + pre_trend_temp_min +
+#MeanP_1995 + Slope + Elevation + MaxL_1995  + Road_dist"
 
 psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=TRUE)
 
@@ -127,10 +132,12 @@ psm_Long2 <- psm_Long
 psm_Long3 <- merge(psm_Long2, DemYears, by="reu_id")
 psm_Long<-psm_Long3
 
+
 pModelMax_A <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + factor(reu_id)"
 pModelMax_B <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + Pop_ + MeanT_ + MeanP_ + MaxT_ + MaxP_ + MinT_ + MinP_  + factor(reu_id) "
 pModelMax_C <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + Pop_ + MeanT_ + MeanP_ + MaxT_ + MaxP_ + MinT_ + MinP_  + Year + factor(reu_id)"
-pModelMax_C1 <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + Pop_ + MeanT_ + MeanP_+ MaxT_ + MaxP_ + MinT_ + MinP_  + factor(Year) + factor(reu_id)"
+pModelMax_C1 <- "MaxL_ ~ TrtMnt_demend_y + Pop_ + MeanT_ + MeanP_+ MaxT_ + MaxP_ + MinT_ + MinP_  + factor(Year) + factor(reu_id)"
+pModelMax_C2 <- "MaxL_ ~ TrtMnt_demend_y + TrtMnt_enforce_st + Pop_ + MeanT_ + MeanP_+ MaxT_ + MaxP_ + MinT_ + MinP_  + factor(Year) + factor(reu_id)"
 
 pModelMax_D <- "MaxL_ ~ TrtMnt_demend_y + Pop_+ MeanT_ + MeanP_ + MaxT_ + MaxP_ + MinT_ + MinP_ + factor(Year) + factor(reu_id) + Post2004 + Post2004*TrtMnt_demend_y + Post2004*TrtMnt_demend_y*Road_dist + Post2004*Road_dist"
 pModelMax_E <- "MaxL_ ~ TrtMnt_demend_y + Pop_+TrtMnt_enforce_st + MeanT_ + MeanP_ + MaxT_ + MaxP_ + MinT_ + MinP_ + factor(Year) + factor(reu_id) + Post2004 + Post2004*TrtMnt_demend_y + Post2004*TrtMnt_demend_y*Road_dist + Post2004*Road_dist"
@@ -140,6 +147,8 @@ pModelMax_A_fit <- Stage2PSM(pModelMax_A ,psm_Long,type="cmreg", table_out=TRUE,
 pModelMax_B_fit <- Stage2PSM(pModelMax_B ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_C_fit <- Stage2PSM(pModelMax_C ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_C1_fit <- Stage2PSM(pModelMax_C1 ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
+pModelMax_C2_fit <- Stage2PSM(pModelMax_C2 ,psm_Long,type="cmreg", table_out=TRUE,opts=c("reu_id","Year"))
+
 pModelMax_D_fit <- Stage2PSM(pModelMax_D ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 pModelMax_E_fit <- Stage2PSM(pModelMax_E ,psm_Long,type="cmreg", table_out=TRUE, opts=c("reu_id","Year"))
 
@@ -187,3 +196,14 @@ stargazer(pModelMax_C1_fit$cmreg,pModelMax_F_fit$cmreg,pModelMax_G_fit$cmreg,
           title="Regression Results",
           dep.var.labels=c("Max NDVI"))
 
+stargazer(pModelMax_A_fit$cmreg,pModelMax_B_fit$cmreg,pModelMax_C_fit$cmreg,pModelMax_C1_fit$cmreg,pModelMax_C2_fit$cmreg,
+          type="html", align=TRUE,
+          keep=c("TrtMnt","Pop","Mean","Max","Min","Year"),
+          covariate.labels=c("Treatment (Demarcation)","Treatment (Enforcement)","Population","Mean Temp",
+                             "Mean Precip","Max Temp","Max Precip","Min Temp","Min Precip","Year"),
+          omit.stat=c("f","ser"),
+          add.lines=list(c("Observations","3074","3074","3074","3074","3074"),
+                         c("Community Fixed Effects?","Yes","Yes","Yes","Yes","Yes"),
+                         c("Year Fixed Effects?","No","No","No","Yes","Yes")),
+          title="Regression Results",
+          dep.var.labels=c("Max NDVI"))
