@@ -86,8 +86,10 @@ dta_Shp <- int_Shp
 #-------------------------------------------------
 psmModel <-  "TrtBin ~ terrai_are + Pop_1990 + MeanT_1995 + pre_trend_temp_mean + pre_trend_temp_min + 
 pre_trend_temp_max + MeanP_1995 + pre_trend_precip_min + 
-pre_trend_NDVI_mean + pre_trend_NDVI_max + Slope + Elevation +  MeanL_1995 + MaxL_1995 + Riv_Dist + Road_dist +
-pre_trend_precip_mean + pre_trend_precip_max"
+pre_trend_NDVI_mean + pre_trend_NDVI_max + Slope + Elevation + MaxL_1995 + Riv_Dist + Road_dist +
+pre_trend_precip_mean + pre_trend_precip_max" 
+#MeanL_1995 + 
+
 
 psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=FALSE)
 
@@ -179,4 +181,10 @@ stargazer(pModelMax_A_fit $cmreg,pModelMax_B_fit $cmreg,pModelMax_C_fit $cmreg,t
           title="Regression Results",
           dep.var.labels=c("Max NDVI")
 )
+
+#Workspace
+
+plot(dta_Shp@data$demend_y, dta_Shp@data$pre_trend_NDVI_max)
+plot(psm_Pairs@data$demend_y, psm_Pairs@data$pre_trend_NDVI_max)
+
 
