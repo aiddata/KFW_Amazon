@@ -85,8 +85,9 @@ table(dta_Shp@data$TrtBin)
 #-------------------------------------------------
 psmModel <-  "TrtBin ~ terrai_are + Pop_1990 + MeanT_1995 + pre_trend_temp_mean + pre_trend_temp_min + 
 pre_trend_temp_max + MeanP_1995 + pre_trend_precip_min + 
-pre_trend_NDVI_mean + pre_trend_NDVI_max + Slope + Elevation +  MeanL_1995 + MaxL_1995 + Riv_Dist + Road_dist +
+pre_trend_NDVI_mean + pre_trend_NDVI_max + Slope + Elevation + MaxL_1995 + Riv_Dist + Road_dist +
 pre_trend_precip_mean + pre_trend_precip_max"
+#MeanL_1995
 
 psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=TRUE)
 
@@ -143,7 +144,7 @@ MeanP_B + post_trend_precip + Slope + Elevation + Riv_Dist + Road_dist + factor(
 OutputEarly3=Stage2PSM(analyticModelEarly3,Data_Early3,type="lm",table_out=TRUE)
 
 
-#analyticalModelEver4, pair FEs, include enforcement years total as covar, 1995-2010
+#analyticalModelEarly4, pair FEs, include enforcement years total as covar, 1995-2010
 Data_Early4 <- psm_Pairs
 colnames(Data_Early4@data)[(colnames(Data_Early4@data)=="Pop_1990")] <- "Pop_B"
 colnames(Data_Early4@data)[(colnames(Data_Early4@data)=="MeanT_1995")] <- "MeanT_B"
