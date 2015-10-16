@@ -88,7 +88,7 @@ pre_trend_NDVI_mean + pre_trend_NDVI_max + Slope + Elevation + MaxL_1995 + Riv_D
 pre_trend_precip_mean + pre_trend_precip_max"
 
 
-#psmModel <-  "TrtBin ~  Slope + Elevation + Road_dist"
+psmModel <-  "TrtBin ~  Slope + Elevation + Road_dist + pre_trend_temp_min"
 
 #psmModel <- "TrtBin ~ Pop_1990 + MeanT_1995 + pre_trend_temp_mean + pre_trend_temp_min +
 #MeanP_1995 + Slope + Elevation + MaxL_1995  + Road_dist"
@@ -201,7 +201,7 @@ stargazer(pModelMax_A_fit$cmreg,pModelMax_B_fit$cmreg,pModelMax_C_fit$cmreg,
           pModelMax_C2_fit$cmreg,pModelMax_D_fit$cmreg,pModelMax_E_fit$cmreg,
           type="html", align=TRUE,
           keep=c("TrtMnt","Pop","Mean","Max","Min","Year","Post2004","Road_dist"),
-          covariate.labels=c("Treatment (Demarcation)","Treatment (Enforcement)","Population","Mean Temp",
+          covariate.labels=c("Treatment (Demarcation)","Treatment (Demarcation + Enforcement Support)","Population","Mean Temp",
                              "Mean Precip","Max Temp","Max Precip","Min Temp","Min Precip","Year"),
           omit.stat=c("f","ser"),
           add.lines=list(c("Observations","1914","1914","1914","1914","1914","1914"),
@@ -209,3 +209,17 @@ stargazer(pModelMax_A_fit$cmreg,pModelMax_B_fit$cmreg,pModelMax_C_fit$cmreg,
                          c("Year Fixed Effects?","No","No","No","Yes","Yes","Yes")),
           title="Regression Results",
           dep.var.labels=c("Max NDVI"))
+
+stargazer(pModelMax_A_fit$cmreg,pModelMax_B_fit$cmreg,pModelMax_C_fit$cmreg,
+          pModelMax_C1_fit$cmreg,pModelMax_C2_fit$cmreg,
+          type="html", align=TRUE,
+          keep=c("TrtMnt","Pop","Mean","Max","Min","Year"),
+          covariate.labels=c("Treatment (Demarcation)","Treatment (Demarcation + Enforcement Support)","Population","Mean Temp",
+                             "Mean Precip","Max Temp","Max Precip","Min Temp","Min Precip","Year"),
+          omit.stat=c("f","ser"),
+          add.lines=list(c("Observations","2146","2146","2146","2146","2146"),
+                         c("Community Fixed Effects?","Yes","Yes","Yes","Yes","Yes","Yes"),
+                         c("Year Fixed Effects?","No","No","No","Yes","Yes")),
+          title="Regression Results",
+          dep.var.labels=c("Max NDVI"))
+

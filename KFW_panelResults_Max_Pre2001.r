@@ -184,7 +184,10 @@ stargazer(pModelMax_A_fit $cmreg,pModelMax_B_fit $cmreg,pModelMax_C_fit $cmreg,t
 
 #Workspace
 
-plot(dta_Shp@data$demend_y, dta_Shp@data$pre_trend_NDVI_max)
+plot(dta_Shp@data$demend_y, dta_Shp@data$pre_trend_NDVI_max, 
+     xlab="Community Demarcation Year",ylab="NDVI Max Pre Trend")
 plot(psm_Pairs@data$demend_y, psm_Pairs@data$pre_trend_NDVI_max)
+
+ViewTimeSeries(dta_Shp@data,dta_Shp@data$reu_id,dta_Shp@data$demend_y, dta_Shp@data$MaxL_[0-9][0-9][0-9][0-9])
 
 
