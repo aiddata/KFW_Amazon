@@ -117,7 +117,7 @@ View(trttable)
 #psm_Pairs$enforce_st <- as.numeric(paste(psm_Pairs$enforce_st))
 
 varList = c("MeanL_","MaxL_")
-psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1982,2010,colYears=c("demend_y","apprend_y","regend_y"),interpYears=c("Slope","Road_dist","Riv_Dist","UF","Elevation","terrai_are","Pop_","MeanT_","MeanP_","MaxT_","MaxP_","MinP_","MinT_"))
+psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1982,2010,colYears=c("demend_y","apprend_y","regend_y"),interpYears=c("Slope","Road_dist","Riv_Dist","UF","Elevation","terrai_are","Pop_","MeanT_","MeanP_","MaxT_","MaxP_","MinP_","MinT_","TrtBin"))
 psm_Long$Year <- as.numeric(psm_Long$Year)
 
 write.csv(psm_Long,file="/Users/rbtrichler/Documents/AidData/KFW Brazil Eval/KFW/KFW_Comm/psm_Long.csv")
@@ -184,10 +184,33 @@ stargazer(pModelMax_A_fit $cmreg,pModelMax_B_fit $cmreg,pModelMax_C_fit $cmreg,t
 
 #Workspace
 
+#pre-trend NDVI scatter plot
 plot(dta_Shp@data$demend_y, dta_Shp@data$pre_trend_NDVI_max, 
      xlab="Community Demarcation Year",ylab="NDVI Max Pre Trend")
 plot(psm_Pairs@data$demend_y, psm_Pairs@data$pre_trend_NDVI_max)
 
-ViewTimeSeries(dta_Shp@data,dta_Shp@data$reu_id,dta_Shp@data$demend_y, dta_Shp@data$MaxL_[0-9][0-9][0-9][0-9])
+# time series graph with year effects stripped out
 
+reg=lm(MaxL_ ~ factor(Year), data=psm_Long)
+psm_Long$resid <- residuals(reg)
+plot(psm_Long$resid)
+
+ViewTimeSeries(dta=dta_Shp,IDfield="reu_id",TrtField="TrtBin",idPre="MaxL_[0-9][0-9][0-9][0-9]")
+psm_Long2 <- psm_Long
+
+psm_Long2 <- psm_Long[c("Year","resid","reu_id","TrtBin")]
+
+ggplot(data = psm_Long2, aes(x=Year, y=resid, group=reu_id,colour=factor(TrtBin))) + 
+  #geom_point(size=.5) +
+  geom_line(size=.5, linetype=2) +
+  stat_summary(fun.y=mean,aes(x=Year, y=resid, group=TrtBin,colour=factor(TrtBin)),data=psm_Long2,geom='line',size=1.5)+
+  theme(axis.text.x=element_text(angle=90,hjust=1))
+
+
+stat_summary(fun.y=mean,aes(x=Year, y=resid, group="reu_id",colour=factor(TrtBin)),data=psm_Long2,geom='line',size=1.5)+
+  
+ggplot(data = psm_Long2, aes(x=Year, y=resid, group="reu_id",colour=factor(TrtBin))) + 
+  
+  stat_summary(fun.y=mean,aes(x=Year, y=resid, group="reu_id",colour=factor(TrtBin)),data=psm_Long2,geom='line',size=1.5)+
+  theme(axis.text.x=element_text(angle=90,hjust=1))
 
