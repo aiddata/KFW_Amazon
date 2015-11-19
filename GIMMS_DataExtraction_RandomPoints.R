@@ -35,7 +35,7 @@ KFW_post2001$area <- get_area(KFW_post2001)
 
 
 tot_area <- sum(KFW_post2001$area)
-samples = 100000
+samples = 10000
 
 all_pts <- matrix(as.numeric(NA), nlevels(KFW_post2001$reu_id), 1)
 all_pts <- as.list(all_pts)
@@ -47,7 +47,8 @@ for(i in 1:length(KFW_post2001))
 {
   
   num_points = round(KFW_post2001@data$area[[i]]/tot_area, 5) * samples
-  
+  print(num_points)
+  print(round(KFW_post2001@data$area[[i]]/tot_area, 5))
   cur_id = KFW_post2001@data$reu_id[[i]]
   KFW_SinglePoly <- KFW_post2001[which(KFW_post2001@data$reu_id == cur_id),]
 
