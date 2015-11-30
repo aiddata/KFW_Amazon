@@ -182,7 +182,7 @@ stargazer(pModelMax_A_fit $cmreg,pModelMax_B_fit $cmreg,pModelMax_C_fit $cmreg,t
           dep.var.labels=c("Max NDVI")
 )
 
-#Workspace
+##Workspace
 
 #pre-trend NDVI scatter plot
 plot(dta_Shp@data$demend_y, dta_Shp@data$pre_trend_NDVI_max, 
