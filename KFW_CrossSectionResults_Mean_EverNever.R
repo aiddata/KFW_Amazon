@@ -282,4 +282,4 @@ stargazer(OutputEver2$standardized, OutputEver3$standardized, OutputEver4$standa
                              "Baseline Temperature", "Temperature Trends", "Baseline Precipitation", "Precipitation Trends",
                              "Slope", "Elevation", "Distance to River", "Distance to Road"),
           dep.var.labels=c("Mean NDVI 1995-2010"),
-          title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
+          title="Regression Results", type="latex", omit.stat=c("f","ser"), align=TRUE)
