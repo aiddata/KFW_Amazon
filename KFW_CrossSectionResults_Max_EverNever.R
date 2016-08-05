@@ -83,6 +83,7 @@ dta_Shp <- proj_Shp
 projtable <- table(proj_Shp@data$proj_check)
 View(projtable)
 
+write.csv (dta_Shp@data, "/Users/rbtrichler/Google Drive/AidData (1)/Project Management/REU/KfW Brazil Evaluation/Data/PPTAL_151lands_demdates.csv")
 
 #Make a binary for ever treated vs. never treated
 dta_Shp@data["TrtBin"] <- 0
