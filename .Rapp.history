@@ -1,0 +1,13 @@
+shpfile = "processed_data/kfw_analysis_inputs.shp"#
+dta_Shp = readShapePoly(shpfile)
+library(devtools)#
+devtools::install_github("itpir/SAT@master")#
+library(SAT)#
+library(stargazer)#
+library(lmtest)#
+library(multiwayvcov)#
+loadLibs()
+shpfile = "processed_data/kfw_analysis_inputs.shp"#
+dta_Shp = readShapePoly(shpfile)
+dta_Shp$pre_trend_NDVI_mean <- timeRangeTrend(dta_Shp,"MeanL_[0-9][0-9][0-9][0-9]",1982,1995,"SP_ID")
+View(dta_Shp@data)
