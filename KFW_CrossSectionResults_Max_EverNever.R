@@ -2,7 +2,7 @@
 #-------------------------------------------------
 #Cross Sectional Models - KFW
 #Testing in Cross Section the impact of being treated EVER vs. not being treated
-#On the Mean Level of NDVI, measured as a change in the level of NDVI between start and end year (1995-2010)
+#On the Max Level of NDVI, measured as a change in the level of NDVI between start and end year (1995-2010)
 #-------------------------------------------------
 #-------------------------------------------------
 library(devtools)
