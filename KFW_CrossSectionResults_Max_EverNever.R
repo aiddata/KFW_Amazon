@@ -143,6 +143,9 @@ summary(analyticModelEver1B <- lm(NDVILevelChange_95_10 ~ TrtBin, data=psm_Pairs
 
 analyticModelEver2 <- "NDVILevelChange_95_10 ~ TrtBin + factor(PSM_match_ID)"
 
+analyticModelEver2 <- lm(NDVILevelChange_95_10 ~ TrtBin + factor(PSM_match_ID), data=psm_PairsB)
+
+
 OutputEver2=Stage2PSM(analyticModelEver2,psm_Pairs,type="lm",table_out=TRUE)
 
 #analyticModelEver3, pair FEs, covars, 1995-2010

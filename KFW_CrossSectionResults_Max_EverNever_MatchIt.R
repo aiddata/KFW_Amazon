@@ -79,10 +79,10 @@ demtable <- table(dta_Shp@data$TrtBin)
 View(demtable)
 
 #--------------------------
-#Matching
+#Matching, with replacement
 #--------------------------
 
-aVars <- c("reu_id","UF","TrtBin", "terrai_are","Pop_1990","terrai_are", "Pop_1990", "MeanT_1995", "pre_trend_temp_mean",
+aVars <- c("reu_id","UF","TrtBin", "terrai_are","Pop_1990", "MeanT_1995", "pre_trend_temp_mean",
            "pre_trend_temp_min", "pre_trend_temp_max", "MeanP_1995", "pre_trend_precip_min", 
            "pre_trend_NDVI_mean", "pre_trend_NDVI_max","Slope","Elevation","MaxL_1995","Riv_Dist","Road_dist",
            "pre_trend_precip_mean", "pre_trend_precip_max",
@@ -101,17 +101,49 @@ print(summary(psmModel))
 
 model_data<-match.data(psmModel)
 
-model <- lm(NDVILevelChange_95_10 ~ TrtBin, data=model_data)
+##create standardized dataset to produce standardized coefficients in models that are easy to output
 
-model2<-lm(NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_1990 + MeanT_1995 + 
-             post_trend_temp_min + post_trend_temp_mean + post_trend_temp_max +
-             post_trend_precip_min+post_trend_precip_mean + post_trend_precip_max +
-             MeanP_1995 + Slope + Elevation  + Riv_Dist + Road_dist, data=model_data, weights=(weights))
+stvars <- c("TrtBin", "terrai_are","Pop_1990", "MeanT_1995", "pre_trend_temp_mean",
+           "pre_trend_temp_min", "pre_trend_temp_max", "MeanP_1995", "pre_trend_precip_min", 
+           "pre_trend_NDVI_mean", "pre_trend_NDVI_max","Slope","Elevation","MaxL_1995","Riv_Dist","Road_dist",
+           "pre_trend_precip_mean", "pre_trend_precip_max",
+           "NDVILevelChange_95_10","post_trend_temp_mean","post_trend_temp_min","post_trend_temp_max",
+           "post_trend_precip_mean","post_trend_precip_min","post_trend_precip_max")
+
+model_data_st<- model_data
+model_data_st[stvars]<-lapply(model_data_st[stvars],scale)
+
+#-------------
+#MODELS
+#-------------
+#when use model_data_st, coefficients are standardized
+
+model2 <- lm(NDVILevelChange_95_10 ~ TrtBin, data=model_data_st, weights=(weights))
+
+model3<-lm(NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_1990 + MeanT_1995 + 
+             post_trend_temp_mean + 
+             post_trend_precip_mean + 
+             MeanP_1995 + Slope + Elevation  + Riv_Dist + Road_dist, data=model_data_st, weights=(weights))
 
 
-analyticModelEver2 <- "NDVILevelChange_95_10 ~ TrtBin + factor(PSM_match_ID)"
+#-------------
+#Stargazer
+#-------------
 
-analyticModelEver3 <- "NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_B + MeanT_B + post_trend_temp +
-MeanP_B + post_trend_precip + Slope + Elevation  + Riv_Dist + Road_dist + factor(PSM_match_ID)"
+stargazer(model2, model3,
+          keep=c("TrtBin", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_1990","MeanT_1995","post_trend_temp","MeanP_1995",
+                 "post_trend_precip","Slope","Elevation","Riv_Dist","Road_dist"),
+          covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI", "Area (hectares)","Baseline Population Density",
+                             "Baseline Temperature", "Temperature Trends", "Precipitation Trends","Baseline Precipitation", 
+                             "Slope", "Elevation", "Distance to River", "Distance to Road"),
+          dep.var.labels=c("Max NDVI 1995-2010"),
+          title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
 
-write.csv(dta_Shp@data,
+
+
+          
+
+
+
+
+
