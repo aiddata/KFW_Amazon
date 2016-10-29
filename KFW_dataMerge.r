@@ -51,6 +51,21 @@ for (i in 2:length(LTDR_max))
 #Merge it in
 kfw.SPDF <- merge(kfw.SPDF, LTDR_max, by.x="id", by.y="id")
 
+#Continuous NDVI - LTDR - median of the yearly max-----------------------------
+#Merge in median NDVI (median of the yearly max by community)
+LTDR_median <-read.csv("input_data/sciclone_extracts/medianNDVI_terra_indigenaPolygon_id_thin.csv")
+LTDR_median<-LTDR_median[,!names(LTDR_median) %in% "SP_ID"]
+LTDR_median[,2:33]<- LTDR_median[,2:33]/10000
+
+#Rename columns...
+for (i in 2:length(LTDR_median))
+{
+  colnames(LTDR_median)[i] <- sub("ltdr_yearly_ndvi_max.","MedL_",colnames(LTDR_median)[i])
+  colnames(LTDR_median)[i]<-sub(".median","",colnames(LTDR_median)[i])
+}
+
+#Merge it in
+kfw.SPDF <- merge(kfw.SPDF, LTDR_median, by.x="id", by.y="id")
 
 #Slope ----------------------------------------------------
 SRTM_slope <- "input_data/sciclone_extracts/SRTM_500m_slope.shp"
@@ -222,3 +237,6 @@ KFW_covars <- read.csv(KFW_covars)
 kfw.SPDF <- merge (kfw.SPDF, KFW_covars, by.x="id", by.y="id")
 
 writePolyShape(kfw.SPDF,"processed_data/kfw_analysis_inputs.shp")
+
+#kfw.SPDF<-readShapePoly("processed_data/kfw_analysis_inputs.shp")
+#kfw.SPDF<-kfw.SPDF[,1:341]
