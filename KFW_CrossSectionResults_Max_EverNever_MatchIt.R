@@ -80,6 +80,7 @@ View(demtable)
 
 #--------------------------
 #Matching, with replacement
+#Uses MatchIt
 #--------------------------
 
 aVars <- c("reu_id","UF","TrtBin", "terrai_are","Pop_1990", "MeanT_1995", "pre_trend_temp_mean",
@@ -100,6 +101,34 @@ psmModel <- matchit(TrtBin ~ terrai_are + Pop_1990 + MeanT_1995 + pre_trend_temp
 print(summary(psmModel))
 
 model_data<-match.data(psmModel)
+
+#create variable to use for weighting in models (1/pscore * weight)
+model_data$psmweight<-(1/model_data$distance)*(model_data$weights)
+
+#-------------------------
+#Matching without Replacement
+#Using old SCI package, not MatchIt (to preserve pair ids, and results from initial journal submission)
+#-------------------------
+
+psmModel <-  "TrtBin ~ terrai_are + Pop_1990 + MeanT_1995 + pre_trend_temp_mean + pre_trend_temp_min + 
+pre_trend_temp_max + MeanP_1995 + pre_trend_precip_min + 
+pre_trend_NDVI_mean + pre_trend_NDVI_max + Slope + Elevation + MaxL_1995 + Riv_Dist + Road_dist +
+pre_trend_precip_mean + pre_trend_precip_max"
+#MeanL_1995
+
+psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=FALSE)
+
+#-------------------------------------------------
+#-------------------------------------------------
+#Based on the Propensity Score Matches, pair comprable treatment and control units.
+#-------------------------------------------------
+#-------------------------------------------------
+drop_set<- c(drop_unmatched=TRUE,drop_method="None",drop_thresh=0.5)
+psm_Pairs <- SAT(dta = psmRes$data, mtd = "fastNN",constraints=c(groups="UF"),psm_eq = psmModel, ids = "id", drop_opts = drop_set, visual="TRUE", TrtBinColName="TrtBin")
+#c(groups=c("UF"),distance=NULL)
+trttable <- table (psm_Pairs@data$TrtBin)
+View(trttable)
+
 
 ##create standardized dataset to produce standardized coefficients in models that are easy to output
 
@@ -126,16 +155,28 @@ model3u<-lm(NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + te
              post_trend_precip_mean + 
              MeanP_1995 + Slope + Elevation  + Riv_Dist + Road_dist, data=dta_Shp@data)
 
+## Matching without Replacement, Data Models (also uses old SCI package, not MatchIt)
+#analyticModelEver2, pair FEs, no covars, 1995-2010
+analyticModelEver2 <- "NDVILevelChange_95_10 ~ TrtBin + factor(PSM_match_ID)"
 
-##Matched Data Models
+OutputEver2=Stage2PSM(analyticModelEver2,psm_Pairs,type="lm",table_out=TRUE)
+
+#analyticModelEver3, pair FEs, covars, 1995-2010
+analyticModelEver3 <- "NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_1990 + MeanT_1995  +
+MeanP_1995 + post_trend_temp_mean + post_trend_precip_mean + Slope + Elevation  + Riv_Dist + Road_dist + 
+factor(PSM_match_ID)"
+
+OutputEver3=Stage2PSM(analyticModelEver3,psm_Pairs,type="lm",table_out=TRUE)
+
+##Matching with Replacement, Data Models
 #when use model_data_st, coefficients are standardized
 
-model2 <- lm(NDVILevelChange_95_10 ~ TrtBin, data=model_data, weights=(weights))
+model2 <- lm(NDVILevelChange_95_10 ~ TrtBin, data=model_data, weights=(psmweight))
 
 model3<-lm(NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_1990 + MeanT_1995 + 
              post_trend_temp_mean + 
              post_trend_precip_mean + 
-             MeanP_1995 + Slope + Elevation  + Riv_Dist + Road_dist, data=model_data, weights=(weights))
+             MeanP_1995 + Slope + Elevation  + Riv_Dist + Road_dist, data=model_data, weights=(psmweight))
 
 
 #-------------
@@ -170,6 +211,17 @@ stargazer(model2u, model3u,model2, model3,
           dep.var.labels=c("Max NDVI 1995-2010"),
           title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
 
+## FINAL TABLE FOR JEEM REVISION
+
+stargazer(model2u, model3u,OutputEver2$unstandardized,OutputEver3$unstandardized,model2, model3,
+          omit=c("factor"),
+          keep=c("TrtBin", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_1990","MeanT_1995","post_trend_temp","MeanP_1995",
+                 "post_trend_precip","Slope","Elevation","Riv_Dist","Road_dist"),
+          covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI", "Area (hectares)","Baseline Population Density",
+                             "Baseline Temperature", "Temperature Trends", "Precipitation Trends","Baseline Precipitation", 
+                             "Slope", "Elevation", "Distance to River", "Distance to Road"),
+          dep.var.labels=c("Max NDVI 1995-2010"),
+          title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
 
 
 
