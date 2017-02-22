@@ -15,6 +15,7 @@ library(rgeos)
 library(maptools)
 library(rgdal)
 library(sp)
+library(QuantPsyc)
 #-------------------------------------------------
 #-------------------------------------------------
 #Load in Processed Data - produced from script KFW_dataMerge.r
@@ -31,27 +32,27 @@ dta_Shp = readShapePoly(shpfile)
 #-------------------------------------------------
 #-------------------------------------------------
 #Calculate NDVI Trends
-dta_Shp$pre_trend_NDVI_mean <- timeRangeTrend(dta_Shp,"MeanL_[0-9][0-9][0-9][0-9]",1982,1995,"id")
-dta_Shp$pre_trend_NDVI_max <- timeRangeTrend(dta_Shp,"MaxL_[0-9][0-9][0-9][0-9]",1982,1995,"id")
-dta_Shp$NDVIslope_95_10 <- timeRangeTrend(dta_Shp,"MaxL_[0-9][0-9][0-9][0-9]",1995,2010,"id")
+dta_Shp$pre_trend_NDVI_mean <- timeRangeTrend(dta_Shp,"MeanL_[0-9][0-9][0-9][0-9]",1982,1995,"SP_ID")
+dta_Shp$pre_trend_NDVI_max <- timeRangeTrend(dta_Shp,"MaxL_[0-9][0-9][0-9][0-9]",1982,1995,"SP_ID")
+dta_Shp$NDVIslope_95_10 <- timeRangeTrend(dta_Shp,"MaxL_[0-9][0-9][0-9][0-9]",1995,2010,"SP_ID")
 dta_Shp@data["NDVILevelChange_95_10"] <- dta_Shp$MaxL_2010 - dta_Shp$MaxL_1995
 
 #Calculate Temp and Precip Pre and Post Trends
-dta_Shp$pre_trend_temp_mean <- timeRangeTrend(dta_Shp,"MeanT_[0-9][0-9][0-9][0-9]",1982,1995,"id")
-dta_Shp$pre_trend_temp_max <- timeRangeTrend(dta_Shp,"MaxT_[0-9][0-9][0-9][0-9]",1982,1995,"id")
-dta_Shp$pre_trend_temp_min <- timeRangeTrend(dta_Shp,"MinT_[0-9][0-9][0-9][0-9]",1982,1995,"id")
+dta_Shp$pre_trend_temp_mean <- timeRangeTrend(dta_Shp,"MeanT_[0-9][0-9][0-9][0-9]",1982,1995,"SP_ID")
+dta_Shp$pre_trend_temp_max <- timeRangeTrend(dta_Shp,"MaxT_[0-9][0-9][0-9][0-9]",1982,1995,"SP_ID")
+dta_Shp$pre_trend_temp_min <- timeRangeTrend(dta_Shp,"MinT_[0-9][0-9][0-9][0-9]",1982,1995,"SP_ID")
 
-dta_Shp$post_trend_temp_mean <- timeRangeTrend(dta_Shp,"MeanT_[0-9][0-9][0-9][0-9]",1995,2010,"id")
-dta_Shp$post_trend_temp_max <- timeRangeTrend(dta_Shp,"MaxT_[0-9][0-9][0-9][0-9]",1995,2010,"id")
-dta_Shp$post_trend_temp_min <- timeRangeTrend(dta_Shp,"MinT_[0-9][0-9][0-9][0-9]",1995,2010,"id")
+dta_Shp$post_trend_temp_mean <- timeRangeTrend(dta_Shp,"MeanT_[0-9][0-9][0-9][0-9]",1995,2010,"SP_ID")
+dta_Shp$post_trend_temp_max <- timeRangeTrend(dta_Shp,"MaxT_[0-9][0-9][0-9][0-9]",1995,2010,"SP_ID")
+dta_Shp$post_trend_temp_min <- timeRangeTrend(dta_Shp,"MinT_[0-9][0-9][0-9][0-9]",1995,2010,"SP_ID")
 
-dta_Shp$pre_trend_precip_mean <- timeRangeTrend(dta_Shp,"MeanP_[0-9][0-9][0-9][0-9]",1982,1995,"id")
-dta_Shp$pre_trend_precip_max <- timeRangeTrend(dta_Shp,"MaxP_[0-9][0-9][0-9][0-9]",1982,1995,"id")
-dta_Shp$pre_trend_precip_min <- timeRangeTrend(dta_Shp,"MinP_[0-9][0-9][0-9][0-9]",1982,1995,"id")
+dta_Shp$pre_trend_precip_mean <- timeRangeTrend(dta_Shp,"MeanP_[0-9][0-9][0-9][0-9]",1982,1995,"SP_ID")
+dta_Shp$pre_trend_precip_max <- timeRangeTrend(dta_Shp,"MaxP_[0-9][0-9][0-9][0-9]",1982,1995,"SP_ID")
+dta_Shp$pre_trend_precip_min <- timeRangeTrend(dta_Shp,"MinP_[0-9][0-9][0-9][0-9]",1982,1995,"SP_ID")
 
-dta_Shp$post_trend_precip_mean <- timeRangeTrend(dta_Shp,"MeanP_[0-9][0-9][0-9][0-9]",1995,2010,"id")
-dta_Shp$post_trend_precip_max <- timeRangeTrend(dta_Shp,"MaxP_[0-9][0-9][0-9][0-9]",1995,2010,"id")
-dta_Shp$post_trend_precip_min <- timeRangeTrend(dta_Shp,"MinP_[0-9][0-9][0-9][0-9]",1995,2010,"id")
+dta_Shp$post_trend_precip_mean <- timeRangeTrend(dta_Shp,"MeanP_[0-9][0-9][0-9][0-9]",1995,2010,"SP_ID")
+dta_Shp$post_trend_precip_max <- timeRangeTrend(dta_Shp,"MaxP_[0-9][0-9][0-9][0-9]",1995,2010,"SP_ID")
+dta_Shp$post_trend_precip_min <- timeRangeTrend(dta_Shp,"MinP_[0-9][0-9][0-9][0-9]",1995,2010,"SP_ID")
 
 
 #-------------------------------------------------
@@ -79,11 +80,10 @@ demtable <- table(dta_Shp@data$TrtBin)
 View(demtable)
 
 #--------------------------
-#Matching, with replacement
-#Uses MatchIt
+#Matching
 #--------------------------
 
-aVars <- c("reu_id","UF","TrtBin", "terrai_are","Pop_1990", "MeanT_1995", "pre_trend_temp_mean",
+aVars <- c("reu_id","UF","TrtBin", "terrai_are","Pop_1990","terrai_are", "Pop_1990", "MeanT_1995", "pre_trend_temp_mean",
            "pre_trend_temp_min", "pre_trend_temp_max", "MeanP_1995", "pre_trend_precip_min", 
            "pre_trend_NDVI_mean", "pre_trend_NDVI_max","Slope","Elevation","MaxL_1995","Riv_Dist","Road_dist",
            "pre_trend_precip_mean", "pre_trend_precip_max",
@@ -98,136 +98,35 @@ psmModel <- matchit(TrtBin ~ terrai_are + Pop_1990 + MeanT_1995 + pre_trend_temp
                     data=dta_Shp@data[aVars],
                     method="nearest",replace=TRUE, exact="UF",discard="both")
 
+
 print(summary(psmModel))
 
 model_data<-match.data(psmModel)
+distweight<-model_data[,c("reu_id","distance","weights")]
 
-#create variable to use for weighting in models (1/pscore * weight)
-model_data$psmweight<-(1/model_data$distance)*(model_data$weights)
+model_dataB <- model_data
+model_dataB$reu_id<-as.character(model_dataB$reu_id)
+#model_dataB$TrtBin<-as.character(model_dataB$TrtBin)
+model_dataB$distance<-as.character(model_dataB$distance)
+model_dataB$weights<-as.character(model_dataB$weights)
 
-#-------------------------
-#Matching without Replacement
-#Using old SCI package, not MatchIt (to preserve pair ids, and results from initial journal submission)
-#-------------------------
+ind <- sapply(model_dataB, is.numeric)
+model_dataB[ind] <- lapply(model_dataB[ind],scale)
 
-psmModel <-  "TrtBin ~ terrai_are + Pop_1990 + MeanT_1995 + pre_trend_temp_mean + pre_trend_temp_min + 
-pre_trend_temp_max + MeanP_1995 + pre_trend_precip_min + 
-pre_trend_NDVI_mean + pre_trend_NDVI_max + Slope + Elevation + MaxL_1995 + Riv_Dist + Road_dist +
-pre_trend_precip_mean + pre_trend_precip_max"
-#MeanL_1995
-
-psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=FALSE)
-
-#-------------------------------------------------
-#-------------------------------------------------
-#Based on the Propensity Score Matches, pair comprable treatment and control units.
-#-------------------------------------------------
-#-------------------------------------------------
-drop_set<- c(drop_unmatched=TRUE,drop_method="None",drop_thresh=0.5)
-psm_Pairs <- SAT(dta = psmRes$data, mtd = "fastNN",constraints=c(groups="UF"),psm_eq = psmModel, ids = "id", drop_opts = drop_set, visual="TRUE", TrtBinColName="TrtBin")
-#c(groups=c("UF"),distance=NULL)
-trttable <- table (psm_Pairs@data$TrtBin)
-View(trttable)
+model_dataB$reu_id<-as.numeric(model_dataB$reu_id)
+#model_dataB$TrtBin<-as.numeric(model_dataB$TrtBin)
+model_dataB$distance<-as.numeric(model_dataB$distance)
+model_dataB$weights<-as.numeric(model_dataB$weights)
 
 
-##create standardized dataset to produce standardized coefficients in models that are easy to output
+model <- lm(NDVILevelChange_95_10 ~ TrtBin, data=model_dataB)
 
-# stvars <- c("TrtBin", "terrai_are","Pop_1990", "MeanT_1995", "pre_trend_temp_mean",
-#            "pre_trend_temp_min", "pre_trend_temp_max", "MeanP_1995", "pre_trend_precip_min", 
-#            "pre_trend_NDVI_mean", "pre_trend_NDVI_max","Slope","Elevation","MaxL_1995","Riv_Dist","Road_dist",
-#            "pre_trend_precip_mean", "pre_trend_precip_max",
-#            "NDVILevelChange_95_10","post_trend_temp_mean","post_trend_temp_min","post_trend_temp_max",
-#            "post_trend_precip_mean","post_trend_precip_min","post_trend_precip_max")
-# 
-# model_data_st<- model_data
-# model_data_st[stvars]<-lapply(model_data_st[stvars],scale)
-
-#-------------
-#MODELS
-#-------------
-
-##Unmatched Data Models
-#no propensity score matching (for comparison)
-model2u <- lm(NDVILevelChange_95_10 ~ TrtBin, data=dta_Shp@data)
-
-model3u<-lm(NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_1990 + MeanT_1995 + 
-             post_trend_temp_mean + 
-             post_trend_precip_mean + 
-             MeanP_1995 + Slope + Elevation  + Riv_Dist + Road_dist, data=dta_Shp@data)
-
-## Matching without Replacement, Data Models (also uses old SCI package, not MatchIt)
-#analyticModelEver2, pair FEs, no covars, 1995-2010
-analyticModelEver2 <- "NDVILevelChange_95_10 ~ TrtBin + factor(PSM_match_ID)"
-
-OutputEver2=Stage2PSM(analyticModelEver2,psm_Pairs,type="lm",table_out=TRUE)
-
-#analyticModelEver3, pair FEs, covars, 1995-2010
-analyticModelEver3 <- "NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_1990 + MeanT_1995  +
-MeanP_1995 + post_trend_temp_mean + post_trend_precip_mean + Slope + Elevation  + Riv_Dist + Road_dist + 
-factor(PSM_match_ID)"
-
-OutputEver3=Stage2PSM(analyticModelEver3,psm_Pairs,type="lm",table_out=TRUE)
-
-##Matching with Replacement, Data Models
-#when use model_data_st, coefficients are standardized
-
-model2 <- lm(NDVILevelChange_95_10 ~ TrtBin, data=model_data, weights=(psmweight))
-
-model3<-lm(NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_1990 + MeanT_1995 + 
-             post_trend_temp_mean + 
-             post_trend_precip_mean + 
-             MeanP_1995 + Slope + Elevation  + Riv_Dist + Road_dist, data=model_data, weights=(psmweight))
-
-
-#-------------
-#Stargazer
-#-------------
-
-stargazer(model2u, model3u,
-          keep=c("TrtBin", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_1990","MeanT_1995","post_trend_temp","MeanP_1995",
-                 "post_trend_precip","Slope","Elevation","Riv_Dist","Road_dist"),
-          covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI", "Area (hectares)","Baseline Population Density",
-                             "Baseline Temperature", "Temperature Trends", "Precipitation Trends","Baseline Precipitation", 
-                             "Slope", "Elevation", "Distance to River", "Distance to Road"),
-          dep.var.labels=c("Max NDVI 1995-2010"),
-          title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
-
-
-stargazer(model2, model3,
-          keep=c("TrtBin", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_1990","MeanT_1995","post_trend_temp","MeanP_1995",
-                 "post_trend_precip","Slope","Elevation","Riv_Dist","Road_dist"),
-          covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI", "Area (hectares)","Baseline Population Density",
-                             "Baseline Temperature", "Temperature Trends", "Precipitation Trends","Baseline Precipitation", 
-                             "Slope", "Elevation", "Distance to River", "Distance to Road"),
-          dep.var.labels=c("Max NDVI 1995-2010"),
-          title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
-
-stargazer(model2u, model3u,model2, model3,
-          keep=c("TrtBin", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_1990","MeanT_1995","post_trend_temp","MeanP_1995",
-                 "post_trend_precip","Slope","Elevation","Riv_Dist","Road_dist"),
-          covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI", "Area (hectares)","Baseline Population Density",
-                             "Baseline Temperature", "Temperature Trends", "Precipitation Trends","Baseline Precipitation", 
-                             "Slope", "Elevation", "Distance to River", "Distance to Road"),
-          dep.var.labels=c("Max NDVI 1995-2010"),
-          title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
-
-## FINAL TABLE FOR JEEM REVISION
-
-stargazer(model2u, model3u,OutputEver2$unstandardized,OutputEver3$unstandardized,model2, model3,
-          omit=c("factor"),
-          keep=c("TrtBin", "pre_trend_NDVI_max","MaxL_1995", "terrai_are","Pop_1990","MeanT_1995","post_trend_temp","MeanP_1995",
-                 "post_trend_precip","Slope","Elevation","Riv_Dist","Road_dist"),
-          covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI", "Area (hectares)","Baseline Population Density",
-                             "Baseline Temperature", "Temperature Trends", "Precipitation Trends","Baseline Precipitation", 
-                             "Slope", "Elevation", "Distance to River", "Distance to Road"),
-          dep.var.labels=c("Max NDVI 1995-2010"),
-          title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
-
-
-
-          
+model2<-lm(NDVILevelChange_95_10 ~ TrtBin + pre_trend_NDVI_max + MaxL_1995 + terrai_are + Pop_1990 + MeanT_1995 + 
+             post_trend_temp_min + post_trend_temp_mean + post_trend_temp_max +
+             post_trend_precip_min+post_trend_precip_mean + post_trend_precip_max +
+             MeanP_1995 + Slope + Elevation  + Riv_Dist + Road_dist, data=model_data,weights=(weights))
 
 
 
 
-
+write.csv(dta_Shp@data,"processed_data/KFW_CrossSection_Max_EverNever_MatchIt.csv")
