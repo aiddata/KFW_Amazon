@@ -85,7 +85,7 @@ View(demtable)
 
 aVars <- c("reu_id","UF","TrtBin", "terrai_are","Pop_1990", "MeanT_1995", "pre_trend_temp_mean",
            "pre_trend_temp_min", "pre_trend_temp_max", "MeanP_1995", "pre_trend_precip_min", 
-           "pre_trend_NDVI_mean", "pre_trend_NDVI_max","Slope","Elevation","MaxL_1995","Riv_Dist","Road_dist",
+           "pre_trend_NDVI_mean", "pre_trend_NDVI_max","Slope","Elevation","MaxL_1995","MeanL_1995","Riv_Dist","Road_dist",
            "pre_trend_precip_mean", "pre_trend_precip_max",
            "NDVILevelChange_95_10","post_trend_temp_mean","post_trend_temp_min","post_trend_temp_max",
            "post_trend_precip_mean","post_trend_precip_min","post_trend_precip_max")
@@ -131,16 +131,23 @@ View(trttable)
 
 
 ##create standardized dataset to produce standardized coefficients in models that are easy to output
+#or to create normalized difference of means statistics for summary statistics
 
 # stvars <- c("TrtBin", "terrai_are","Pop_1990", "MeanT_1995", "pre_trend_temp_mean",
 #            "pre_trend_temp_min", "pre_trend_temp_max", "MeanP_1995", "pre_trend_precip_min", 
-#            "pre_trend_NDVI_mean", "pre_trend_NDVI_max","Slope","Elevation","MaxL_1995","Riv_Dist","Road_dist",
+#            "pre_trend_NDVI_mean", "pre_trend_NDVI_max","Slope","Elevation","MaxL_1995","MeanL_1995","Riv_Dist","Road_dist",
 #            "pre_trend_precip_mean", "pre_trend_precip_max",
 #            "NDVILevelChange_95_10","post_trend_temp_mean","post_trend_temp_min","post_trend_temp_max",
 #            "post_trend_precip_mean","post_trend_precip_min","post_trend_precip_max")
 # 
 # model_data_st<- model_data
 # model_data_st[stvars]<-lapply(model_data_st[stvars],scale)
+
+# psm_Pairs_st<-psm_Pairs@data
+# psm_Pairs_st[stvars]<-lapply(psm_Pairs_st[stvars],scale)
+# 
+# dta_Shp_st<-dta_Shp@data
+# dta_Shp_st[stvars]<-lapply(dta_Shp_st[stvars],scale)
 
 #-------------
 #MODELS
@@ -224,6 +231,50 @@ stargazer(model2u, model3u,OutputEver2$unstandardized,OutputEver3$unstandardized
           title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
 
 
+#---------------
+#Summary Stats, by groups
+#this provides values and then enter in Excel to format it as needed
+#---------------
+
+
+##Creating normalized difference in means, by groups
+#to create statistic that allows comparison across unmatched, matched w/o replacement, matched w/replacement
+
+#Unmatched
+describeBy(dta_Shp_st$terrai_are, dta_Shp_st$TrtBin)
+describeBy(dta_Shp_st$Pop_1990, dta_Shp_st$TrtBin)
+describeBy(dta_Shp_st$MeanL_1995, dta_Shp_st$TrtBin)
+describeBy(dta_Shp_st$MaxL_1995, dta_Shp_st$TrtBin)
+describeBy(dta_Shp_st$MeanT_1995, dta_Shp_st$TrtBin)
+describeBy(dta_Shp_st$MeanP_1995, dta_Shp_st$TrtBin)
+describeBy(dta_Shp_st$Slope, dta_Shp_st$TrtBin)
+describeBy(dta_Shp_st$Elevation, dta_Shp_st$TrtBin)
+describeBy(dta_Shp_st$Riv_Dist, dta_Shp_st$TrtBin)
+describeBy(dta_Shp_st$Road_dist, dta_Shp_st$TrtBin)
+
+#Matched w/out replacement
+describeBy(psm_Pairs_st$terrai_are, psm_Pairs_st$TrtBin)
+describeBy(psm_Pairs_st$Pop_1990, psm_Pairs_st$TrtBin)
+describeBy(psm_Pairs_st$MeanL_1995, psm_Pairs_st$TrtBin)
+describeBy(psm_Pairs_st$MaxL_1995, psm_Pairs_st$TrtBin)
+describeBy(psm_Pairs_st$MeanT_1995, psm_Pairs_st$TrtBin)
+describeBy(psm_Pairs_st$MeanP_1995, psm_Pairs_st$TrtBin)
+describeBy(psm_Pairs_st$Slope, psm_Pairs_st$TrtBin)
+describeBy(psm_Pairs_st$Elevation, psm_Pairs_st$TrtBin)
+describeBy(psm_Pairs_st$Riv_Dist, psm_Pairs_st$TrtBin)
+describeBy(psm_Pairs_st$Road_dist, psm_Pairs_st$TrtBin)
+
+#Matched w/replacement
+describeBy(model_data_st$terrai_are, model_data_st$TrtBin)
+describeBy(model_data_st$Pop_1990, model_data_st$TrtBin)
+describeBy(model_data_st$MeanL_1995, model_data_st$TrtBin)
+describeBy(model_data_st$MaxL_1995, model_data_st$TrtBin)
+describeBy(model_data_st$MeanT_1995, model_data_st$TrtBin)
+describeBy(model_data_st$MeanP_1995, model_data_st$TrtBin)
+describeBy(model_data_st$Slope, model_data_st$TrtBin)
+describeBy(model_data_st$Elevation, model_data_st$TrtBin)
+describeBy(model_data_st$Riv_Dist, model_data_st$TrtBin)
+describeBy(model_data_st$Road_dist, model_data_st$TrtBin)
 
 
 
