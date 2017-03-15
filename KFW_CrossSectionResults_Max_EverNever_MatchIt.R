@@ -133,21 +133,21 @@ View(trttable)
 ##create standardized dataset to produce standardized coefficients in models that are easy to output
 #or to create normalized difference of means statistics for summary statistics
 
-# stvars <- c("TrtBin", "terrai_are","Pop_1990", "MeanT_1995", "pre_trend_temp_mean",
-#            "pre_trend_temp_min", "pre_trend_temp_max", "MeanP_1995", "pre_trend_precip_min", 
-#            "pre_trend_NDVI_mean", "pre_trend_NDVI_max","Slope","Elevation","MaxL_1995","MeanL_1995","Riv_Dist","Road_dist",
-#            "pre_trend_precip_mean", "pre_trend_precip_max",
-#            "NDVILevelChange_95_10","post_trend_temp_mean","post_trend_temp_min","post_trend_temp_max",
-#            "post_trend_precip_mean","post_trend_precip_min","post_trend_precip_max")
-# 
-# model_data_st<- model_data
-# model_data_st[stvars]<-lapply(model_data_st[stvars],scale)
+stvars <- c("TrtBin", "terrai_are","Pop_1990", "MeanT_1995", "pre_trend_temp_mean",
+           "pre_trend_temp_min", "pre_trend_temp_max", "MeanP_1995", "pre_trend_precip_min",
+           "pre_trend_NDVI_mean", "pre_trend_NDVI_max","Slope","Elevation","MaxL_1995","MeanL_1995","Riv_Dist","Road_dist",
+           "pre_trend_precip_mean", "pre_trend_precip_max",
+           "NDVILevelChange_95_10","post_trend_temp_mean","post_trend_temp_min","post_trend_temp_max",
+           "post_trend_precip_mean","post_trend_precip_min","post_trend_precip_max")
+#
+model_data_st<- model_data
+model_data_st[stvars]<-lapply(model_data_st[stvars],scale)
 
-# psm_Pairs_st<-psm_Pairs@data
-# psm_Pairs_st[stvars]<-lapply(psm_Pairs_st[stvars],scale)
-# 
-# dta_Shp_st<-dta_Shp@data
-# dta_Shp_st[stvars]<-lapply(dta_Shp_st[stvars],scale)
+psm_Pairs_st<-psm_Pairs@data
+psm_Pairs_st[stvars]<-lapply(psm_Pairs_st[stvars],scale)
+#
+dta_Shp_st<-dta_Shp@data
+dta_Shp_st[stvars]<-lapply(dta_Shp_st[stvars],scale)
 
 #-------------
 #MODELS
@@ -227,7 +227,9 @@ stargazer(model2u, model3u,OutputEver2$unstandardized,OutputEver3$unstandardized
           covariate.labels=c("Treatment", "Pre-Trend NDVI", "Baseline NDVI", "Area (hectares)","Baseline Population Density",
                              "Baseline Temperature", "Temperature Trends", "Precipitation Trends","Baseline Precipitation", 
                              "Slope", "Elevation", "Distance to River", "Distance to Road"),
-          dep.var.labels=c("Max NDVI 1995-2010"),
+          dep.var.labels=c("Change in Max NDVI: 2010 Level - 1995 Level"),
+          column.labels=c("Unmatched (All)","Matched without Replacement","Matched with Replacement"),
+          column.separate=c(2,2,2),
           title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
 
 
