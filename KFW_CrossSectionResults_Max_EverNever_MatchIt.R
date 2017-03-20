@@ -228,7 +228,7 @@ stargazer(model2u, model3u,OutputEver2$unstandardized,OutputEver3$unstandardized
                              "Baseline Temperature", "Temperature Trends", "Precipitation Trends","Baseline Precipitation", 
                              "Slope", "Elevation", "Distance to River", "Distance to Road"),
           dep.var.labels=c("Change in Max NDVI: 2010 Level - 1995 Level"),
-          column.labels=c("Unmatched (All)","Matched without Replacement","Matched with Replacement"),
+          column.labels=c("Unmatched","Matched w/o Replacement","Matched w/ Replacement"),
           column.separate=c(2,2,2),
           title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
 
