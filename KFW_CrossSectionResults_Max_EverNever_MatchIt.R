@@ -78,6 +78,11 @@ dta_Shp@data$TrtBin[dta_Shp@data$NA_check != 1] <- 1
 demtable <- table(dta_Shp@data$TrtBin)
 View(demtable)
 
+#plot demarcation year and NDVI pre-trend
+plot(dta_Shp@data$demend_y,dta_Shp@data$pre_trend_NDVI_max,
+     xlab="Year of Demarcation",ylab="NDVI Max Pre-Trend",
+     abline(lm(dta_Shp@data$pre_trend_NDVI_max~dta_Shp@data$demend_y)) )
+
 #--------------------------
 #Matching, with replacement
 #Uses MatchIt
