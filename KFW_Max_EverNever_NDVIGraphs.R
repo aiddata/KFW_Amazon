@@ -123,6 +123,12 @@ varList = c("MaxL_")
 psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1982,2010,colYears=c("demend_y"),interpYears=c("Slope","Road_dist","Riv_Dist","UF","Elevation","terrai_are","Pop_","MeanT_","MeanP_","MaxT_","MaxP_","MinP_","MinT_","TrtBin"))
 psm_Long$Year <- as.numeric(psm_Long$Year)
 
+#build minimal panel dataset
+# varList = c("MaxL_")
+# psm_Long <- BuildTimeSeries(dta=psm_Pairs,idField="reu_id",varList_pre=varList,1982,2010,colYears=c("demend_y"),interpYears=c("Slope","Road_dist","Riv_Dist","UF","Elevation","terrai_are","Pop_","MeanT_","MeanP_","MaxT_","MaxP_","MinP_","MinT_","TrtBin"))
+# psm_Long$Year <- as.numeric(psm_Long$Year)
+# 
+
 ## View Time Series and GGPlot to create NDVI graphs
 
 # time series graph with year effects stripped out
@@ -131,16 +137,34 @@ reg=lm(MaxL_ ~ factor(Year), data=psm_Long)
 psm_Long$resid <- residuals(reg)
 plot(psm_Long$resid)
 
+#Original Figure 5
 ViewTimeSeries(dta=dta_Shp,IDfield="reu_id",TrtField="TrtBin",idPre="MaxL_[0-9][0-9][0-9][0-9]")
-psm_Long2 <- psm_Long
 
+#Figure 5 for JEEM 2nd Resubmission
+ggplot(data = psm_Long, aes(x=Year, y=MaxL_, group=reu_id,linetype=factor(TrtBin))) + 
+  geom_line(size=0, linetype=2) +
+  stat_summary(fun.y=mean,aes(x=Year,y=MaxL_,group=TrtBin),data=psm_Long,geom='line',size=1.5)+
+  theme(axis.text.x=element_text(angle=90,hjust=1))+
+  labs(x="Year",y="Max NDVI",linetype="Demarcation")
+
+
+psm_Long2 <- psm_Long
 psm_Long2 <- psm_Long[c("Year","resid","reu_id","TrtBin")]
 
+#Original Figure 6
 ggplot(data = psm_Long2, aes(x=Year, y=resid, group=reu_id,colour=factor(TrtBin))) + 
   #geom_point(size=.5) +
   geom_line(size=.5, linetype=2) +
   stat_summary(fun.y=mean,aes(x=Year, y=resid, group=TrtBin,colour=factor(TrtBin)),data=psm_Long2,geom='line',size=1.5)+
   theme(axis.text.x=element_text(angle=90,hjust=1))
+
+#Colorless Figure 6
+ggplot(data = psm_Long2, aes(x=Year, y=resid,linetype=factor(TrtBin))) + 
+  #geom_point(size=.5) +
+  geom_line(size=0, linetype=2) +
+  stat_summary(fun.y=mean,aes(x=Year, y=resid,group=TrtBin),data=psm_Long2,geom='line',size=1.5) +
+  theme(axis.text.x=element_text(angle=90,hjust=1))+
+  labs(x="Year",y="Residual",linetype="Demarcation")
 
 
 
