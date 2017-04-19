@@ -79,9 +79,21 @@ demtable <- table(dta_Shp@data$TrtBin)
 View(demtable)
 
 #plot demarcation year and NDVI pre-trend
-plot(dta_Shp@data$demend_y,dta_Shp@data$pre_trend_NDVI_max,
-     xlab="Year of Demarcation",ylab="NDVI Max Pre-Trend",
-     abline(lm(dta_Shp@data$pre_trend_NDVI_max~dta_Shp@data$demend_y)) )
+# reg<-lm(dta_Shp@data$pre_trend_NDVI_max~dta_Shp@data$demend_y)
+# summary(reg)
+# plot(dta_Shp@data$demend_y,dta_Shp@data$pre_trend_NDVI_max,
+#      xlab="Year of Demarcation",ylab="NDVI Max Pre-Trend")
+# 
+# abline(lm(dta_Shp@data$pre_trend_NDVI_max~dta_Shp@data$demend_y))
+# abline(h=0)
+
+ggplot(dta_Shp@data, aes(x = demend_y, y = pre_trend_NDVI_max)) + 
+  geom_point() +
+  stat_smooth(method = "lm",se=TRUE,col="black")+
+  geom_hline(yintercept=.00249109,linetype="dashed")+
+  theme(axis.text.x=element_text(angle=90,hjust=1))+
+  labs(x="Year of Demarcation",y="NDVI Pre-Trend")+
+  theme_bw()
 
 #--------------------------
 #Matching, with replacement
