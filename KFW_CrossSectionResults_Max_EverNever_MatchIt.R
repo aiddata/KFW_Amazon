@@ -79,13 +79,6 @@ demtable <- table(dta_Shp@data$TrtBin)
 View(demtable)
 
 #plot demarcation year and NDVI pre-trend
-# reg<-lm(dta_Shp@data$pre_trend_NDVI_max~dta_Shp@data$demend_y)
-# summary(reg)
-# plot(dta_Shp@data$demend_y,dta_Shp@data$pre_trend_NDVI_max,
-#      xlab="Year of Demarcation",ylab="NDVI Max Pre-Trend")
-# 
-# abline(lm(dta_Shp@data$pre_trend_NDVI_max~dta_Shp@data$demend_y))
-# abline(h=0)
 
 ggplot(dta_Shp@data, aes(x = demend_y, y = pre_trend_NDVI_max)) + 
   geom_point() +
@@ -150,22 +143,35 @@ View(trttable)
 ##create standardized dataset to produce standardized coefficients in models that are easy to output
 #or to create normalized difference of means statistics for summary statistics
 
-stvars <- c("TrtBin", "terrai_are","Pop_1990", "MeanT_1995", "pre_trend_temp_mean",
+stvars <- c("terrai_are","Pop_1990", "MeanT_1995", "pre_trend_temp_mean",
            "pre_trend_temp_min", "pre_trend_temp_max", "MeanP_1995", "pre_trend_precip_min",
            "pre_trend_NDVI_mean", "pre_trend_NDVI_max","Slope","Elevation","MaxL_1995","MeanL_1995","Riv_Dist","Road_dist",
            "pre_trend_precip_mean", "pre_trend_precip_max",
            "NDVILevelChange_95_10","post_trend_temp_mean","post_trend_temp_min","post_trend_temp_max",
            "post_trend_precip_mean","post_trend_precip_min","post_trend_precip_max")
-#
-model_data_st<- model_data
-model_data_st[stvars]<-lapply(model_data_st[stvars],scale)
 
-psm_Pairs_st<-psm_Pairs@data
-psm_Pairs_st[stvars]<-lapply(psm_Pairs_st[stvars],scale)
-#
+#standardize full unmatched dataset, then subset from that
+#(rather than standardizing each dataset after it has been subsetted, which won't allow comparisons across all datasets)
+
+#standardize unmatched dataset
 dta_Shp_st<-dta_Shp@data
 dta_Shp_st[stvars]<-lapply(dta_Shp_st[stvars],scale)
 
+#subset to standardized matched without replacement dataset
+pairs_id<-psm_Pairs@data$reu_id
+psm_Pairs_st<-dta_Shp_st[dta_Shp_st$reu_id %in% pairs_id,]
+
+#subset to standardized matched with replacement dataset
+model_id<-model_data$reu_id
+model_data_st<-dta_Shp_st[dta_Shp_st$reu_id %in% model_id,]
+
+#test
+summary(dta_Shp$Elevation)
+summary(dta_Shp_st$Elevation)
+summary(psm_Pairs$Elevation)
+summary(psm_Pairs_st$Elevation)
+summary(model_data$Elevation)
+summary(model_data_st$Elevation)
 #-------------
 #MODELS
 #-------------
@@ -284,7 +290,7 @@ describeBy(psm_Pairs_st$Riv_Dist, psm_Pairs_st$TrtBin)
 describeBy(psm_Pairs_st$Road_dist, psm_Pairs_st$TrtBin)
 
 #Matched w/replacement
-describeBy(model_data_st$terrai_are, model_data_st$TrtBin)
+describeBy(model_data$terrai_are, model_data$TrtBin)
 describeBy(model_data_st$Pop_1990, model_data_st$TrtBin)
 describeBy(model_data_st$MeanL_1995, model_data_st$TrtBin)
 describeBy(model_data_st$MaxL_1995, model_data_st$TrtBin)
@@ -296,8 +302,132 @@ describeBy(model_data_st$Riv_Dist, model_data_st$TrtBin)
 describeBy(model_data_st$Road_dist, model_data_st$TrtBin)
 
 
+#Scratch
 
+tapply(dta_Shp$terrai_are, dta_Shp$TrtBin, mean)
 
+#------
+#Create summary stats table by treatment and pairs
+#Include normalized difference in means
+#------
+
+stat_vars <- c("TrtBin","terrai_are","Pop_1990", "MeanT_1995", "MeanP_1995", 
+               "Slope","Elevation","MaxL_1995","MeanL_1995","Riv_Dist","Road_dist")
+
+## *Never demarcated (all) vs. ever demarcated (all)*
+
+#subset dataset with all communities for selected variables
+dta_sub<-dta_Shp@data[stat_vars]
+#create dataset with means, transpose, turn into dataframe
+dta_Shp_stats <-aggregate(dta_sub, by=list(dta_sub$TrtBin), 
+                    FUN=mean, na.rm=TRUE)
+dta_Shp_stats1<-t(dta_Shp_stats)
+dta_Shp_stats2<-data.frame(dta_Shp_stats1)
+# Create a variable name column from rownames
+dta_Shp_stats2$varname = rownames(dta_Shp_stats2)
+# Reset the rownames of the original data
+rownames(dta_Shp_stats2) = NULL
+#rename columns to reflect demarcation status
+names(dta_Shp_stats2)[names(dta_Shp_stats2)=="X1"] <- "PPTAL_nondem_all"
+names(dta_Shp_stats2)[names(dta_Shp_stats2)=="X2"] <- "PPTAL_dem_all"
+#drop unneeded rows
+rows<-c("TrtBin","Group.1")
+dta_Shp_stats3<-dta_Shp_stats2[!(dta_Shp_stats2$varname %in% rows),]
+#reorder rows alphabetically and assign variable id
+dta_Shp_stats4<-dta_Shp_stats3[order(dta_Shp_stats3$varname),]
+dta_Shp_stats4$var_id<-seq.int(nrow(dta_Shp_stats4))
+dta_Shp_stats<-dta_Shp_stats4
+
+#add normalized means and differences
+#subset dataset with all communities for selected variables
+dta_sub_st<-dta_Shp_st[stat_vars]
+#create dataset with means, transpose, turn into dataframe
+dta_Shp_stats_st <-aggregate(dta_sub_st, by=list(dta_sub_st$TrtBin), 
+                          FUN=mean, na.rm=TRUE)
+dta_Shp_stats1_st<-t(dta_Shp_stats_st)
+dta_Shp_stats2_st<-data.frame(dta_Shp_stats1_st)
+# Create a variable name column from rownames
+dta_Shp_stats2_st$varname = rownames(dta_Shp_stats2_st)
+# Reset the rownames of the original data
+rownames(dta_Shp_stats2_st) = NULL
+#rename columns to reflect demarcation status
+names(dta_Shp_stats2_st)[names(dta_Shp_stats2_st)=="X1"] <- "PPTAL_nondem_all_st"
+names(dta_Shp_stats2_st)[names(dta_Shp_stats2_st)=="X2"] <- "PPTAL_dem_all_st"
+#drop unneeded rows
+rows<-c("TrtBin","Group.1")
+dta_Shp_stats3_st<-dta_Shp_stats2_st[!(dta_Shp_stats2_st$varname %in% rows),]
+#create normalized difference var
+dta_Shp_stats_st<-dta_Shp_stats3_st
+dta_Shp_stats_st$ndiff_all<-abs(dta_Shp_stats_st$PPTAL_nondem_all_st-dta_Shp_stats_st$PPTAL_dem_all_st)
+summ_stats<-merge(dta_Shp_stats,dta_Shp_stats_st)
+
+## *All communities*
+dta_sub$group<-1
+#create dataset with means, transpose, turn into dataframe
+allcomms_stats <-aggregate(dta_sub,by= list(dta_sub$group),
+                          FUN=mean, na.rm=TRUE)
+allcomms_stats1<-t(allcomms_stats)
+allcomms_stats2<-data.frame(allcomms_stats1)
+# Create a variable name column from rownames
+allcomms_stats2$varname = rownames(allcomms_stats2)
+# Reset the rownames of the original data 
+rownames(allcomms_stats2) = NULL
+#drop unneeded rows
+rows1<-c("TrtBin","Group.1","group")
+allcomms_stats3<-allcomms_stats2[!(allcomms_stats2$varname %in% rows1),]
+
+#merge all community stats with stats for ever vs. never demarcated
+allcomms_stats<-allcomms_stats3
+summ_stats1<-merge(summ_stats,allcomms_stats)
+summ_stats<-summ_stats1
+
+## *Matched without Replacement Stats*
+#subset data for matched without replacement
+pairs_sub<-psm_Pairs@data[stat_vars]
+#create dataset with means, transpose, turn into dataframe
+pairs_stats <-aggregate(pairs_sub, by=list(pairs_sub$TrtBin), 
+                          FUN=mean, na.rm=TRUE)
+pairs_stats1<-t(pairs_stats)
+pairs_stats2<-data.frame(pairs_stats1)
+# Create a variable name column from rownames
+pairs_stats2$varname = rownames(pairs_stats2)
+# Reset the rownames of the original data
+rownames(pairs_stats2) = NULL
+#rename columns to reflect demarcation status
+names(pairs_stats2)[names(pairs_stats2)=="X1"] <- "nondem_worep"
+names(pairs_stats2)[names(pairs_stats2)=="X2"] <- "dem_worep"
+#drop unneeded rows
+rows<-c("TrtBin","Group.1")
+pairs_stats3<-pairs_stats2[!(pairs_stats2$varname %in% rows),]
+#merge
+pairs_stats<-pairs_stats3
+summ_stats2<-merge(summ_stats,pairs_stats)
+summ_stats<-summ_stats2
+
+## *Matched with Replacement Stats*
+#subset data for matched with replacement 
+match_sub<-model_data[stat_vars]
+#create dataset with means, transpose, turn into dataframe
+match_stats <-aggregate(match_sub, by=list(match_sub$TrtBin), 
+                        FUN=mean, na.rm=TRUE)
+match_stats1<-t(match_stats)
+match_stats2<-data.frame(match_stats1)
+# Create a variable name column from rownames
+match_stats2$varname = rownames(match_stats2)
+# Reset the rownames of the original data
+rownames(match_stats2) = NULL
+#rename columns to reflect demarcation status
+names(match_stats2)[names(match_stats2)=="X1"] <- "nondem_rep"
+names(match_stats2)[names(match_stats2)=="X2"] <- "dem_rep"
+#drop unneeded rows
+rows<-c("TrtBin","Group.1")
+match_stats3<-match_stats2[!(match_stats2$varname %in% rows),]
+#merge
+match_stats<-match_stats3
+summ_stats3<-merge(summ_stats,match_stats)
+summ_stats<-summ_stats3
+
+stargazer(summ_stats, type = "html", summary = FALSE, rownames = FALSE)
 
 
 
