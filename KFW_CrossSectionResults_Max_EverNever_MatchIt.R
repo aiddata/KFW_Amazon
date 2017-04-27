@@ -306,14 +306,15 @@ describeBy(model_data_st$Road_dist, model_data_st$TrtBin)
 
 tapply(dta_Shp$terrai_are, dta_Shp$TrtBin, mean)
 
-#------
+#------------------------------
 #Create summary stats table by treatment and pairs
 #Include normalized difference in means
-#------
+#------------------------------
 
 stat_vars <- c("TrtBin","terrai_are","Pop_1990", "MeanT_1995", "MeanP_1995", 
                "Slope","Elevation","MaxL_1995","MeanL_1995","Riv_Dist","Road_dist")
 
+#--
 ## *Never demarcated (all) vs. ever demarcated (all)*
 
 #subset dataset with all communities for selected variables
@@ -338,8 +339,9 @@ dta_Shp_stats4<-dta_Shp_stats3[order(dta_Shp_stats3$varname),]
 dta_Shp_stats4$var_id<-seq.int(nrow(dta_Shp_stats4))
 dta_Shp_stats<-dta_Shp_stats4
 
-#add normalized means and differences
-#subset dataset with all communities for selected variables
+##add normalized means and differences
+
+#subset standardized dataset with all communities for selected variables
 dta_sub_st<-dta_Shp_st[stat_vars]
 #create dataset with means, transpose, turn into dataframe
 dta_Shp_stats_st <-aggregate(dta_sub_st, by=list(dta_sub_st$TrtBin), 
@@ -360,10 +362,14 @@ dta_Shp_stats3_st<-dta_Shp_stats2_st[!(dta_Shp_stats2_st$varname %in% rows),]
 dta_Shp_stats_st<-dta_Shp_stats3_st
 dta_Shp_stats_st$ndiff_all<-abs(dta_Shp_stats_st$PPTAL_nondem_all_st-dta_Shp_stats_st$PPTAL_dem_all_st)
 summ_stats<-merge(dta_Shp_stats,dta_Shp_stats_st)
+#--
 
+#--
 ## *All communities*
-dta_sub$group<-1
+
 #create dataset with means, transpose, turn into dataframe
+#create fake group variable to use aggregate function
+dta_sub$group<-1
 allcomms_stats <-aggregate(dta_sub,by= list(dta_sub$group),
                           FUN=mean, na.rm=TRUE)
 allcomms_stats1<-t(allcomms_stats)
@@ -379,9 +385,11 @@ allcomms_stats3<-allcomms_stats2[!(allcomms_stats2$varname %in% rows1),]
 #merge all community stats with stats for ever vs. never demarcated
 allcomms_stats<-allcomms_stats3
 summ_stats1<-merge(summ_stats,allcomms_stats)
-summ_stats<-summ_stats1
+#--
 
+#--
 ## *Matched without Replacement Stats*
+
 #subset data for matched without replacement
 pairs_sub<-psm_Pairs@data[stat_vars]
 #create dataset with means, transpose, turn into dataframe
@@ -401,8 +409,31 @@ rows<-c("TrtBin","Group.1")
 pairs_stats3<-pairs_stats2[!(pairs_stats2$varname %in% rows),]
 #merge
 pairs_stats<-pairs_stats3
-summ_stats2<-merge(summ_stats,pairs_stats)
-summ_stats<-summ_stats2
+summ_stats2<-merge(summ_stats1,pairs_stats)
+
+## Add normalized differences
+#subset standardized dataset with pair communities for selected variables
+pairs_sub_st<-psm_Pairs_st[stat_vars]
+#create dataset with means, transpose, turn into dataframe
+pairs_stats_st <-aggregate(pairs_sub_st, by=list(pairs_sub_st$TrtBin), 
+                             FUN=mean, na.rm=TRUE)
+pairs_stats1_st<-t(pairs_stats_st)
+pairs_stats2_st<-data.frame(pairs_stats1_st)
+# Create a variable name column from rownames
+pairs_stats2_st$varname = rownames(pairs_stats2_st)
+# Reset the rownames of the original data
+rownames(pairs_stats2_st) = NULL
+#rename columns to reflect demarcation status
+names(pairs_stats2_st)[names(pairs_stats2_st)=="X1"] <- "nondem_worep_st"
+names(pairs_stats2_st)[names(pairs_stats2_st)=="X2"] <- "dem_worep_st"
+#drop unneeded rows
+rows<-c("TrtBin","Group.1")
+pairs_stats3_st<-pairs_stats2_st[!(pairs_stats2_st$varname %in% rows),]
+#create normalized difference var
+pairs_stats_st<-pairs_stats3_st
+pairs_stats_st$ndiff_worep<-abs(pairs_stats_st$nondem_worep_st-pairs_stats_st$dem_worep_st)
+summ_stats3<-merge(summ_stats2,pairs_stats_st)
+summ_stats<-summ_stats3
 
 ## *Matched with Replacement Stats*
 #subset data for matched with replacement 
@@ -427,7 +458,42 @@ match_stats<-match_stats3
 summ_stats3<-merge(summ_stats,match_stats)
 summ_stats<-summ_stats3
 
-stargazer(summ_stats, type = "html", summary = FALSE, rownames = FALSE)
+## Add normalized differences
+#subset standardized dataset with pair communities for selected variables
+match_sub_st<-model_data_st[stat_vars]
+#create dataset with means, transpose, turn into dataframe
+match_stats_st <-aggregate(match_sub_st, by=list(match_sub_st$TrtBin), 
+                           FUN=mean, na.rm=TRUE)
+match_stats1_st<-t(match_stats_st)
+match_stats2_st<-data.frame(match_stats1_st)
+# Create a variable name column from rownames
+match_stats2_st$varname = rownames(match_stats2_st)
+# Reset the rownames of the original data
+rownames(match_stats2_st) = NULL
+#rename columns to reflect demarcation status
+names(match_stats2_st)[names(match_stats2_st)=="X1"] <- "nondem_rep_st"
+names(match_stats2_st)[names(match_stats2_st)=="X2"] <- "dem_rep_st"
+#drop unneeded rows
+rows<-c("TrtBin","Group.1")
+match_stats3_st<-match_stats2_st[!(match_stats2_st$varname %in% rows),]
+#create normalized difference var
+match_stats_st<-match_stats3_st
+match_stats_st$ndiff_rep<-abs(match_stats_st$nondem_rep_st-match_stats_st$dem_rep_st)
+summ_stats4<-merge(summ_stats,match_stats_st)
+summ_stats<-summ_stats4
+
+#Formatting for summary stats table
+stats_table<-summ_stats
+names(stats_table)[names(stats_table)=="allcomms_stats1"]<-"allPPTAL"
+stats_table<-stats_table[,-grep("(_st)",names(stats_table))]
+stats_table$varname_title<-c("Elevation (m)","NDVI Max, 1995","NDVI Mean, 1995","Mean Precipitation, 1995",
+                             "Mean Temperature, 1995", "Population Density, 1990","River Distance (m)",
+                             "Road Distance (m)","Slope (degrees)","Area (hectares)")
+stats_table<-stats_table[c(1,13,6,2,3,5,7:12)]
+stats_table<-stats_table[order(stats_table$varname_title),]
+
+#output table using stargazer, then import into excel and format column names and add number of observations
+stargazer(stats_table, type = "html", summary = FALSE, rownames = FALSE)
 
 
 
