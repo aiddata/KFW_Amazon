@@ -1,3 +1,4 @@
+
 library(maptools)
 library(reshape)
 library(splitstackshape)
@@ -21,6 +22,61 @@ colnames(GPW_pop)[3] <- "Pop_1995"
 colnames(GPW_pop)[4] <- "Pop_2000"
 #Merge it in
 kfw.SPDF <- merge(cln_Shp, GPW_pop, by.x="id", by.y="id")
+
+#Add later population data from GPW4, file also includes nighttime lights 
+# data was not available at time of original data merge, but added in later
+gpw4<-read.csv("input_data/merge_terra_indigenaPolygon_id_thin.csv")
+for (i in 2:length(gpw4))
+{
+  colnames(gpw4)[i]<- sub("gpw4","Pop",colnames(gpw4)[i])
+  colnames(gpw4)[i]<- sub("ncc4","ntl",colnames(gpw4)[i])
+  colnames(gpw4)[i]<-sub("e","",colnames(gpw4)[i])
+}
+#drop extra columns
+gpw4<-gpw4[,!grepl("^d",names(gpw4))]
+gpw4<-gpw4[,3:29]
+#merge
+kfw.SPDF<-merge(kfw.SPDF,gpw4)
+#interpolate pop values for missing years within kfw.SPDF, so value for every year from 1982-2010
+kfw.SPDF$Pop_90.95<-(kfw.SPDF$Pop_1995-kfw.SPDF$Pop_1990)/5
+kfw.SPDF$Pop_1991<-kfw.SPDF$Pop_1990+kfw.SPDF$Pop_90.95
+kfw.SPDF$Pop_1992<-kfw.SPDF$Pop_1991+kfw.SPDF$Pop_90.95
+kfw.SPDF$Pop_1993<-kfw.SPDF$Pop_1992+kfw.SPDF$Pop_90.95
+kfw.SPDF$Pop_1994<-kfw.SPDF$Pop_1993+kfw.SPDF$Pop_90.95
+
+kfw.SPDF$Pop_1989<-kfw.SPDF$Pop_1990-kfw.SPDF$Pop_90.95
+kfw.SPDF$Pop_1988<-kfw.SPDF$Pop_1989-kfw.SPDF$Pop_90.95
+kfw.SPDF$Pop_1987<-kfw.SPDF$Pop_1988-kfw.SPDF$Pop_90.95
+kfw.SPDF$Pop_1986<-kfw.SPDF$Pop_1987-kfw.SPDF$Pop_90.95
+kfw.SPDF$Pop_1985<-kfw.SPDF$Pop_1986-kfw.SPDF$Pop_90.95
+kfw.SPDF$Pop_1984<-kfw.SPDF$Pop_1985-kfw.SPDF$Pop_90.95
+kfw.SPDF$Pop_1983<-kfw.SPDF$Pop_1984-kfw.SPDF$Pop_90.95
+kfw.SPDF$Pop_1982<-kfw.SPDF$Pop_1983-kfw.SPDF$Pop_90.95
+#1995-2000
+kfw.SPDF$Pop_95.2000<-(kfw.SPDF$Pop_2000-kfw.SPDF$Pop_1995)/5
+kfw.SPDF$Pop_1996<-kfw.SPDF$Pop_1995+kfw.SPDF$Pop_95.2000
+kfw.SPDF$Pop_1997<-kfw.SPDF$Pop_1996+kfw.SPDF$Pop_95.2000
+kfw.SPDF$Pop_1998<-kfw.SPDF$Pop_1997+kfw.SPDF$Pop_95.2000
+kfw.SPDF$Pop_1999<-kfw.SPDF$Pop_1998+kfw.SPDF$Pop_95.2000
+#2000-2005
+kfw.SPDF$Pop_2000.05<-(kfw.SPDF$Pop_2005-kfw.SPDF$Pop_2000)/5
+kfw.SPDF$Pop_2001<-kfw.SPDF$Pop_2000+kfw.SPDF$Pop_2000.05
+kfw.SPDF$Pop_2002<-kfw.SPDF$Pop_2001+kfw.SPDF$Pop_2000.05
+kfw.SPDF$Pop_2003<-kfw.SPDF$Pop_2002+kfw.SPDF$Pop_2000.05
+kfw.SPDF$Pop_2004<-kfw.SPDF$Pop_2003+kfw.SPDF$Pop_2000.05
+#2005-2010
+kfw.SPDF$Pop_2005.10<-(kfw.SPDF$Pop_2010-kfw.SPDF$Pop_2005)/5
+kfw.SPDF$Pop_2006<-kfw.SPDF$Pop_2005+kfw.SPDF$Pop_2005.10
+kfw.SPDF$Pop_2007<-kfw.SPDF$Pop_2006+kfw.SPDF$Pop_2005.10
+kfw.SPDF$Pop_2008<-kfw.SPDF$Pop_2007+kfw.SPDF$Pop_2005.10
+kfw.SPDF$Pop_2009<-kfw.SPDF$Pop_2008+kfw.SPDF$Pop_2005.10
+#drop unused columns
+kfw.SPDF<-kfw.SPDF[,-grep("(Pop_90.95)",names(kfw.SPDF))]
+kfw.SPDF<-kfw.SPDF[,-grep("(Pop_95.2000)",names(kfw.SPDF))]
+kfw.SPDF<-kfw.SPDF[,-grep("(Pop_2000.05)",names(kfw.SPDF))]
+kfw.SPDF<-kfw.SPDF[,-grep("(Pop_2005.10)",names(kfw.SPDF))]
+#reorder columns chronologically
+kfw.SPDF<-kfw.SPDF[,order(names(kfw.SPDF))]
 
 #Continious NDVI - LTDR - MEAN----------------------------------------------------
 LTDR_mean <- "input_data/sciclone_extracts/LTDR_merge_year_mean.csv"
