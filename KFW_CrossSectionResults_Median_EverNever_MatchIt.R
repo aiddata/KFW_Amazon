@@ -131,7 +131,9 @@ stargazer(model2, model3,
                              "Baseline Temperature", "Temperature Trends", "Precipitation Trends","Baseline Precipitation", 
                              "Slope", "Elevation", "Distance to River", "Distance to Road"),
           dep.var.labels=c("Median NDVI 1995-2010"),
-          title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
+          title="Regression Results", type="html", 
+          star.cutoffs = c(0.05, 0.01, 0.001),
+          omit.stat=c("f","ser"), align=TRUE)
 
 
 
