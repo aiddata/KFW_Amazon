@@ -253,58 +253,10 @@ stargazer(model2u, model3u,OutputEver2$unstandardized,OutputEver3$unstandardized
           dep.var.labels=c("Change in Max NDVI: 2010 Level - 1995 Level"),
           column.labels=c("Unmatched","Matched w/o Replacement","Matched w/ Replacement"),
           column.separate=c(2,2,2),
-          title="Regression Results", type="html", omit.stat=c("f","ser"), align=TRUE)
+          title="Regression Results", type="html", 
+          star.cutoffs = c(0.05, 0.01, 0.001),
+          omit.stat=c("f","ser"), align=TRUE)
 
-
-#---------------
-#Summary Stats, by groups
-#this provides values and then enter in Excel to format it as needed
-#---------------
-
-
-##Creating normalized difference in means, by groups
-#to create statistic that allows comparison across unmatched, matched w/o replacement, matched w/replacement
-
-#Unmatched
-describeBy(dta_Shp_st$terrai_are, dta_Shp_st$TrtBin)
-describeBy(dta_Shp_st$Pop_1990, dta_Shp_st$TrtBin)
-describeBy(dta_Shp_st$MeanL_1995, dta_Shp_st$TrtBin)
-describeBy(dta_Shp_st$MaxL_1995, dta_Shp_st$TrtBin)
-describeBy(dta_Shp_st$MeanT_1995, dta_Shp_st$TrtBin)
-describeBy(dta_Shp_st$MeanP_1995, dta_Shp_st$TrtBin)
-describeBy(dta_Shp_st$Slope, dta_Shp_st$TrtBin)
-describeBy(dta_Shp_st$Elevation, dta_Shp_st$TrtBin)
-describeBy(dta_Shp_st$Riv_Dist, dta_Shp_st$TrtBin)
-describeBy(dta_Shp_st$Road_dist, dta_Shp_st$TrtBin)
-
-#Matched w/out replacement
-describeBy(psm_Pairs_st$terrai_are, psm_Pairs_st$TrtBin)
-describeBy(psm_Pairs_st$Pop_1990, psm_Pairs_st$TrtBin)
-describeBy(psm_Pairs_st$MeanL_1995, psm_Pairs_st$TrtBin)
-describeBy(psm_Pairs_st$MaxL_1995, psm_Pairs_st$TrtBin)
-describeBy(psm_Pairs_st$MeanT_1995, psm_Pairs_st$TrtBin)
-describeBy(psm_Pairs_st$MeanP_1995, psm_Pairs_st$TrtBin)
-describeBy(psm_Pairs_st$Slope, psm_Pairs_st$TrtBin)
-describeBy(psm_Pairs_st$Elevation, psm_Pairs_st$TrtBin)
-describeBy(psm_Pairs_st$Riv_Dist, psm_Pairs_st$TrtBin)
-describeBy(psm_Pairs_st$Road_dist, psm_Pairs_st$TrtBin)
-
-#Matched w/replacement
-describeBy(model_data$terrai_are, model_data$TrtBin)
-describeBy(model_data_st$Pop_1990, model_data_st$TrtBin)
-describeBy(model_data_st$MeanL_1995, model_data_st$TrtBin)
-describeBy(model_data_st$MaxL_1995, model_data_st$TrtBin)
-describeBy(model_data_st$MeanT_1995, model_data_st$TrtBin)
-describeBy(model_data_st$MeanP_1995, model_data_st$TrtBin)
-describeBy(model_data_st$Slope, model_data_st$TrtBin)
-describeBy(model_data_st$Elevation, model_data_st$TrtBin)
-describeBy(model_data_st$Riv_Dist, model_data_st$TrtBin)
-describeBy(model_data_st$Road_dist, model_data_st$TrtBin)
-
-
-#Scratch
-
-tapply(dta_Shp$terrai_are, dta_Shp$TrtBin, mean)
 
 #------------------------------
 #Create summary stats table by treatment and pairs
@@ -495,5 +447,12 @@ stats_table<-stats_table[order(stats_table$varname_title),]
 #output table using stargazer, then import into excel and format column names and add number of observations
 stargazer(stats_table, type = "html", summary = FALSE, rownames = FALSE)
 
+#to check values
+#Unmatched
+describeBy(dta_Shp_st$terrai_are, dta_Shp_st$TrtBin)
+#Matched w/out replacement
+describeBy(psm_Pairs_st$terrai_are, psm_Pairs_st$TrtBin)
+#Matched w/replacement
+describeBy(model_data$terrai_are, model_data$TrtBin)
 
 
