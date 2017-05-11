@@ -135,11 +135,9 @@ stargazer(psmRes_ever$model, psmRes_early$model,
           "Population Baseline","Mean Temperature Baseline","Mean Precipitation Baseline", "Area (hectares)",
           "Slope","Elevation","Distance to River","Distance to Road"),
           omit.stat=c("f","ser"),
-#           add.lines=list(c("Observations","1914","1914","1914","1914","1914","1914"),
-#                          c("Community Fixed Effects?","Yes","Yes","Yes","Yes","Yes","Yes"),
-#                          c("Year Fixed Effects?","No","No","No","Yes","Yes","Yes")),
           order=c("pre_trend_precip","pre_trend_temp","pre_trend_NDVI","MaxL_","Pop","Mean"),
           title="PSM First Stage Results",
+          star.cutoffs = c(0.05, 0.01, 0.001),
           dep.var.labels=c("Ever Demarcated   Early vs. Late"))
 
 
