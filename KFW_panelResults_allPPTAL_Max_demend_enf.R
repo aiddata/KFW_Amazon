@@ -133,7 +133,7 @@ pModelMax_E_fit <- Stage2PSM(pModelMax_E ,psm_Long,type="cmreg", table_out=TRUE,
 ## stargazer output with variable labels
 
 #Used for JEEM 2nd resubmission
-#imported html into excel and did some reformatting within
+#imported html into excel and did some reformatting within Excel
 stargazer(pModelMax_A_fit$cmreg,pModelMax_B_fit$cmreg,pModelMax_C_fit$cmreg,
           pModelMax_C2_fit$cmreg,pModelMax_D_fit$cmreg,pModelMax_E_fit$cmreg,
           type="html", align=TRUE,
@@ -147,6 +147,7 @@ stargazer(pModelMax_A_fit$cmreg,pModelMax_B_fit$cmreg,pModelMax_C_fit$cmreg,
                          c("Community Fixed Effects?","Yes","Yes","Yes","Yes","Yes","Yes"),
                          c("Year Fixed Effects?","No","No","No","Yes","Yes","Yes")),
           title="Regression Results",
+          star.cutoffs = c(0.05, 0.01, 0.001),
           dep.var.labels=c("Max NDVI"))
 
 
