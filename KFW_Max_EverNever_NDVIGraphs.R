@@ -51,12 +51,14 @@ View(demtable)
 #-------------------------------------------------
 
 varList = c("MaxL_")
-psm_Long <- BuildTimeSeries(dta=dta_Shp,idField="reu_id",varList_pre=varList,1982,2010,colYears=c("demend_y"),interpYears=c("TrtBin"))
+psm_Long <- BuildTimeSeries(dta=dta_Shp,idField="reu_id",varList_pre=varList,1982,2010,colYears=c("demend_y"),interpYears=c("TrtBin","id"))
 psm_Long$Year <- as.numeric(psm_Long$Year)
 
-
-
-
+# #double check that treatment var was correctly coded in psm_Long
+# sub<-dta_Shp[dta_Shp@data$reu_id==80,]
+# View(sub)
+# View(sub@data[,(100:200)])
+# summary(sub@data$demend_y)
 
 #-------------------------------------------------
 #-------------------------------------------------
@@ -64,19 +66,11 @@ psm_Long$Year <- as.numeric(psm_Long$Year)
 #-------------------------------------------------
 #-------------------------------------------------
 
-#Original Figure 5 (Dem vs. Non-Dem, with means as well as all comms showing)
-ViewTimeSeries(dta=dta_Shp,IDfield="reu_id",TrtField="TrtBin",idPre="MaxL_[0-9][0-9][0-9][0-9]")
+#Fig 5 for JEEM 2nd resubmission
+#mean for all demarcated vs. all non-demarcated, 
+#plus 95% conf interval for non-demarcated
+#use PPT to relabel legend
 
-#Figure 5 for JEEM 2nd Resubmission (mean only showing)
-ggplot(data = psm_Long, aes(x=Year, y=MaxL_, group=reu_id,linetype=factor(TrtBin))) + 
-  geom_line(size=0, linetype=2) +
-  stat_summary(fun.y=mean,aes(x=Year,y=MaxL_,group=TrtBin),data=psm_Long,geom='line',size=1.5)+
-  stat_summary(fun.data="mean", conf.int=0.95, geom="errorbar", 
-               width=0.1, linetype=2, colour="blue")+
-  theme(axis.text.x=element_text(angle=90,hjust=1))+
-  labs(x="Year",y="Max NDVI",linetype="Demarcation")
-
-#scratch
 my_ci <- function(x) data.frame(
   y=mean(x), 
   ymin=mean(x) - 1.96 * sd(x), 
@@ -86,24 +80,23 @@ my_mean<-function(x) data.frame(
   y=mean(x)
 )
 
-ggplot(psm_Long, aes(Year, MaxL_)) + 
-  #geom_point(color="red") +
-  stat_summary(fun.data="my_ci", geom="smooth")
-
-ggplot(psm_Long, aes(x=Year, y=MaxL_,linetype=factor(TrtBin))) +
-  stat_summary(data=dem,fun.data="my_mean",geom="line")+
-  stat_summary(data=nondem,fun.data="my_ci", geom="smooth")
 nondem<-psm_Long[psm_Long$TrtBin==0,]
 dem<-psm_Long[psm_Long$TrtBin==1,]
 
-ggplot(data = psm_Long, aes(x=Year, y=MaxL_, group=reu_id,linetype=factor(TrtBin))) + 
-  geom_line(size=0, linetype=2) +
-  stat_summary(fun.y=mean,aes(x=Year,y=MaxL_,group=TrtBin),data=psm_Long,geom='line',size=1.5)+
-  stat_summary(fun.data="my_ci", geom="smooth")+
+ggplot(psm_Long, aes(x=Year, y=MaxL_,linetype=factor(TrtBin))) +
+  stat_summary(data=dem,fun.data="my_mean",geom="line",color="1")+
+  stat_summary(data=nondem,fun.data="my_ci", geom="smooth",color="1")+
   theme(axis.text.x=element_text(angle=90,hjust=1))+
-  labs(x="Year",y="Max NDVI",linetype="Demarcation")
+  theme_bw()+
+  guides(linetype=FALSE)+
+  labs(x="Year",y="Max NDVI")
 
-
+# double check that code works
+demsub<-dem[dem$Year==1990,]
+mean(demsub$MaxL_)
+nondemsub<-nondem[nondem$Year==1990,]
+mean(nondemsub$MaxL_)
+sd(nondemsub$MaxL_)
 
 # time series graph with year effects stripped out
 
@@ -123,6 +116,16 @@ ggplot(data = psm_Long2, aes(x=Year, y=resid,linetype=factor(TrtBin))) +
 
 
 ## Scratch
+
+#Original Figure 5 (Dem vs. Non-Dem, with means as well as all comms showing)
+ViewTimeSeries(dta=dta_Shp,IDfield="reu_id",TrtField="TrtBin",idPre="MaxL_[0-9][0-9][0-9][0-9]")
+
+#Figure 5 (mean only showing)
+ggplot(data = psm_Long, aes(x=Year, y=MaxL_, group=reu_id,linetype=factor(TrtBin))) + 
+  geom_line(size=0, linetype=2) +
+  stat_summary(fun.y=mean,aes(x=Year,y=MaxL_,group=TrtBin),data=psm_Long,geom='line',size=1.5)+
+  theme(axis.text.x=element_text(angle=90,hjust=1))+
+  labs(x="Year",y="Max NDVI",linetype="Demarcation")
 
 #Original Figure 6 (Dem vs. non dem, with year effects stripped out, means + all comm values showing)
 ggplot(data = psm_Long2, aes(x=Year, y=resid, group=reu_id,colour=factor(TrtBin))) + 
