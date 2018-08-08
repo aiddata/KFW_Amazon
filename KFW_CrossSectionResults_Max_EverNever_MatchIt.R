@@ -98,7 +98,8 @@ aVars <- c("reu_id","UF","TrtBin", "terrai_are","Pop_1990", "MeanT_1995", "pre_t
            "pre_trend_NDVI_mean", "pre_trend_NDVI_max","Slope","Elevation","MaxL_1995","MeanL_1995","Riv_Dist","Road_dist",
            "pre_trend_precip_mean", "pre_trend_precip_max",
            "NDVILevelChange_95_10","post_trend_temp_mean","post_trend_temp_min","post_trend_temp_max",
-           "post_trend_precip_mean","post_trend_precip_min","post_trend_precip_max")
+           "post_trend_precip_mean","post_trend_precip_min","post_trend_precip_max",
+           "MaxL_2010","MeanL_2010")
 
 
 psmModel <- matchit(TrtBin ~ terrai_are + Pop_1990 + MeanT_1995 + pre_trend_temp_mean + pre_trend_temp_min + 
@@ -120,13 +121,13 @@ model_data$psmweight<-(1/model_data$distance)*(model_data$weights)
 #Using old SCI package, not MatchIt (to preserve pair ids, and results from initial journal submission)
 #-------------------------
 
-psmModel <-  "TrtBin ~ terrai_are + Pop_1990 + MeanT_1995 + pre_trend_temp_mean + pre_trend_temp_min + 
+psmModel_R <-  "TrtBin ~ terrai_are + Pop_1990 + MeanT_1995 + pre_trend_temp_mean + pre_trend_temp_min + 
 pre_trend_temp_max + MeanP_1995 + pre_trend_precip_min + 
 pre_trend_NDVI_mean + pre_trend_NDVI_max + Slope + Elevation + MaxL_1995 + Riv_Dist + Road_dist +
 pre_trend_precip_mean + pre_trend_precip_max"
 #MeanL_1995
 
-psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visual=FALSE)
+psmRes <- SCI::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel_R,drop="support",visual=FALSE)
 
 #-------------------------------------------------
 #-------------------------------------------------
@@ -134,7 +135,7 @@ psmRes <- SAT::SpatialCausalPSM(dta_Shp,mtd="logit",psmModel,drop="support",visu
 #-------------------------------------------------
 #-------------------------------------------------
 drop_set<- c(drop_unmatched=TRUE,drop_method="None",drop_thresh=0.5)
-psm_Pairs <- SAT(dta = psmRes$data, mtd = "fastNN",constraints=c(groups="UF"),psm_eq = psmModel, ids = "id", drop_opts = drop_set, visual="TRUE", TrtBinColName="TrtBin")
+psm_Pairs <- SAT(dta = psmRes$data, mtd = "fastNN",constraints=c(groups="UF"),psm_eq = psmModel_R, ids = "id", drop_opts = drop_set, visual="TRUE", TrtBinColName="TrtBin")
 #c(groups=c("UF"),distance=NULL)
 trttable <- table (psm_Pairs@data$TrtBin)
 View(trttable)
@@ -455,4 +456,32 @@ describeBy(psm_Pairs_st$terrai_are, psm_Pairs_st$TrtBin)
 #Matched w/replacement
 describeBy(model_data$terrai_are, model_data$TrtBin)
 
+## -------
+# Identify 2010 Max NDVI values for Meta Analysis Paper, done in August 2018
+## -------
+
+#UNMATCHED
+#this should match Table 5 from final JEEM manuscipt
+describeBy(dta_Shp$MaxL_1995, dta_Shp_st$TrtBin)
+#this is the new value for all communities, and for never vs. ever
+mean(dta_Shp$MaxL_2010)
+describeBy(dta_Shp$MaxL_2010, dta_Shp_st$TrtBin)
+
+# MATCHED W/OUT REPLACEMENT
+#this should match Table 6 from final JEEM manuscript
+describeBy(psm_Pairs$MaxL_1995, psm_Pairs$TrtBin)
+#this is the new value for never vs. ever
+psm_Pairs_never<-psm_Pairs[psm_Pairs$TrtBin==0,]
+psm_Pairs_ever<-psm_Pairs[psm_Pairs$TrtBin==1,]
+mean(psm_Pairs_never$MaxL_2010)
+mean(psm_Pairs_ever$MaxL_2010)
+
+# MATCHED W/REPLACEMENT
+#this should match Table 6 from final JEEM manuscript
+describeBy(model_data$MaxL_1995, model_data$TrtBin)
+#this is the new 2010 value for never vs. ever
+model_data_never<-model_data[model_data$TrtBin==0,]
+model_data_ever<-model_data[model_data$TrtBin==1,]
+mean(model_data_never$MaxL_2010)
+mean(model_data_ever$MaxL_2010)
 
